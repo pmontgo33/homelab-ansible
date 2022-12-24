@@ -1,3 +1,5 @@
+# $ ansible-playbook ./playbooks/updates.yml -i ./inventory/hosts.yml
+
 - hosts: servers
   become: yes
   tasks:

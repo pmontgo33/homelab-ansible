@@ -1,0 +1,20 @@
+# $ ansible-playbook ./playbooks/setup_ssh_key_access.yml -i ./inventory/hosts.yml
+
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: generate SSH key 
+      openssh_keypair:
+        path: "~/.ssh/id_rsa"
+        type: rsa
+        size: 2048
+        state: present
+        force: no
+
+- hosts: servers
+  tasks:
+    - name: Set authorized key taken from file
+      ansible.posix.authorized_key:
+        user: pi
+        state: present
+        key: "{{ lookup('file', '/home/patrick/.ssh/id_rsa.pub') }}"

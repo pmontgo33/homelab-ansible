@@ -1,0 +1,10 @@
+# $ ansible-playbook ./playbooks/restore_backups.yml -i ./inventory/hosts.yml
+
+- hosts: server01
+  become: yes
+  tasks:
+    - name: Synchronize two directories on one remote host.
+      ansible.posix.synchronize:
+        src: /home/pi/testsrc/
+        dest: /home/pi/testdest
+      delegate_to: "{{ inventory_hostname }}"

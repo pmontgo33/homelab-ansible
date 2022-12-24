@@ -1,3 +1,5 @@
+# $ ansible-playbook ./playbooks/install_packages.yml -i ./inventory/hosts.yml
+
 - hosts: servers
   become: yes
   tasks:
@@ -9,3 +11,15 @@
         state: present
         update_cache: true
       become: true
+    
+    - name: install restic
+      apt:
+        name:
+          - restic
+        state: present
+        update_cache: true
+      become: true
+      
+    - name: restic self-update
+      ansible.builtin.shell:
+        cmd: restic self-update
