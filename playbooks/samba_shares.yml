@@ -5,6 +5,10 @@
 
 - hosts: "{{ hosts }}"
   become: yes
+        
+  vars_files:
+        - vars/samba_vars.yml
+  
   tasks:
   
     - name: Configuring samba share
@@ -19,3 +23,7 @@
       ansible.builtin.service:
         name: smbd
         state: restarted
+        
+    - name: Create/update samba users
+      include_tasks: "smbusers.yml"
+      loop: "{{users}}"
