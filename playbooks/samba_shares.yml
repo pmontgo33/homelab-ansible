@@ -1,0 +1,21 @@
+# $ ansible-playbook ./playbooks/samba_shares.yml -i ./inventory/hosts.yml -e "hosts=HOST"
+
+# Need to create a samba password on the server by running:
+# $ sudo smbpasswd -a pi
+
+- hosts: "{{ hosts }}"
+  become: yes
+  tasks:
+  
+    - name: Configuring samba share
+      template:
+        src: "{{ inventory_hostname }}_smb.conf"
+        dest: /etc/samba/smb.conf
+        owner: root
+        group: root
+        mode: 0644
+        
+    - name: Restart samba service
+      ansible.builtin.service:
+        name: smbd
+        state: restarted

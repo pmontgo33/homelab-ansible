@@ -1,6 +1,6 @@
-# $ ansible-playbook ./playbooks/mount_external_drive.yml -i ./inventory/hosts.yml
+# $ ansible-playbook ./playbooks/mount_external_drive.yml -i ./inventory/hosts.yml -e "hosts=HOST"
 
-- hosts: server01
+- hosts: "{{ hosts }}"
   become: yes
   tasks:
   - name: install ntfs-3g

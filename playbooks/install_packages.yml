@@ -1,6 +1,6 @@
-# $ ansible-playbook ./playbooks/install_packages.yml -i ./inventory/hosts.yml
+# $ ansible-playbook ./playbooks/install_packages.yml -i ./inventory/hosts.yml -e "hosts=HOST"
 
-- hosts: servers
+- hosts: "{{ hosts }}"
   become: yes
   tasks:
     - name: install samba
@@ -11,6 +11,11 @@
         state: present
         update_cache: true
       become: true
+    
+    - name: Start samba service, if not started
+      ansible.builtin.service:
+        name: smbd
+        state: started
     
     - name: install restic
       apt:

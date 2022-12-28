@@ -1,6 +1,6 @@
-# $ ansible-playbook ./playbooks/updates.yml -i ./inventory/hosts.yml
+# $ ansible-playbook ./playbooks/updates.yml -i ./inventory/hosts.yml -e "hosts=HOST"
 
-- hosts: servers
+- hosts: "{{ hosts }}"
   become: yes
   tasks:
     - name: apt

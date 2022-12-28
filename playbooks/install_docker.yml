@@ -1,6 +1,6 @@
-# $ ansible-playbook ./playbooks/install_docker.yml -i ./inventory/hosts.yml
+# $ ansible-playbook ./playbooks/install_docker.yml -i ./inventory/hosts.yml -e "hosts=HOST"
 
-- hosts: servers
+- hosts: "{{ hosts }}"
   become: yes
   tasks:
   
