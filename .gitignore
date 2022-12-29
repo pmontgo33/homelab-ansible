@@ -1,2 +1,3 @@
 .ansible.cfg
 samba_vars.yml
+public_keys.yml
