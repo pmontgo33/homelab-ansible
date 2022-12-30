@@ -9,10 +9,16 @@
         size: 2048
         state: present
         force: no
-
+    
+    - name: copy other ssh keys to localhost
+      ansible.posix.authorized_key:
+        user: patrick
+        state: present
+        key: '{{ item }}'
+      with_file:
+        - ../public_keys/hp_laptop_id_rsa.pub
+        
 - hosts: "{{ hosts }}"
-  vars_files:
-        - vars/public_keys.yml
   tasks:
     - name: copy localhost ssh key to hosts
       ansible.posix.authorized_key:
