@@ -1,0 +1,4 @@
+# files & directories to include in rsync backup to external drive
+
+/opt/plex/
+/opt/server/

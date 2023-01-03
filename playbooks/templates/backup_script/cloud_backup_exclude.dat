@@ -1,0 +1,3 @@
+# files & directories to exclude in rclone backup to cloud
+
+*.secret

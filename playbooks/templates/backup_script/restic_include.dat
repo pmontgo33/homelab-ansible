@@ -1,0 +1,3 @@
+# files & directories to include in restic backup to external drive
+
+/mnt/external/*
