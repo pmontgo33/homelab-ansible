@@ -1,0 +1,20 @@
+# $ ansible-playbook ./playbooks/ssh_localhost.yml -i ./inventory/hosts.yml -e "hosts=HOST" --ask-pass
+
+- hosts: localhost
+  tasks:
+    - name: generate SSH key from localhost
+      openssh_keypair:
+        path: "~/.ssh/id_rsa"
+        type: rsa
+        size: 2048
+        state: present
+        force: no
+        
+- hosts: "{{ hosts }}"
+  become: yes
+  tasks:
+    - name: copy localhost ssh key to hosts
+      ansible.posix.authorized_key:
+        user: "{{ ansible_user }}"
+        state: present
+        key: "{{ lookup('file', '/home/patrick/.ssh/id_rsa.pub') }}"
