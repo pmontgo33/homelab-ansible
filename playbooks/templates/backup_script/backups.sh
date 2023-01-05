@@ -8,9 +8,7 @@ echo "================================================="
 echo "-"
 
 echo "STARTING rsync server01 backup to latest folder on external..."
-rsync -avhqr --delete --delete-excluded --files-from=./backup_include.dat --exclude-from=./backup_exclude.dat / /mnt/external/backups/latest/server01
-
-#--log-file="/mnt/external/backups/logs/$(date +'%Y-%m-%d')server01-backup.log"
+rsync -avhqr --delete --delete-excluded --exclude-from=./backup_exclude.dat /opt /mnt/external/backups/latest/server01
 
 echo "rsync server01 backup to latest folder COMPLETE!"
 echo "-"

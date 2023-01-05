@@ -1,10 +1,11 @@
-# $ ansible-playbook ./playbooks/restore_backups.yml -i ./inventory/hosts.yml
+# $ ansible-playbook ./playbooks/restore_backups.yml -i ./inventory/hosts.yml -e "hosts=HOST"
 
-- hosts: server01
+- hosts: "{{ hosts }}"
   become: yes
   tasks:
-    - name: Synchronize two directories on one remote host.
+    - name: Restore opt folder to host
       ansible.posix.synchronize:
         src: "/mnt/external/backups/latest/{{ inventory_hostname }}/opt/"
         dest: /opt/
+        delete: yes
       delegate_to: "{{ inventory_hostname }}"

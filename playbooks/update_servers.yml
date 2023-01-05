@@ -1,0 +1,8 @@
+# $ ansible-playbook ./playbooks/update_servers.yml -i ./inventory/hosts.yml
+
+- hosts: servers
+  become: yes
+  tasks:
+    - include_tasks: "./tasks/update_system.yml"
+    - include_tasks: "./tasks/update_docker.yml"
+      
