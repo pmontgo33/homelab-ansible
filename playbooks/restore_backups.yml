@@ -5,6 +5,6 @@
   tasks:
     - name: Synchronize two directories on one remote host.
       ansible.posix.synchronize:
-        src: /home/pi/testsrc/
-        dest: /home/pi/testdest
+        src: "/mnt/external/backups/latest/{{ inventory_hostname }}/opt/"
+        dest: /opt/
       delegate_to: "{{ inventory_hostname }}"
