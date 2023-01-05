@@ -1,0 +1,11 @@
+# $ ansible-playbook ./playbooks/update_system.yml -i ./inventory/hosts.yml -e "hosts=HOST"
+
+- hosts: "{{ hosts }}"
+  become: yes
+  tasks:
+    - name: apt update, upgrade, autoclean, autoremove
+      apt:
+        update_cache: yes
+        upgrade: yes
+        autoremove: yes
+        autoclean: yes

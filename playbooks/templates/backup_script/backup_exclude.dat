@@ -2,6 +2,7 @@
 
 /opt/plex/config/Library/Application Support/Plex Media Server/Cache/*
 /opt/plex/config/Library/Application Support/Plex Media Server/Plug-in Support/Caches/*
+/opt/plex/config/Library/Application Support/Plex Media Server/Plug-ins/Services.bundle/Contents/Service Sets/*
 /opt/plex/config/Library/Application Support/Plex Media Server/Media/*
 /opt/plex/config/Library/Application Support/Plex Media Server/Metadata/*
 /opt/plex/config/Library/Application Support/Plex Media Server/Logs/*
