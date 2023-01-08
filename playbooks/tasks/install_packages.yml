@@ -1,0 +1,25 @@
+- name: install samba
+  apt:
+    name:
+      - samba
+      - samba-common-bin
+    state: present
+    update_cache: true
+  become: true
+
+- name: Start samba service, if not started
+  ansible.builtin.service:
+    name: smbd
+    state: started
+
+- name: install restic
+  apt:
+    name:
+      - restic
+    state: present
+    update_cache: true
+  become: true
+  
+- name: restic self-update
+  ansible.builtin.shell:
+    cmd: restic self-update

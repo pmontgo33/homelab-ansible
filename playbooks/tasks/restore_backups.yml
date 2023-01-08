@@ -1,0 +1,6 @@
+- name: Restore opt folder to host
+  ansible.posix.synchronize:
+    src: "/mnt/external/backups/latest/{{ inventory_hostname }}/opt/"
+    dest: /opt/
+    delete: yes
+  delegate_to: "{{ inventory_hostname }}"

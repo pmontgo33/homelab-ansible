@@ -1,0 +1,15 @@
+- name: Copy backup_script directory with owner and permissions
+  ansible.builtin.copy:
+    src: templates/backup_script
+    dest: /home/pi
+    owner: pi
+    group: pi
+    mode: '0777'
+
+- name: Ensure a job that runs backup.sh at 23:59 exists.
+  ansible.builtin.cron:
+    user: root
+    name: "backups"
+    minute: "59"
+    hour: "23"
+    job: "/home/pi/backup_script/backups.sh"

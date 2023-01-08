@@ -1,0 +1,20 @@
+# $ ansible-playbook ./playbooks/setup_server02.yml -i ./inventory/hosts.yml
+
+- name: SETUP SERVER02
+  hosts: server02
+  become: yes
+  tasks:
+    - name: SSH KEYS
+      include_tasks: "./tasks/ssh_keys.yml"
+    - name: UPDATE SYSTEM
+      include_tasks: "./tasks/update_system.yml"
+    - name: INSTALL PACKAGES
+      include_tasks: "./tasks/install_packages.yml"
+    - name: INSTALL DOCKER
+      include_tasks: "./tasks/install_docker.yml"
+    - name: SETUP SAMBDA SHARES
+      include_tasks: "./tasks/samba_shares.yml"
+    - name: RESTORE FILES FROM BACKUP
+      include_tasks: "./tasks/restore_backups.yml"
+    - name: DOCKER PULL AND UP
+      include_tasks: "./tasks/update_docker.yml"

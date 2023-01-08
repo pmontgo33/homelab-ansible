@@ -1,0 +1,6 @@
+# $ ansible-playbook ./playbooks/run_tasks.yml -i ./inventory/hosts.yml -e "hosts=HOST tasks=TASKS"
+
+- hosts: "{{ hosts }}"
+  become: yes
+  tasks:
+    - include_tasks: "./tasks/{{ tasks }}.yml"
