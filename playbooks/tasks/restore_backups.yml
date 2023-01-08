@@ -3,4 +3,5 @@
     src: "/mnt/external/backups/latest/{{ inventory_hostname }}/opt/"
     dest: /opt/
     delete: yes
-  delegate_to: "{{ inventory_hostname }}"
+  delegate_to: server01
+  delegate_facts: true
