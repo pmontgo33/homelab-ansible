@@ -23,3 +23,6 @@
 - name: restic self-update
   ansible.builtin.shell:
     cmd: restic self-update
+
+- name: reboot the machine with all defaults
+  ansible.builtin.reboot:

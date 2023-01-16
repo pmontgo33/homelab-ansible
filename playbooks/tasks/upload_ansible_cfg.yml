@@ -1,0 +1,4 @@
+- name: upload .ansible.cfg
+  template:
+    src: .ansible.cfg
+    dest: "/home/{{ ansible_user }}"

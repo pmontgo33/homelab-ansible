@@ -1,20 +1,34 @@
-# $ ansible-playbook ./playbooks/ssh_localhost.yml -i ./inventory/hosts.yml -e "hosts=HOST" --ask-pass
+# $ ansible-playbook ./playbooks/ssh_localhost.yml -i ./inventory/hosts.yml -e "hosts=HOST" --ask-pass --ask-become-pass
 
 # ADDED THIS TO SSH_KEYS.YML, BUT NOT SURE IF IT WILL WORK ON FIRST RUN WITHOUT A PASSWORD. KEEP THIS UNTIL CONFIRMED.
 
-- name: generate SSH key from localhost
-  openssh_keypair:
-    path: "~/.ssh/id_rsa"
-    type: rsa
-    size: 2048
-    state: present
-    force: no
-  run_once: true
-  delegate_to: localhost
+- hosts: "{{ hosts }}"
+  become: yes
+  vars:
+    - ansible_host_key_checking: false
+  tasks:
+    
+    - name: add user to sudoers
+      community.general.sudoers:
+        # become_user: root
+        name: ansible user to sudoers
+        state: present
+        user: "{{ ansible_user }}"
+        commands: ALL
+    
+    - name: generate SSH key from localhost
+      openssh_keypair:
+        path: "~/.ssh/id_rsa"
+        type: rsa
+        size: 2048
+        state: present
+        force: no
+      run_once: true
+      delegate_to: localhost
 
-- name: copy localhost ssh key to hosts
-  become: false
-  ansible.posix.authorized_key:
-    user: "{{ ansible_user }}"
-    state: present
-    key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
+    - name: copy localhost ssh key to hosts
+      become: false
+      ansible.posix.authorized_key:
+        user: "{{ ansible_user }}"
+        state: present
+        key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
