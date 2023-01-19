@@ -2,6 +2,8 @@
 
 - hosts: "{{ hosts }}"
   become: yes
+  vars:
+    - ansible_host_key_checking: false
   tasks:
     - name: UPDATE SYSTEM
       include_tasks: "./tasks/update_system.yml"

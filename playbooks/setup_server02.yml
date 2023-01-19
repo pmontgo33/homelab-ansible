@@ -18,7 +18,7 @@
       include_tasks: "./tasks/samba_shares.yml"
     - name: DOCKER DOWN
       include_tasks: "./tasks/docker_down.yml"
-    - name: RESTORE FILES FROM BACKUP
-      include_tasks: "./tasks/restore_backups.yml"
+    # - name: RESTORE FILES FROM BACKUP
+      # include_tasks: "./tasks/restore_backups.yml"
     - name: DOCKER PULL AND UP
       include_tasks: "./tasks/update_docker.yml"
