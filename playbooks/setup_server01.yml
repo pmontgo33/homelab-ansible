@@ -6,6 +6,8 @@
   tasks:
     - name: SSH KEYS
       include_tasks: "./tasks/ssh_keys.yml"
+    - name: SET TIMEZONE
+      include_tasks: "./tasks/set_timezone.yml"
     - name: UPDATE SYSTEM
       include_tasks: "./tasks/update_system.yml"
     - name: MOUNT EXTERNAL DRIVE

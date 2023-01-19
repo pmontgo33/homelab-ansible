@@ -19,3 +19,8 @@
     fstype: ntfs
     opts: nobootwait,nofail
     state: present
+  register: fstab
+
+- name: reboot host
+  ansible.builtin.reboot:
+  when: fstab.changed
