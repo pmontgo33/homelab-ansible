@@ -1,20 +1,3 @@
-- name: generate SSH key from localhost
-  openssh_keypair:
-    path: "~/.ssh/id_rsa"
-    type: rsa
-    size: 2048
-    state: present
-    force: no
-  run_once: true
-  delegate_to: localhost
-
-- name: copy localhost ssh key to hosts
-  become: false
-  ansible.posix.authorized_key:
-    user: "{{ ansible_user }}"
-    state: present
-    key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
-
 - name: Create a 2048-bit SSH key for user for each host
   ansible.builtin.user:
     name: "{{ ansible_user }}"

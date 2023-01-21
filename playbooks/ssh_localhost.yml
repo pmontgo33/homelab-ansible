@@ -24,6 +24,7 @@
         state: present
         force: no
       run_once: true
+      become: no
       delegate_to: localhost
 
     - name: copy localhost ssh key to hosts

@@ -1,11 +1,11 @@
-- name: install packages - samba, restic, software-properties-common, ansible, fail2ban, unattended-upgrades
+- name: install packages - samba, git, restic, software-properties-common, fail2ban, unattended-upgrades
   apt:
     name:
       - samba
       - samba-common-bin
+      - git
       - restic
       - software-properties-common
-      - ansible
       - fail2ban
       - unattended-upgrades
     state: present
