@@ -1,26 +1,24 @@
-# $ ansible-playbook ./playbooks/setup_new_server01.yml -i ./inventory/hosts.yml
+# $ ansible-playbook ./playbooks/provision_server02.yml -i ./inventory/hosts.yml
 
-- name: SETUP SERVER01
-  hosts: new_server01
+- name: SETUP SERVER02
+  hosts: server02
   become: yes
   tasks:
     - name: SSH KEYS
       include_tasks: "./tasks/ssh_keys.yml"
+    - name: SET TIMEZONE
+      include_tasks: "./tasks/set_timezone.yml"
     - name: UPDATE SYSTEM
       include_tasks: "./tasks/update_system.yml"
-    - name: MOUNT EXTERNAL DRIVE
-      include_tasks: "./tasks/mount_external_drive.yml"
     - name: INSTALL PACKAGES
       include_tasks: "./tasks/install_packages.yml"
     - name: INSTALL DOCKER
       include_tasks: "./tasks/install_docker.yml"
     - name: SETUP SAMBDA SHARES
       include_tasks: "./tasks/samba_shares.yml"
-    # - name: DOCKER DOWN
-      # include_tasks: "./tasks/docker_down.yml"
+    - name: DOCKER DOWN
+      include_tasks: "./tasks/docker_down.yml"
     # - name: RESTORE FILES FROM BACKUP
       # include_tasks: "./tasks/restore_backups.yml"
-    # - name: SETUP SERVER TO PERFORM DAILY BACKUPS
-      # include_tasks: "./tasks/setup_backups.yml"
-    # - name: DOCKER PULL AND UP
-      # include_tasks: "./tasks/update_docker.yml"
+    - name: DOCKER PULL AND UP
+      include_tasks: "./tasks/update_docker.yml"

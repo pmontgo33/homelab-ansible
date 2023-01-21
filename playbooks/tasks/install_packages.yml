@@ -1,24 +1,27 @@
-- name: install samba
+- name: install packages - samba, restic, software-properties-common, ansible, fail2ban, unattended-upgrades
   apt:
     name:
       - samba
       - samba-common-bin
+      - restic
+      - software-properties-common
+      - ansible
+      - fail2ban
+      - unattended-upgrades
     state: present
     update_cache: true
   become: true
+  register: packages
 
 - name: Start samba service, if not started
   ansible.builtin.service:
     name: smbd
     state: started
 
-- name: install restic
-  apt:
-    name:
-      - restic
-    state: present
-    update_cache: true
-  become: true
+- name: Start unattended-upgrades service, if not started
+  ansible.builtin.service:
+    name: unattended-upgrades
+    state: started
   
 - name: restic self-update
   ansible.builtin.shell:
@@ -26,3 +29,4 @@
 
 - name: reboot the machine with all defaults
   ansible.builtin.reboot:
+  when: packages.changed
