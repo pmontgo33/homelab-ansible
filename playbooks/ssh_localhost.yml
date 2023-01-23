@@ -33,3 +33,11 @@
         user: "{{ ansible_user }}"
         state: present
         key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
+    
+    - name: Ensure server is present in known_hosts file
+      known_hosts:
+        name: "{{ ansible_host }}"
+        state: present
+        key: "{{ lookup('pipe', 'ssh-keyscan {{ ansible_host }}') }}"
+        hash_host: true
+      become: no

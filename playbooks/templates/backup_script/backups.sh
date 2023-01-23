@@ -7,16 +7,22 @@ echo "Running Scheduled Backup ($(date '+%m/%d/%Y %H:%M:%S'))"
 echo "================================================="
 echo "-"
 
-echo "STARTING rsync server01 backup to latest folder on external..."
+echo "STARTING rsync SERVER01 backup to latest folder on external..."
 sudo rsync -avhqr --delete --delete-excluded --exclude-from=backup_exclude.dat /opt /mnt/external/backups/latest/server01
 
-echo "rsync server01 backup to latest folder COMPLETE!"
+echo "rsync SERVER01 backup to latest folder COMPLETE!"
 echo "-"
 
-echo "STARTING rsync server02 backup to latest folder..."
+echo "STARTING rsync SERVER02 backup to latest folder..."
 rsync -avhq --delete --delete-excluded --rsync-path="sudo rsync" pi@192.168.86.102:/opt /mnt/external/backups/latest/server02
 
-echo "rsync from server02 COMPLETE"
+echo "rsync from SERVER02 COMPLETE"
+echo "-"
+
+echo "STARTING rsync SERVER04 backup to latest folder on external..."
+rsync -avhq --delete --delete-excluded --rsync-path="sudo rsync" pi@192.168.86.104:/home/patrick /mnt/external/backups/latest/server04
+
+echo "rsync SERVER04 backup to latest folder COMPLETE!"
 echo "-"
 
 echo "STARTING restic backup to external repo..."

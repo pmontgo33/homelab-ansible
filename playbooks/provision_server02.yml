@@ -1,6 +1,6 @@
 # $ ansible-playbook ./playbooks/provision_server02.yml -i ./inventory/hosts.yml
 
-- name: SETUP SERVER02
+- name: PROVISION SERVER02
   hosts: server02
   become: yes
   tasks:
