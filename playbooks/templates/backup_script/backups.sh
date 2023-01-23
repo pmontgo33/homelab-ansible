@@ -20,7 +20,7 @@ echo "rsync from SERVER02 COMPLETE"
 echo "-"
 
 echo "STARTING rsync SERVER04 backup to latest folder on external..."
-rsync -avhq --delete --delete-excluded --rsync-path="sudo rsync" pi@192.168.86.104:/home/patrick /mnt/external/backups/latest/server04
+rsync -avhq --delete --delete-excluded --rsync-path="sudo rsync" patrick@192.168.86.104:/home/patrick /mnt/external/backups/latest/server04
 
 echo "rsync SERVER04 backup to latest folder COMPLETE!"
 echo "-"

@@ -15,4 +15,6 @@
     job: "cd /home/pi/backup_script && ./backups.sh"
   register: crontab
 
-- include_tasks: "./tasks/set_timezone.yml"
+- name: Set Timezone
+  include_tasks: "./tasks/set_timezone.yml"
+  when: crontab.changed
