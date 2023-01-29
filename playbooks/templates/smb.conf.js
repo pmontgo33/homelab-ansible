@@ -1,0 +1,27 @@
+## {{ inventory_hostname }} Samba Configuration
+
+[global]
+  workgroup = WORKGROUP
+  server string = {{ inventory_hostname }}
+  security = user
+  log file = /var/log/samba/%m.log
+  max log size = 50
+
+{% if samba_shares|length > 0 %}
+## Samba Shares
+{% for share in samba_shares %}
+[{{ share.name }}]
+{% if share.comment is defined %}
+  comment = {{ share.comment }}
+{% endif %}
+  path = {{ share.path }}
+  browseable = yes
+  read only = no
+  create mask = 0777
+  directory mask = 0777
+{% if share.root is defined and share.root %}
+  force user = root
+{% endif %}
+
+{% endfor %}
+{% endif%}

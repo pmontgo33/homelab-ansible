@@ -5,16 +5,18 @@
 
 - name: Configuring samba share
   template:
-    src: "{{ inventory_hostname }}_smb.conf"
+    src: "smb.conf.js"
     dest: /etc/samba/smb.conf
     owner: root
     group: root
     mode: 0644
+  register: samba_share
     
 - name: Restart samba service
   ansible.builtin.service:
     name: smbd
     state: restarted
+  when: samba_share.changed
     
 - name: Create/update samba users
   include_tasks: "samba_users.yml"
