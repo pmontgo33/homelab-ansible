@@ -1,7 +1,5 @@
 # $ ansible-playbook ./playbooks/ssh_localhost.yml -i ./inventory/hosts.yml -e "hosts=HOST" --ask-pass --ask-become-pass
 
-# ADDED THIS TO SSH_KEYS.YML, BUT NOT SURE IF IT WILL WORK ON FIRST RUN WITHOUT A PASSWORD. KEEP THIS UNTIL CONFIRMED.
-
 - hosts: "{{ hosts }}"
   # become: yes
   vars:

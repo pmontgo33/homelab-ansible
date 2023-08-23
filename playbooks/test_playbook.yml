@@ -4,4 +4,4 @@
   become: yes
   tasks:
     - name: Test jinja2template
-      template: src=smb.conf.js dest=/opt/smb.conf
+      template: src=backups.sh.js dest=/opt/backups.sh

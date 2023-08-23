@@ -1,11 +1,19 @@
 # files & directories to exclude in rsync backup to external drive
 
-/opt/plex/config/Library/Application Support/Plex Media Server/Cache/*
-/opt/plex/config/Library/Application Support/Plex Media Server/Crash Reports/*
-/opt/plex/config/Library/Application Support/Plex Media Server/Diagnostics/*
-/opt/plex/config/Library/Application Support/Plex Media Server/Logs/*
-/opt/plex/config/Library/Application Support/Plex Media Server/Updates/*
-/opt/plex/config/Library/Application Support/Plex Media Server/Plug-in Support/Caches/*
+# PLEX DIRECTORIES
+*/plex/config/Library/Application Support/Plex Media Server/Cache/*
+*/plex/config/Library/Application Support/Plex Media Server/Crash Reports/*
+*/plex/config/Library/Application Support/Plex Media Server/Diagnostics/*
+*/plex/config/Library/Application Support/Plex Media Server/Logs/*
+*/plex/config/Library/Application Support/Plex Media Server/Updates/*
+*/plex/config/Library/Application Support/Plex Media Server/Plug-in Support/Caches/*
+
+# JELLYFIN DIRECTORIES
+*/jellyfin/config/cache/*
+*/jellyfin/config/data/metadata/*
+*/jellyfin/config/data/transcodes/*
+*/jellyfin/config/log/*
+
 #/opt/plex/config/Library/Application Support/Plex Media Server/Plug-ins/Services.bundle/Contents/Service Sets/*
 #/opt/plex/config/Library/Application Support/Plex Media Server/Media/*
 #/opt/plex/config/Library/Application Support/Plex Media Server/Metadata/*

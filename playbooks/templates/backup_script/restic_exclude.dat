@@ -1,11 +1,14 @@
-# files & directories to exclude in restic backup to external drive
+# files & directories to exclude in restic backup to storage drive
 
-/mnt/external/backups/server_restic/*
+/mnt/storage/backups/server_restic/*
 
-/mnt/external/media/concerts/*
-/mnt/external/media/extras/*
-/mnt/external/media/movies/*
-/mnt/external/media/music/*
-/mnt/external/media/sports/*
-/mnt/external/media/tv shows/*
-/mnt/external/media/kids music/*
+/mnt/storage/media/concerts/*
+/mnt/storage/media/extras/*
+/mnt/storage/media/movies/*
+/mnt/storage/media/downloads/*
+/mnt/storage/media/music/*
+/mnt/storage/media/sports/*
+/mnt/storage/media/tv shows/*
+/mnt/storage/media/kids music/*
+
+/mnt/storage/backups/latest/no_backup/*
