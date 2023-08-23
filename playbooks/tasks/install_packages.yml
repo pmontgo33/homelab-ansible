@@ -1,4 +1,4 @@
-- name: install packages - samba, git, restic, software-properties-common, fail2ban, unattended-upgrades, screen, mergerfs
+- name: install packages - samba, git, restic, software-properties-common, fail2ban, unattended-upgrades, screen
   apt:
     name:
       - samba
@@ -9,7 +9,6 @@
       - fail2ban
       - unattended-upgrades
       - screen
-      - mergerfs
     state: present
     update_cache: true
   become: true

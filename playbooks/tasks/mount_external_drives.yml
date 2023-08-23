@@ -1,7 +1,8 @@
-- name: install ntfs-3g
+- name: install ntfs-3g, mergerfs
   apt:
     name:
       - ntfs-3g
+      - mergerfs
     state: present
     update_cache: true
   become: true
