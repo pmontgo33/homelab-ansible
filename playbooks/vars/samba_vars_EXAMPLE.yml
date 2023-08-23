@@ -1,0 +1,2 @@
+users:
+  - {name: '{{ansible_user}}', groups: '', smbpasswd: 'EXAMPLE_PASSWORD'}
