@@ -1,0 +1,61 @@
+# $ ansible-playbook ./playbooks/provision_nas.yml -i ./inventory/hosts.yml
+
+# - name: EDIT ANS CONFIG ON hosts
+  # hosts: pve-starlord
+  # become: yes
+  # tasks:
+    # - name: Ensure lxc.apparmor.profile unconfined is in nas config file
+      # ansible.builtin.lineinfile:
+        # path: /etc/pve/lxc/107.conf
+        # regexp: '^lxc.apparmor.profile:'
+        # line: 'lxc.apparmor.profile: unconfined'
+      # register: starlord
+
+- name: PROVISION NAS
+  hosts: pve-nas
+  become: yes
+  vars:
+    - ansible_host_key_checking: false
+  tasks:
+    - name: Ensure lxc.apparmor.profile unconfined is in nas config file
+      ansible.builtin.lineinfile:
+        path: /etc/pve/lxc/{{pve_id}}.conf
+        regexp: '^lxc.apparmor.profile:'
+        line: 'lxc.apparmor.profile: unconfined'
+      delegate_to: pve-starlord
+      register: starlord
+    - name: reboot machine to accept new config file
+      ansible.builtin.reboot:
+      when: starlord.changed
+    - name: SSH KEYS
+      include_tasks: "./tasks/ssh_keys.yml"
+    - name: UPDATE SYSTEM
+      include_tasks: "./tasks/update_system.yml"
+    - name: INSTALL PACKAGES
+      include_tasks: "./tasks/install_packages.yml"
+    - name: INSTALL NFS
+      apt:
+        name:
+          - nfs-kernel-server
+        state: present
+        update_cache: true
+      become: true
+      register: packages
+    - name: Create storage directory if it does not already exist
+      ansible.builtin.file:
+        path: /mnt/storage-test
+        state: directory
+        mode: '0777'
+        recurse: true
+    - name: Configuring exports
+      template:
+        src: "nas_exports.js"
+        dest: /etc/exports
+      register: exports
+    - name: reload exports
+      command: exportfs -ar
+      when: exports.changed
+    # - name: INSTALL DOCKER
+      # include_tasks: "./tasks/install_docker.yml"
+    - name: SETUP SAMBDA SHARES
+      include_tasks: "./tasks/samba_shares.yml"
