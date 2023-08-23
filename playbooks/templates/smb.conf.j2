@@ -1,4 +1,4 @@
-## {{ inventory_hostname }} Samba Configuration
+## {{ inventory_hostname|upper }} Samba Configuration
 
 [global]
   workgroup = WORKGROUP
@@ -24,4 +24,5 @@
 {% endif %}
 
 {% endfor %}
-{% endif%}
+{% endif %}
+

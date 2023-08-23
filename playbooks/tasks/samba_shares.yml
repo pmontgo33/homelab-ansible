@@ -5,7 +5,7 @@
 
 - name: Configuring samba share
   template:
-    src: "smb.conf.js"
+    src: "smb.conf.j2"
     dest: /etc/samba/smb.conf
     owner: root
     group: root

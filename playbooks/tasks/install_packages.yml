@@ -1,4 +1,4 @@
-- name: install packages - samba, git, restic, software-properties-common, fail2ban, unattended-upgrades
+- name: install packages - samba, git, restic, software-properties-common, fail2ban, unattended-upgrades, screen, mergerfs
   apt:
     name:
       - samba
@@ -8,6 +8,8 @@
       - software-properties-common
       - fail2ban
       - unattended-upgrades
+      - screen
+      - mergerfs
     state: present
     update_cache: true
   become: true
@@ -27,6 +29,6 @@
   ansible.builtin.shell:
     cmd: restic self-update
 
-- name: reboot the machine with all defaults
-  ansible.builtin.reboot:
-  when: packages.changed
+# - name: reboot the machine with all defaults
+  # ansible.builtin.reboot:
+  # when: packages.changed

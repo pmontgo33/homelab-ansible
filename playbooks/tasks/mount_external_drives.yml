@@ -1,0 +1,67 @@
+- name: install ntfs-3g
+  apt:
+    name:
+      - ntfs-3g
+    state: present
+    update_cache: true
+  become: true
+
+- name: make disk1 directory and set permissions
+  file:
+    path: /mnt/disk1
+    mode: 0775
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
+- name: make disk2 directory and set permissions
+  file:
+    path: /mnt/disk2
+    mode: 0775
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
+- name: make storage directory
+  file:
+    path: /mnt/storage
+    mode: 0775
+    state: directory
+
+- name: Mount up 14TB WD Elements by UUID
+  ansible.posix.mount:
+    path: /mnt/disk1
+    src: UUID=DAE8C840E8C81C9F
+    fstype: ntfs
+    opts: nobootwait,nofail,uid=pi,gid=pi
+    state: present
+  register: fstab2
+
+- name: Mount up 4TB WD Easystore by UUID
+  ansible.posix.mount:
+    path: /mnt/disk2
+    src: UUID=C234AD3334AD2AFD
+    fstype: ntfs
+    opts: nobootwait,nofail,uid=pi,gid=pi
+    state: present
+  register: fstab1
+
+- name: Mount up MergerFS storage
+  ansible.posix.mount:
+    path: /mnt/storage
+    src: /mnt/disk*
+    fstype: fuse.mergerfs
+    opts: defaults,allow_other,nonempty,use_ino,cache.files=off,moveonenospc=true,category.create=mfs,dropcacheonclose=true,minfreespace=250G,fsname=mergerfs
+    state: present
+  register: fstab3
+
+- name: mount all drives
+  command: mount -a
+  args:
+    warn: no
+  become: true
+  when: fstab1.changed or fstab2.changed or fstab3.changed
+
+# - name: reboot host
+  # ansible.builtin.reboot:
+  # when: fstab.changed

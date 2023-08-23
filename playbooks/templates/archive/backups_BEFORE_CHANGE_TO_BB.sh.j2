@@ -1,0 +1,47 @@
+#!/bin/bash
+#exec > "/mnt/storage/backups/logs/$(date +'%Y-%m-%d')backup.log" 2>&1
+exec > >(tee "/mnt/storage/backups/logs/$(date +'%Y-%m-%d') backup.log") 2>&1
+
+echo "================================================="
+echo "Running Scheduled Backup ($(date '+%m/%d/%Y %H:%M:%S'))"
+echo "================================================="
+echo "-"
+
+{% for host in groups['servers'] %}
+echo "STARTING rsync {{ hostvars[host].inventory_hostname|upper }} backup to latest folder..."
+{% for dir in hostvars[host].backup_dirs %}
+{% if hostvars[host].ansible_host == ansible_host %}
+sudo rsync -avhqr --delete --delete-excluded --exclude-from=backup_exclude.dat {{ dir }} /mnt/storage/backups/latest/{{ inventory_hostname }}
+{% else %}
+rsync -avhq --delete --delete-excluded --exclude-from=backup_exclude.dat --rsync-path="sudo rsync" {{ hostvars[host].ansible_user }}@{{ hostvars[host].ansible_host }}:{{ dir }} /mnt/storage/backups/latest/{{ hostvars[host].inventory_hostname }}
+{% endif %}
+{% endfor %}
+echo "rsync from {{ hostvars[host].inventory_hostname|upper }} COMPLETE"
+echo "-"
+
+{% endfor %}
+
+echo "STARTING restic backup to storage repo..."
+sudo restic --password-file /mnt/storage/backups/server_restic/.secret -r /mnt/storage/backups/server_restic backup --tag SCRIPT --files-from restic_include.dat --exclude-file restic_exclude.dat
+
+echo "restic server backup to repo COMPLETE!"
+echo "-"
+
+echo "STARTING restic snapshot prune..."
+sudo restic forget --password-file /mnt/storage/backups/server_restic/.secret -r /mnt/storage/backups/server_restic --verbose --prune --keep-daily 7 --keep-weekly 4 --keep-monthly 3
+
+echo "restic snapshot prune COMPLETE"
+echo "-"
+
+echo "STARTING rclone backup to cloud..."
+sudo docker compose -f /opt/server/docker-compose.yml exec rclone rclone sync /storage/backups/server_restic gdrive:Backups/server --exclude-from /backup_script/cloud_backup_exclude.dat
+
+echo "rclone backup to cloud COMPLETE!"
+echo "-"
+
+# dt=$(date '+%m/%d/%Y %H:%M:%S');
+# sudo echo $dt > /mnt/storage/scripts/backups/last_backup.log
+
+echo "================================================="
+echo "Scheduled Backup is Complete ($(date '+%m/%d/%Y %H:%M:%S'))"
+echo "================================================="
