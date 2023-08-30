@@ -1,2 +1,2 @@
-samba_vars.yml
+*vars.yml
 playbooks/buffer/**

@@ -26,3 +26,5 @@
       include_tasks: "./tasks/samba_shares.yml"
     - name: MOUNT NAS NFS
       include_tasks: "./tasks/mount_nas_nfs.yml"
+    - name: TAILSCALE
+      include_tasks: "./tasks/install_and_setup_tailscale.yml"
