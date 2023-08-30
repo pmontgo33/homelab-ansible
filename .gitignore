@@ -1,3 +1,2 @@
-*.cfg
 samba_vars.yml
 playbooks/buffer/**
