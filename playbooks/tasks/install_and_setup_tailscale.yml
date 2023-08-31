@@ -1,17 +1,26 @@
 - include_vars: vars/tailscale_vars.yml
 
-### NEED TO ADD A CHECK TO SEE IF THE HOST IS AN LXC. ONLY NEED TO RUN ON AN LXC
-- name: mount tun
+- name:  add lxc.cgroup2.devices.allow to pve config
+  ansible.builtin.lineinfile:
+    path: /etc/pve/lxc/{{ pve_id }}.conf
+    regexp: '^lxc.cgroup2.devices.allow:'
+    line: 'lxc.cgroup2.devices.allow: c 10:200 rwm'
+  delegate_to: pve-starlord
+  when: ansible_virtualization_type == "lxc"
+  register: config_cgroup2
+
+- name: mount tun in pve config
   ansible.builtin.lineinfile:
     path: /etc/pve/lxc/{{ pve_id }}.conf
     regexp: '^lxc.mount.entry:'
     line: 'lxc.mount.entry: /dev/net/tun dev/net/tun none bind,create=file'
   delegate_to: pve-starlord
-  register: config
+  when: ansible_virtualization_type == "lxc"
+  register: config_tun
 
 - name: reboot machine to accept new config file
   ansible.builtin.reboot:
-  when: config.changed
+  when: config_cgroup2.changed or config_tun.changed
 
 - name: Install and Setup Tailscale
   include_role:

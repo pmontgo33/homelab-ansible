@@ -1,0 +1,22 @@
+# $ ansible-playbook ./playbooks/provision_temp.yml
+
+- name: PROVISION TEMP
+  hosts: temp
+  become: yes
+  vars:
+    - ansible_host_key_checking: false
+  tasks:
+    # - name: SSH KEYS
+      # include_tasks: "./tasks/ssh_keys.yml"
+    - name: UPDATE SYSTEM
+      include_tasks: "./tasks/update_system.yml"
+    # - name: INSTALL PACKAGES
+      # include_tasks: "./tasks/install_packages.yml"
+    # - name: INSTALL DOCKER
+      # include_tasks: "./tasks/install_docker.yml"
+    # - name: SETUP SAMBDA SHARES
+      # include_tasks: "./tasks/samba_shares.yml"
+    # - name: MOUNT NAS NFS
+      # include_tasks: "./tasks/mount_nas_nfs.yml"
+    - name: TAILSCALE
+      include_tasks: "./tasks/install_and_setup_tailscale.yml"

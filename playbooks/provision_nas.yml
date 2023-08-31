@@ -1,16 +1,5 @@
 # $ ansible-playbook ./playbooks/provision_nas.yml -i ./inventory/hosts.yml
 
-# - name: EDIT ANS CONFIG ON hosts
-  # hosts: pve-starlord
-  # become: yes
-  # tasks:
-    # - name: Ensure lxc.apparmor.profile unconfined is in nas config file
-      # ansible.builtin.lineinfile:
-        # path: /etc/pve/lxc/107.conf
-        # regexp: '^lxc.apparmor.profile:'
-        # line: 'lxc.apparmor.profile: unconfined'
-      # register: starlord
-
 - name: PROVISION NAS
   hosts: pve-nas
   become: yes
@@ -33,29 +22,11 @@
       include_tasks: "./tasks/update_system.yml"
     - name: INSTALL PACKAGES
       include_tasks: "./tasks/install_packages.yml"
-    - name: INSTALL NFS
-      apt:
-        name:
-          - nfs-kernel-server
-        state: present
-        update_cache: true
-      become: true
-      register: packages
-    - name: Create storage directory if it does not already exist
-      ansible.builtin.file:
-        path: /mnt/storage-test
-        state: directory
-        mode: '0777'
-        recurse: true
-    - name: Configuring exports
-      template:
-        src: "nas_exports.js"
-        dest: /etc/exports
-      register: exports
-    - name: reload exports
-      command: exportfs -ar
-      when: exports.changed
+    - name: CONFIGURE NAS NFS
+      include_tasks: "./tasks/configure_nas_nfs.yml"
     # - name: INSTALL DOCKER
       # include_tasks: "./tasks/install_docker.yml"
     - name: SETUP SAMBDA SHARES
       include_tasks: "./tasks/samba_shares.yml"
+    - name: TAILSCALE
+      include_tasks: "./tasks/install_and_setup_tailscale.yml"
