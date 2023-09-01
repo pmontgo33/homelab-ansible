@@ -1,4 +1,4 @@
-# $ ansible-playbook ./playbooks/provision_nas.yml -i ./inventory/hosts.yml
+# $ ansible-playbook playbooks/provision_nas.yml
 
 - name: PROVISION NAS
   hosts: pve-nas
