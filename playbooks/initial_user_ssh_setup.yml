@@ -1,0 +1,48 @@
+# $ ansible-playbook playbooks/initial_user_ssh_setup.yml -e "hosts=HOST" --ask-become-pass
+
+- hosts: "{{ hosts }}"
+  vars:
+    - ansible_host_key_checking: false
+    - ansible_user: root
+    
+  tasks:
+    - include_vars: vars/user_vars.yml
+    
+    - name: create ansible user
+      ansible.builtin.user:
+        name: "{{ user_name }}"
+        password: "{{ user_password }}"
+    
+    - name: add user to sudoers
+      community.general.sudoers:
+        name: ansible user to sudoers
+        state: present
+        user: "{{ user_name }}"
+        commands: ALL
+      become_user: root
+    
+    - name: generate SSH key from localhost
+      openssh_keypair:
+        path: "~/.ssh/id_rsa"
+        type: rsa
+        size: 2048
+        state: present
+        force: no
+      run_once: true
+      become: no
+      delegate_to: localhost
+
+    - name: copy localhost ssh key to hosts
+      become: false
+      ansible.posix.authorized_key:
+        user: "{{ user_name }}"
+        state: present
+        key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
+    
+    - name: Ensure server is present in known_hosts file
+      known_hosts:
+        name: "{{ user_name }}"
+        state: present
+        key: "{{ lookup('pipe', 'ssh-keyscan {{ ansible_host }}') }}"
+        hash_host: true
+      become: no
