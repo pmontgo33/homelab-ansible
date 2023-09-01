@@ -1,4 +1,4 @@
-# $ ansible-playbook ./playbooks/ssh_localhost.yml -e "hosts=HOST" --ask-pass --ask-become-pass
+# $ ansible-playbook playbooks/ssh_localhost.yml -e "hosts=HOST" --ask-pass --ask-become-pass
 
 - hosts: "{{ hosts }}"
   # become: yes
