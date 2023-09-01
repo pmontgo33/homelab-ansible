@@ -9,7 +9,7 @@
       - fail2ban
       - unattended-upgrades
       - screen
-    state: present
+    state: latest
     update_cache: true
   become: true
   register: packages
