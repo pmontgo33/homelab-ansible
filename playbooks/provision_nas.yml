@@ -22,10 +22,10 @@
       include_tasks: "./tasks/update_system.yml"
     - name: INSTALL PACKAGES
       include_tasks: "./tasks/install_packages.yml"
+    - name: MOUNT EXTERNAL DRIVES
+      include_tasks: "./tasks/mount_external_drives.yml"
     - name: CONFIGURE NAS NFS
       include_tasks: "./tasks/configure_nas_nfs.yml"
-    # - name: INSTALL DOCKER
-      # include_tasks: "./tasks/install_docker.yml"
     - name: SETUP SAMBDA SHARES
       include_tasks: "./tasks/samba_shares.yml"
     - name: TAILSCALE

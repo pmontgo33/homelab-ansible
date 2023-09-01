@@ -3,7 +3,7 @@
     name:
       - ntfs-3g
       - mergerfs
-    state: present
+    state: latest
     update_cache: true
   become: true
 
@@ -34,7 +34,7 @@
     path: /mnt/disk1
     src: UUID=DAE8C840E8C81C9F
     fstype: ntfs
-    opts: nobootwait,nofail,uid=pi,gid=pi
+    opts: nobootwait,nofail
     state: present
   register: fstab2
 
@@ -43,7 +43,7 @@
     path: /mnt/disk2
     src: UUID=C234AD3334AD2AFD
     fstype: ntfs
-    opts: nobootwait,nofail,uid=pi,gid=pi
+    opts: nobootwait,nofail
     state: present
   register: fstab1
 
@@ -62,7 +62,3 @@
     warn: no
   become: true
   when: fstab1.changed or fstab2.changed or fstab3.changed
-
-# - name: reboot host
-  # ansible.builtin.reboot:
-  # when: fstab.changed
