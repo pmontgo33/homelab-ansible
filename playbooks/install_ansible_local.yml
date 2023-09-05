@@ -1,7 +1,7 @@
 # $ ansible-playbook ./playbooks/install_ansible_local.yml
 
 - hosts: localhost
-  become: yes
+  # become: yes
   tasks:
     - name: UPDATE SYSTEM
       include_tasks: "./tasks/update_system.yml"

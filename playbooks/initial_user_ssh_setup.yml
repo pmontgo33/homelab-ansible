@@ -1,25 +1,51 @@
 # $ ansible-playbook playbooks/initial_user_ssh_setup.yml -e "hosts=HOST" --ask-pass --ask-become-pass
 
-- hosts: "{{ hosts }}"
+- name: INITIAL USERS & SSH SETUP - UPDATE SOFTWARE
+  hosts: "{{ hosts }}"
+  # become: true
   vars:
-    - ansible_host_key_checking: false
-    # - ansible_user: root
-    
+    # - ansible_host_key_checking: false
+    - ansible_user: root
+  pre_tasks:
+    - name: install updates
+      apt:
+       upgrade: dist
+       update_cache: yes
+
+
+- name: INITIAL USERS & SSH SETUP - PLAYBOOK
+  hosts: "{{ hosts }}"
+  # become: true
+  vars:
+    # - ansible_host_key_checking: false
+    - ansible_user: root
   tasks:
-    - include_vars: vars/user_vars.yml
+    - include_vars: vars/homelab_vars.yml
+    - include_vars: vars/homelab_secret_vars.yml
     
-    # - name: create non-root user
-      # ansible.builtin.user:
-        # name: "{{ user_name }}"
-        # password: "{{ user_password }}"
+    - name: create primary user
+      ansible.builtin.user:
+        name: "{{ primary_user_name }}"
+        password: "{{ primary_user_password }}"
     
-    # - name: add user to sudoers
-      # community.general.sudoers:
-        # name: ansible user to sudoers
-        # state: present
-        # user: "{{ user_name }}"
-        # commands: ALL
-      # become_user: root
+    - name: add patrick user to sudoers
+      community.general.sudoers:
+        name: patrick
+        state: present
+        user: patrick
+        commands: ALL
+
+    - name: create ansible user
+      ansible.builtin.user:
+        name: ansible
+        groups: root
+    
+    - name: add ansible user to sudoers
+      community.general.sudoers:
+        name: ansible
+        state: present
+        user: ansible
+        commands: ALL
     
     - name: generate SSH key from localhost
       openssh_keypair:
@@ -35,14 +61,14 @@
     - name: copy localhost ssh key to hosts
       become: false
       ansible.posix.authorized_key:
-        user: "{{ ansible_user }}"
+        user: ansible
         state: present
         key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
     
-    - name: Ensure server is present in known_hosts file
-      known_hosts:
-        name: "{{ ansible_user }}"
-        state: present
-        key: "{{ lookup('pipe', 'ssh-keyscan {{ ansible_host }}') }}"
-        hash_host: true
-      become: no
+    # - name: Ensure server is present in known_hosts file
+     #  known_hosts:
+      #   name: "{{ ansible_user }}"
+       #  state: present
+        # key: "{{ lookup('pipe', 'ssh-keyscan {{ ansible_host }}') }}"
+        # hash_host: true
+      # become: no

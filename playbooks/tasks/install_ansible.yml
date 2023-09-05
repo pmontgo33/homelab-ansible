@@ -28,3 +28,11 @@
     password: "!"
     generate_ssh_key: true
     
+- name: add ansible user to sudoers
+  community.general.sudoers:
+    name: ansible
+    state: present
+    user: ansible
+    commands: ALL
+  become_user: root
+    
