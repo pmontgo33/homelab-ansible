@@ -1,4 +1,4 @@
-# $ ansible-playbook ./playbooks/update_servers.yml -i ./inventory/hosts.yml -e "hosts=HOST"
+# $ ansible-playbook ./playbooks/update_servers.yml -e "hosts=HOST"
 
 - hosts: "{{ hosts }}"
   become: yes
@@ -9,4 +9,5 @@
       include_tasks: "./tasks/update_system.yml"
     - name: UPDATE DOCKER CONTAINERS
       include_tasks: "./tasks/update_docker.yml"
+      when: docker_compose_dirs is defined
       
