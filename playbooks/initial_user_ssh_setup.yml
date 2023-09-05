@@ -1,4 +1,4 @@
-# $ ansible-playbook playbooks/initial_user_ssh_setup.yml -e "hosts=HOST" --ask-become-pass
+# $ ansible-playbook playbooks/initial_user_ssh_setup.yml -e "hosts=HOST" --ask-pass --ask-become-pass
 
 - hosts: "{{ hosts }}"
   vars:
