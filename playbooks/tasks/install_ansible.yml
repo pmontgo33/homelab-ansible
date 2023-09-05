@@ -21,3 +21,10 @@
     name: ansible
     state: latest
     update_cache: yes
+    
+- name: create ansible user
+  ansible.builtin.user:
+    name: ansible
+    password: "!"
+    generate_ssh_key: true
+    
