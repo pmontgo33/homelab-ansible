@@ -3,8 +3,8 @@
 - name: PROVISION FURY
   hosts: pve-fury
   become: yes
-  vars:
-    - ansible_host_key_checking: false
+  # vars:
+  #   - ansible_host_key_checking: false
   tasks:
     - name: SSH KEYS
       include_tasks: "./tasks/ssh_keys.yml"

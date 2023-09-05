@@ -1,7 +1,9 @@
 # Need to create a samba password on the server by running:
 # $ sudo smbpasswd -a pi
 
-- include_vars: vars/samba_vars.yml
+#- include_vars: vars/samba_vars.yml
+- include_vars: vars/homelab_vars.yml
+- include_vars: vars/homelab_secret_vars.yml
 
 - name: Configuring samba share
   template:
@@ -20,4 +22,4 @@
     
 - name: Create/update samba users
   include_tasks: "samba_users.yml"
-  loop: "{{users}}"
+  loop: "{{samba_users}}"
