@@ -1,4 +1,4 @@
-- name: apt update, upgrade, autoclean, autoremove
+- name: apt update, full upgrade, autoclean, autoremove
   apt:
     update_cache: yes
     upgrade: full
