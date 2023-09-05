@@ -10,6 +10,7 @@
     src: "~/.ssh/id_rsa.pub"
     dest: "buffer/{{inventory_hostname}}-id_rsa.pub"
     flat: yes
+  changed_when: false
 
 - name: Copy the key add to authorized_keys using Ansible module
   ansible.posix.authorized_key:
@@ -26,6 +27,7 @@
     state: absent
   run_once: true
   delegate_to: localhost
+  changed_when: false
 
 - name: Ensure server is present in known_hosts file
   known_hosts:

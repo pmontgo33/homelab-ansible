@@ -1,0 +1,10 @@
+# $ ansible-playbook ./playbooks/install_ansible_local.yml
+
+- hosts: localhost
+  become: yes
+  tasks:
+    - name: UPDATE SYSTEM
+      include_tasks: "./tasks/update_system.yml"
+    - name: INSTALL ANSIBLE
+      include_tasks: "./tasks/install_ansible.yml"
+      

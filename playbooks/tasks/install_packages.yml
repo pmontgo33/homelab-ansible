@@ -27,6 +27,7 @@
 - name: restic self-update
   ansible.builtin.shell:
     cmd: restic self-update
+  changed_when: false
 
 # - name: reboot the machine with all defaults
   # ansible.builtin.reboot:

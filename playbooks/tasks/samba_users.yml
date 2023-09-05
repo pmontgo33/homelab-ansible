@@ -13,6 +13,7 @@
     (pdbedit --user={{ item.name }} 2>&1 > /dev/null)
     || (echo '{{ item.smbpasswd }}'; echo '{{ item.smbpasswd }}')
     | smbpasswd -s -a {{ item.name }}
+  changed_when: false
 
 # - name: Enable samba user {{item.name}}
   # shell: "smbpasswd -e {{ item['name'] }}"
