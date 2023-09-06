@@ -3,12 +3,10 @@
 - name: PROVISION STARLORD
   hosts: pve-starlord
   become: yes
-  vars:
-    - ansible_host_key_checking: false
   tasks:
     - name: SSH KEYS
-      include_tasks: "./tasks/ssh_keys.yml"
+      include_tasks: tasks/ssh_keys.yml
     - name: UPDATE SYSTEM
-      include_tasks: "./tasks/update_system.yml"
+      include_tasks: tasks/update_system.yml
     - name: TAILSCALE
-      include_tasks: "./tasks/install_and_setup_tailscale.yml"
+      include_tasks: tasks/install_and_setup_tailscale.yml

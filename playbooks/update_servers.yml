@@ -2,12 +2,10 @@
 
 - hosts: "{{ hosts }}"
   become: yes
-  vars:
-    - ansible_host_key_checking: false
   tasks:
     - name: UPDATE SYSTEM
-      include_tasks: "./tasks/update_system.yml"
+      include_tasks: tasks/update_system.yml
     - name: UPDATE DOCKER CONTAINERS
-      include_tasks: "./tasks/update_docker.yml"
+      include_tasks: tasks/update_docker.yml
       when: docker_compose_dirs is defined
       
