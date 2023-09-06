@@ -1,0 +1,11 @@
+- name: Ensure lxc.apparmor.profile unconfined is in nas config file
+  ansible.builtin.lineinfile:
+    path: /etc/pve/lxc/{{pve_id}}.conf
+    regexp: '^lxc.apparmor.profile:'
+    line: 'lxc.apparmor.profile: unconfined'
+  delegate_to: pve-starlord
+  register: starlord
+
+- name: reboot machine to accept new config file
+  ansible.builtin.reboot:
+  when: starlord.changed

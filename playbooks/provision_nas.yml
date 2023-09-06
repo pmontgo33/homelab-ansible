@@ -3,27 +3,19 @@
 - name: PROVISION NAS
   hosts: pve-nas
   become: yes
-  vars:
-    - ansible_host_key_checking: false
+  # vars:
+    # - ansible_host_key_checking: false
   tasks:
-    - name: Ensure lxc.apparmor.profile unconfined is in nas config file
-      ansible.builtin.lineinfile:
-        path: /etc/pve/lxc/{{pve_id}}.conf
-        regexp: '^lxc.apparmor.profile:'
-        line: 'lxc.apparmor.profile: unconfined'
-      delegate_to: pve-starlord
-      register: starlord
-    - name: reboot machine to accept new config file
-      ansible.builtin.reboot:
-      when: starlord.changed
+    - name: NAS PVE CONFIG FILE
+      include_tasks: "./tasks/nas_pve_config.yml"
     - name: SSH KEYS
       include_tasks: "./tasks/ssh_keys.yml"
     - name: UPDATE SYSTEM
       include_tasks: "./tasks/update_system.yml"
     - name: INSTALL PACKAGES
       include_tasks: "./tasks/install_packages.yml"
-    - name: MOUNT EXTERNAL DRIVES
-      include_tasks: "./tasks/mount_external_drives.yml"
+    # - name: MOUNT EXTERNAL DRIVES
+      # include_tasks: "./tasks/mount_external_drives.yml"
     - name: CONFIGURE NAS NFS
       include_tasks: "./tasks/configure_nas_nfs.yml"
     - name: SETUP SAMBDA SHARES
