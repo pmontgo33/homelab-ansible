@@ -1,0 +1,15 @@
+# Homelab Ansible Variables
+
+# Linux User Vars
+primary_user_name: "patrick"
+primary_user_password: "{{ vault_primary_user_password }}"
+
+# Samba Vars
+samba_users:
+  - {name: '{{ansible_user}}', groups: '', smbpasswd: '{{ vault_samba_password }}'}
+
+# Tailscale Vars
+# This key will expire on Nov 27, 2023. If youʼll then want to continue using an auth key, youʼll need to generate a new one.
+tailscale_authkey: "{{ vault_tailscale_authkey }}"
+
+

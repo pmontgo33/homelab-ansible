@@ -1,4 +1,5 @@
-- include_vars: vars/tailscale_vars.yml
+- include_vars: vars/homelab_vars.yml
+- include_vars: vars/homelab_secret_vars.yml
 
 - name:  add lxc.cgroup2.devices.allow to pve config
   ansible.builtin.lineinfile:

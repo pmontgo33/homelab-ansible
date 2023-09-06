@@ -1,3 +1,0 @@
-# to generate hashed password run mkpasswd --method=sha-512
-user_name: username
-user_password: hashed_password
