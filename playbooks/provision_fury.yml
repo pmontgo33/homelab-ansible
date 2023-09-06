@@ -3,17 +3,15 @@
 - name: PROVISION FURY
   hosts: pve-fury
   become: yes
-  # vars:
-  #   - ansible_host_key_checking: false
   tasks:
     - name: SSH KEYS
-      include_tasks: "./tasks/ssh_keys.yml"
+      include_tasks: tasks/ssh_keys.yml
     - name: UPDATE SYSTEM
-      include_tasks: "./tasks/update_system.yml"
+      include_tasks: tasks/update_system.yml
     - name: INSTALL PACKAGES
-      include_tasks: "./tasks/install_packages.yml"
+      include_tasks: tasks/install_packages.yml
     - name: INSTALL ANSIBLE
-      include_tasks: "./tasks/install_ansible.yml"
+      include_tasks: tasks/install_ansible.yml
     - name: INSTALL SSHPASS
       apt:
         name:
@@ -21,10 +19,10 @@
         state: present
         update_cache: true
     - name: INSTALL DOCKER
-      include_tasks: "./tasks/install_docker.yml"
+      include_tasks: tasks/install_docker.yml
     - name: SETUP SAMBDA SHARES
-      include_tasks: "./tasks/samba_shares.yml"
+      include_tasks: tasks/samba_shares.yml
     - name: MOUNT NAS NFS
-      include_tasks: "./tasks/mount_nas_nfs.yml"
+      include_tasks: tasks/mount_nas_nfs.yml
     - name: TAILSCALE
-      include_tasks: "./tasks/install_and_setup_tailscale.yml"
+      include_tasks: tasks/install_and_setup_tailscale.yml

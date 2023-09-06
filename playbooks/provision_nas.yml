@@ -7,18 +7,18 @@
     # - ansible_host_key_checking: false
   tasks:
     - name: NAS PVE CONFIG FILE
-      include_tasks: "./tasks/nas_pve_config.yml"
+      include_tasks: tasks/nas_pve_config.yml
     - name: SSH KEYS
-      include_tasks: "./tasks/ssh_keys.yml"
+      include_tasks: tasks/ssh_keys.yml
     - name: UPDATE SYSTEM
-      include_tasks: "./tasks/update_system.yml"
+      include_tasks: tasks/update_system.yml
     - name: INSTALL PACKAGES
-      include_tasks: "./tasks/install_packages.yml"
+      include_tasks: tasks/install_packages.yml
     # - name: MOUNT EXTERNAL DRIVES
-      # include_tasks: "./tasks/mount_external_drives.yml"
+      # include_tasks: tasks/mount_external_drives.yml
     - name: CONFIGURE NAS NFS
-      include_tasks: "./tasks/configure_nas_nfs.yml"
+      include_tasks: tasks/configure_nas_nfs.yml
     - name: SETUP SAMBDA SHARES
-      include_tasks: "./tasks/samba_shares.yml"
+      include_tasks: tasks/samba_shares.yml
     - name: TAILSCALE
-      include_tasks: "./tasks/install_and_setup_tailscale.yml"
+      include_tasks: tasks/install_and_setup_tailscale.yml
