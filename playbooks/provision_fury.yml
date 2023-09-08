@@ -3,21 +3,18 @@
 - name: PROVISION FURY
   hosts: pve-fury
   become: yes
+  
+  pre_tasks:
+    - name: UPDATE SYSTEM
+      include_tasks: tasks/update_system.yml
+  
   tasks:
     - name: SSH KEYS
       include_tasks: tasks/ssh_keys.yml
-    - name: UPDATE SYSTEM
-      include_tasks: tasks/update_system.yml
     - name: INSTALL PACKAGES
       include_tasks: tasks/install_packages.yml
     - name: INSTALL ANSIBLE
       include_tasks: tasks/install_ansible.yml
-    - name: INSTALL SSHPASS
-      apt:
-        name:
-          - sshpass
-        state: present
-        update_cache: true
     - name: INSTALL DOCKER
       include_tasks: tasks/install_docker.yml
     - name: SETUP SAMBDA SHARES

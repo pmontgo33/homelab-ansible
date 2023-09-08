@@ -7,6 +7,8 @@
     regexp: '^lxc.cgroup2.devices.allow:'
     line: 'lxc.cgroup2.devices.allow: c 10:200 rwm'
   delegate_to: pve-starlord
+  vars:
+    ansible_user: root
   when: ansible_virtualization_type == "lxc"
   register: config_cgroup2
 
@@ -16,6 +18,8 @@
     regexp: '^lxc.mount.entry:'
     line: 'lxc.mount.entry: /dev/net/tun dev/net/tun none bind,create=file'
   delegate_to: pve-starlord
+  vars:
+    ansible_user: root
   when: ansible_virtualization_type == "lxc"
   register: config_tun
 

@@ -12,16 +12,16 @@
     path: /mnt/disk1
     mode: 0775
     state: directory
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
+    owner: "{{ primary_user }}"
+    group: "{{ primary_user }}"
 
 - name: make disk2 directory and set permissions
   file:
     path: /mnt/disk2
     mode: 0775
     state: directory
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
+    owner: "{{ primary_user }}"
+    group: "{{ primary_user }}"
 
 - name: make storage directory
   file:

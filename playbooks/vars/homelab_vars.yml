@@ -1,7 +1,6 @@
 # Homelab Ansible Variables
 
 # Linux User Vars
-primary_user_name: "patrick"
 primary_user_password: "{{ vault_primary_user_password }}"
 
 # Samba Vars
