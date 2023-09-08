@@ -3,13 +3,16 @@
 - name: PROVISION SERVER01
   hosts: server01
   become: yes
+  
+  pre_tasks:
+    - name: UPDATE SYSTEM
+      include_tasks: tasks/update_system.yml
+  
   tasks:
     - name: SSH KEYS
       include_tasks: tasks/ssh_keys.yml
     - name: SET TIMEZONE
       include_tasks: tasks/set_timezone.yml
-    - name: UPDATE SYSTEM
-      include_tasks: tasks/update_system.yml
     - name: MOUNT EXTERNAL DRIVE
       include_tasks: tasks/mount_external_drives.yml
     - name: INSTALL PACKAGES

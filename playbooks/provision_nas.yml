@@ -3,15 +3,16 @@
 - name: PROVISION NAS
   hosts: pve-nas
   become: yes
-  # vars:
-    # - ansible_host_key_checking: false
+  
+  pre_tasks:
+    - name: UPDATE SYSTEM
+      include_tasks: tasks/update_system.yml
+  
   tasks:
     - name: NAS PVE CONFIG FILE
       include_tasks: tasks/nas_pve_config.yml
     - name: SSH KEYS
       include_tasks: tasks/ssh_keys.yml
-    - name: UPDATE SYSTEM
-      include_tasks: tasks/update_system.yml
     - name: INSTALL PACKAGES
       include_tasks: tasks/install_packages.yml
     # - name: MOUNT EXTERNAL DRIVES

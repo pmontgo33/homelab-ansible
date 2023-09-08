@@ -1,7 +1,6 @@
 # $ ansible-playbook playbooks/initial_user_ssh_setup.yml -e "hosts=HOST" --ask-pass --ask-become-pass
 
-- name: INITIAL USERS & SSH SETUP - UPDATE SOFTWARE
-  hosts: "{{ hosts }}"
+- hosts: "{{ hosts }}"
   become: true
   vars:
     - ansible_user: "{{ primary_user }}"
@@ -9,12 +8,6 @@
     - name: UPDATE SYSTEM
       include_tasks: tasks/update_system.yml
 
-
-- name: INITIAL USERS & SSH SETUP - PLAYBOOK
-  hosts: "{{ hosts }}"
-  become: true
-  vars:
-    - ansible_user: "{{ primary_user }}"
   tasks:
     - include_vars: vars/homelab_vars.yml
     - include_vars: vars/homelab_secret_vars.yml
