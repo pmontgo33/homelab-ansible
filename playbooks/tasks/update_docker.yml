@@ -1,15 +1,11 @@
-- name: docker compose pull
-  ansible.builtin.shell:
-    cmd: docker compose pull
-    chdir: "{{ item }}"
+- name: docker compose pull, up, remove-orphans
+  community.docker.docker_compose:
+    project_src: "{{ item }}"
+    pull: true
+    remove_orphans: true
+  become: true
   loop: "{{ docker_compose_dirs }}"
     
-- name: docker compose up -d --remove-orphans
-  ansible.builtin.shell:
-    cmd: docker compose up -d --remove-orphans
-    chdir: "{{ item }}"
-  loop: "{{ docker_compose_dirs }}"
-
 - name: docker image prune
-  ansible.builtin.shell:
-    cmd: docker image prune -f
+  community.docker.docker_prune:
+    images: true

@@ -16,6 +16,7 @@
       - curl
       - gnupg
       - lsb-release
+      - python3-pip
     state: present
     update_cache: true
   become: true
@@ -52,9 +53,20 @@
     name: docker
     state: present
 
-- name: add user to docker group
+- name: add ansible user to docker group
   user:
     name: "{{ ansible_user }}"
     groups: docker
     append: yes
+
+- name: add primary user to docker group
+  user:
+    name: "{{ primary_user }}"
+    groups: docker
+    append: yes
     
+- name: install docker, docker-compose python packages
+  pip:
+    name:
+      - docker
+      - docker-compose

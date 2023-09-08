@@ -12,6 +12,7 @@
   apt:
     name:
       - ansible
+      - sshpass
     state: present
     update_cache: true
   become: true
@@ -21,18 +22,4 @@
     name: ansible
     state: latest
     update_cache: yes
-    
-- name: create ansible user
-  ansible.builtin.user:
-    name: ansible
-    password: "!"
-    generate_ssh_key: true
-    
-- name: add ansible user to sudoers
-  community.general.sudoers:
-    name: ansible
-    state: present
-    user: ansible
-    commands: ALL
-  become_user: root
     

@@ -1,2 +1,3 @@
-# Install a tailscale role from the Ansible Galaxy
-- src: artis3n.tailscale
+roles:
+  # Install a tailscale role from the Ansible Galaxy
+  - src: artis3n.tailscale
