@@ -4,6 +4,7 @@
   become: true
   vars:
     - ansible_user: "{{ primary_user }}"
+  
   pre_tasks:
     - name: UPDATE SYSTEM
       include_tasks: tasks/update_system.yml
