@@ -29,16 +29,16 @@
   delegate_to: localhost
   changed_when: false
 
-- name: Ensure server is present in known_hosts file
-  known_hosts:
-    name: "{{ hostvars[item].ansible_host }}"
-    state: present
-    key: "{{ lookup('pipe', 'ssh-keyscan {{ hostvars[item].ansible_host }}') }}"
-    hash_host: true
-  become: no
-  when: item != inventory_hostname
-  with_items: 
-    - "{{ ansible_play_hosts_all }}"
+# - name: Ensure server is present in known_hosts file
+  # known_hosts:
+    # name: "{{ hostvars[item].ansible_host }}"
+    # state: present
+    # key: "{{ lookup('pipe', 'ssh-keyscan {{ hostvars[item].ansible_host }}') }}"
+    # hash_host: true
+  # become: no
+  # when: item != inventory_hostname
+  # with_items: 
+    # - "{{ ansible_play_hosts_all }}"
     
 - name: copy other ssh keys to hosts
   ansible.posix.authorized_key:

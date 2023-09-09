@@ -1,0 +1,10 @@
+# $ ansible-playbook playbooks/share_primary_user_ssh_keys.yml
+
+- name: SHARE PRIMARY USER SSH KEYS
+  hosts: ssh_share
+  # become: yes
+  remote_user: "{{ primary_user }}"
+  
+  tasks:
+    - name: SSH KEYS
+      include_tasks: tasks/ssh_keys.yml
