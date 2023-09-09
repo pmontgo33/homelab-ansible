@@ -4,6 +4,8 @@
     regexp: '^lxc.apparmor.profile:'
     line: 'lxc.apparmor.profile: unconfined'
   delegate_to: pve-starlord
+  vars:
+    ansible_user: root
   register: starlord
 
 - name: reboot machine to accept new config file
