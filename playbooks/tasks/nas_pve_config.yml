@@ -3,11 +3,11 @@
     path: /etc/pve/lxc/{{pve_id}}.conf
     regexp: '^lxc.apparmor.profile:'
     line: 'lxc.apparmor.profile: unconfined'
-  delegate_to: pve-starlord
+  delegate_to: "{{ pve_host }}"
   vars:
     ansible_user: root
-  register: starlord
+  register: config
 
 - name: reboot machine to accept new config file
   ansible.builtin.reboot:
-  when: starlord.changed
+  when: config.changed

@@ -1,7 +1,7 @@
 # $ ansible-playbook playbooks/provision_nas.yml
 
 - name: PROVISION NAS
-  hosts: pve-nas
+  hosts: nas
   become: yes
   
   pre_tasks:

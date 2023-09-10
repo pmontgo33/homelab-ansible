@@ -1,7 +1,7 @@
 # $ ansible-playbook playbooks/provision_fury.yml
 
 - name: PROVISION FURY
-  hosts: pve-fury
+  hosts: fury
   become: yes
   
   pre_tasks:

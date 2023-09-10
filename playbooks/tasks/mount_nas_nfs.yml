@@ -3,7 +3,7 @@
     path: /etc/pve/lxc/{{ pve_id }}.conf
     regexp: '^mp0:'
     line: 'mp0: /mnt/pve/nas,mp=/mnt/storage'
-  delegate_to: pve-starlord
+  delegate_to: "{{ pve_host }}"
   vars:
     ansible_user: root
   register: config
