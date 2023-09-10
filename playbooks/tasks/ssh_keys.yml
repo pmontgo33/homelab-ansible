@@ -1,11 +1,11 @@
 - name: Create a 2048-bit SSH key for user for each host
   ansible.builtin.user:
-    name: "{{ ansible_user }}"
+    name: "{{ ansible_user_id }}"
     generate_ssh_key: yes
     ssh_key_bits: 2048
 
 - name: Fetch the keyfile from one host to another
-  become_user: "{{ ansible_user }}"
+  become_user: "{{ ansible_user_id }}"
   ansible.builtin.fetch: 
     src: "~/.ssh/id_rsa.pub"
     dest: "buffer/{{inventory_hostname}}-id_rsa.pub"
@@ -14,7 +14,7 @@
 
 - name: Copy the key add to authorized_keys using Ansible module
   ansible.posix.authorized_key:
-    user: "{{ ansible_user }}"
+    user: "{{ ansible_user_id }}"
     state: present
     key: "{{ lookup('file','buffer/{{item}}-id_rsa.pub')}}"
   when: item != inventory_hostname

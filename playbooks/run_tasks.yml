@@ -2,6 +2,10 @@
 
 - name: "RUN TASKS: {{ tasks }}"
   hosts: "{{ hosts }}"
-  become: yes
+  # become: yes
   tasks:
+    - name: Ansible User
+      ansible.builtin.debug:
+        msg: "{{ ansible_user_id }}"
+    
     - include_tasks: "tasks/{{ tasks }}.yml"
