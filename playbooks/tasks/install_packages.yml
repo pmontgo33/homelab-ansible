@@ -28,7 +28,17 @@
   ansible.builtin.shell:
     cmd: restic self-update
   changed_when: false
-
-# - name: reboot the machine with all defaults
-  # ansible.builtin.reboot:
-  # when: packages.changed
+  
+- name: install qemu-guest-agent
+  apt:
+    name:
+      - qemu-guest-agent
+    state: latest
+    update_cache: true
+  become: true
+  when: ansible_virtualization_type == "kvm" and ansible_virtualization_role == "guest"
+  register: qemu
+  
+- name: reboot host if qmeu-guest-agent is installed
+  ansible.builtin.reboot:
+  when: qemu.changed
