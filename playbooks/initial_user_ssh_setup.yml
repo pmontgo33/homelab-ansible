@@ -3,7 +3,8 @@
 - hosts: "{{ hosts }}"
   become: true
   vars:
-    - ansible_user: "{{ primary_user }}"
+    # - ansible_user: "{{ primary_user }}"
+    - ansible_user: root
   
   pre_tasks:
     - name: UPDATE SYSTEM
@@ -12,6 +13,12 @@
   tasks:
     - include_vars: vars/homelab_vars.yml
     - include_vars: vars/homelab_secret_vars.yml
+    
+    - name: ensure sudo is installed
+      apt:
+        name:
+          - sudo
+        state: latest
     
     - name: create primary user
       ansible.builtin.user:
