@@ -1,0 +1,34 @@
+- name: add Proxmox Backup Server GPG key
+  apt_key:
+    url: https://enterprise.proxmox.com/debian/proxmox-release-bookworm.gpg
+    state: present
+    
+- name: Make sure pbs-enterprise is removed from apt sources
+  apt_repository:
+    repo: deb https://enterprise.proxmox.com/debian/pbs {{ ansible_distribution_release }} pbs-enterprise
+    state: absent
+    update_cache: false
+
+- name: add pbs-no-subscription repository to apt
+  apt_repository:
+    repo: deb http://download.proxmox.com/debian/pbs bookworm pbs-no-subscription
+    state: absent
+
+- name: install Proxmox Backup Server
+  apt:
+    name: 
+      - proxmox-backup-server 
+    state: present
+    update_cache: true
+  become: true
+  
+- name: Remove /etc/apt/sources.list.d/pbs-enterprise.list (if installed by Proxmox)
+  file:
+    dest: "/etc/apt/sources.list.d/pve-enterprise.list"
+    state: absent
+    
+- name: Remove subscription popup
+  ansible.builtin.shell: |  
+    wget https://raw.githubusercontent.com/foundObjects/pve-nag-buster/master/install.sh
+    sudo bash install.sh
+  changed: false

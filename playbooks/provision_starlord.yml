@@ -1,7 +1,7 @@
 # $ ansible-playbook playbooks/provision_starlord.yml
 
 - name: PROVISION STARLORD
-  hosts: pve-starlord
+  hosts: starlord
   become: yes
   tasks:
     - name: SSH KEYS

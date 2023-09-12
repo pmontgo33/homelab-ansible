@@ -1,0 +1,25 @@
+# $ ansible-playbook playbooks/provision_pbs.yml
+
+- name: PROVISION PROXMOX BACKUP SERVER
+  hosts: pbs
+  become: yes
+  
+  pre_tasks:
+    - name: UPDATE SYSTEM
+      include_tasks: tasks/update_system.yml
+  
+  tasks:
+    - name: SSH KEYS
+      include_tasks: tasks/ssh_keys.yml
+    - name: INSTALL PACKAGES
+      include_tasks: tasks/install_packages.yml
+    - name: INSTALL PROXMOX BACKUP SERVER
+      include_tasks: tasks/install_pbs.yml
+    # - name: INSTALL ANSIBLE
+      # include_tasks: tasks/install_ansible.yml
+    # - name: SETUP SAMBDA SHARES
+      # include_tasks: tasks/samba_shares.yml
+    - name: MOUNT NAS NFS
+      include_tasks: tasks/mount_nas_nfs.yml
+    - name: TAILSCALE
+      include_tasks: tasks/install_and_setup_tailscale.yml
