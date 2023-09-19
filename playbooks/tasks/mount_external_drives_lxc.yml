@@ -1,0 +1,122 @@
+- name: install ntfs-3g, mergerfs
+  apt:
+    name:
+      - ntfs-3g
+      - mergerfs
+    state: latest
+    update_cache: true
+  become: true
+  
+- name: install ntfs-3g on host
+  apt:
+    name:
+      - ntfs-3g
+    state: latest
+    update_cache: true
+  become: true
+  delegate_to: "{{ pve_host }}"
+  vars:
+    ansible_user: root
+
+- name: create disk1 directory and set permissions on host
+  file:
+    path: /mnt/disk1
+    mode: 0775
+    state: directory
+    # owner: "{{ primary_user }}"
+    # group: "{{ primary_user }}"
+  delegate_to: "{{ pve_host }}"
+  vars:
+    ansible_user: root
+
+- name: create disk2 directory and set permissions on host
+  file:
+    path: /mnt/disk2
+    mode: 0775
+    state: directory
+    # owner: "{{ primary_user }}"
+    # group: "{{ primary_user }}"
+  delegate_to: "{{ pve_host }}"
+  vars:
+    ansible_user: root
+
+- name: Mount up 14TB WD Elements by UUID on host
+  ansible.posix.mount:
+    path: /mnt/disk1
+    src: UUID=DAE8C840E8C81C9F
+    fstype: ntfs
+    opts: nobootwait,nofail
+    state: present
+  delegate_to: "{{ pve_host }}"
+  vars:
+    ansible_user: root
+  register: fstab2
+
+- name: Mount up 4TB WD Easystore by UUID on host
+  ansible.posix.mount:
+    path: /mnt/disk2
+    src: UUID=C234AD3334AD2AFD
+    fstype: ntfs
+    opts: nobootwait,nofail
+    state: present
+  delegate_to: "{{ pve_host }}"
+  vars:
+    ansible_user: root
+  register: fstab1
+
+- name: mount all drives on host
+  command: mount -a
+  args:
+    warn: no
+  become: true
+  delegate_to: "{{ pve_host }}"
+  vars:
+    ansible_user: root
+  when: fstab1.changed or fstab2.changed
+
+- name: add disk1 mountpoint
+  ansible.builtin.lineinfile:
+    path: /etc/pve/lxc/{{ pve_id }}.conf
+    regexp: '^mp1:'
+    line: 'mp1: /mnt/disk1,mp=/mnt/disk1'
+  delegate_to: "{{ pve_host }}"
+  vars:
+    ansible_user: root
+  register: config1
+  
+- name: add disk2 mountpoint
+  ansible.builtin.lineinfile:
+    path: /etc/pve/lxc/{{ pve_id }}.conf
+    regexp: '^mp2:'
+    line: 'mp2: /mnt/disk2,mp=/mnt/disk2'
+  delegate_to: "{{ pve_host }}"
+  vars:
+    ansible_user: root
+  register: config2
+
+- name: reboot machine to accept new config file
+  become: true
+  ansible.builtin.reboot:
+  when: config1.changed or config2.changed
+
+- name: make storage directory
+  file:
+    path: /mnt/storage
+    mode: 0775
+    state: directory
+
+- name: Mount up MergerFS storage
+  ansible.posix.mount:
+    path: /mnt/storage
+    src: /mnt/disk*
+    fstype: fuse.mergerfs
+    opts: defaults,allow_other,nonempty,use_ino,cache.files=off,moveonenospc=true,category.create=mfs,dropcacheonclose=true,minfreespace=250G,fsname=mergerfs
+    state: present
+  register: fstab3
+
+- name: mount all drives
+  command: mount -a
+  args:
+    warn: no
+  become: true
+  when: fstab3.changed

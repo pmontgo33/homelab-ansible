@@ -9,4 +9,4 @@
 # /srv/nfs4/homes  gss/krb5i(rw,sync,no_subtree_check)
 #
 
-/mnt/storage-test 192.168.86.0/24(rw,sync,no_subtree_check)
+{{ nfs_dir}} 192.168.86.0/24(fsid=0,rw,sync,no_subtree_check,no_root_squash)

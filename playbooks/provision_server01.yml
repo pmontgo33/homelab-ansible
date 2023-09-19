@@ -13,8 +13,10 @@
       include_tasks: tasks/ssh_keys.yml
     - name: SET TIMEZONE
       include_tasks: tasks/set_timezone.yml
-    - name: MOUNT EXTERNAL DRIVE
-      include_tasks: tasks/mount_external_drives.yml
+    - name: TAILSCALE
+      include_tasks: tasks/install_and_setup_tailscale.yml
+    - name: MOUNT EXTERNAL DRIVE IN FSTAB
+      include_tasks: tasks/mount_nas_fstab.yml
     - name: INSTALL PACKAGES
       include_tasks: tasks/install_packages.yml
     - name: INSTALL DOCKER

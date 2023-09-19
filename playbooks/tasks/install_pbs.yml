@@ -12,7 +12,7 @@
 - name: add pbs-no-subscription repository to apt
   apt_repository:
     repo: deb http://download.proxmox.com/debian/pbs bookworm pbs-no-subscription
-    state: absent
+    state: present
 
 - name: install Proxmox Backup Server
   apt:
@@ -27,8 +27,6 @@
     dest: "/etc/apt/sources.list.d/pve-enterprise.list"
     state: absent
     
-- name: Remove subscription popup
-  ansible.builtin.shell: |  
-    wget https://raw.githubusercontent.com/foundObjects/pve-nag-buster/master/install.sh
-    sudo bash install.sh
-  changed: false
+# - name: instal pve-nag-buster to remove Proxmox subscription pop-up
+  # ansible.builtin.script:
+    # cmd: ./files/pve-nag-buster_install.sh

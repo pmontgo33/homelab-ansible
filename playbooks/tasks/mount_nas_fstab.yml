@@ -1,0 +1,22 @@
+- name: make storage directory
+  file:
+    path: /mnt/storage
+    mode: 0775
+    state: directory
+  become: true
+
+- name: Mount up NAS NFS Share
+  ansible.posix.mount:
+    path: /mnt/storage
+    src: 192.168.86.107:/mnt/storage
+    fstype: nfs
+    opts: rw,sync,hard
+    state: present
+  register: fstab
+
+- name: mount all drives
+  command: mount -a
+  args:
+    warn: no
+  become: true
+  when: fstab.changed

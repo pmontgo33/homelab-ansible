@@ -7,12 +7,12 @@
   become: true
   register: packages
 
-- name: Create storage directory if it does not already exist
-  ansible.builtin.file:
-    path: "{{ nfs_dir }}"
-    state: directory
-    mode: '0777'
-    recurse: true
+# - name: Create storage directory if it does not already exist
+  # ansible.builtin.file:
+    # path: "{{ nfs_dir }}"
+    # state: directory
+    # mode: 0775
+    # recurse: true
 
 - name: Configuring exports
   template:

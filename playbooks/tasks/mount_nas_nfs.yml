@@ -9,5 +9,6 @@
   register: config
 
 - name: reboot machine to accept new config file
+  become: true
   ansible.builtin.reboot:
   when: config.changed
