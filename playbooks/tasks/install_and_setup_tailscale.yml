@@ -27,6 +27,14 @@
   ansible.builtin.reboot:
   when: config_cgroup2.changed or config_tun.changed
 
-- name: Install and Setup Tailscale
+- name: Install and Setup Tailscale for non-virtualization hosts
   include_role:
     name: artis3n.tailscale
+  when: ansible_virtualization_role != "host"
+
+- name: Install and Setup Tailscale for virtualization hosts
+  include_role:
+    name: artis3n.tailscale
+  vars:
+    tailscale_args: "--accept-dns=false"
+  when: ansible_virtualization_role == "host"

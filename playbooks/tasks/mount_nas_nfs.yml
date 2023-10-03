@@ -1,8 +1,8 @@
-- name: add nas mountpoint
+- name: add omv mountpoint
   ansible.builtin.lineinfile:
     path: /etc/pve/lxc/{{ pve_id }}.conf
     regexp: '^mp0:'
-    line: 'mp0: /mnt/pve/nas,mp=/mnt/storage'
+    line: 'mp0: /mnt/pve/omv,mp=/mnt/storage'
   delegate_to: "{{ pve_host }}"
   vars:
     ansible_user: root

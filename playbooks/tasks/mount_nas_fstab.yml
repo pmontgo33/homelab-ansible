@@ -8,7 +8,7 @@
 - name: Mount up NAS NFS Share
   ansible.posix.mount:
     path: /mnt/storage
-    src: 192.168.86.107:/mnt/storage
+    src: 192.168.86.109:/export/storage
     fstype: nfs
     opts: rw,sync,hard
     state: present

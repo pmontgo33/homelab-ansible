@@ -1,7 +1,10 @@
-# $ ansible-playbook playbooks/provision_nas.yml
+# $ ansible-playbook playbooks/provision_omv.yml
 
-- name: PROVISION NAS
-  hosts: nas
+# Also need to install omv-extras. used:
+#    wget -O - https://github.com/OpenMediaVault-Plugin-Developers/packages/raw/master/install | bash
+
+- name: PROVISION OMV
+  hosts: omv
   become: yes
   
   pre_tasks:
@@ -9,16 +12,12 @@
       include_tasks: tasks/update_system.yml
   
   tasks:
-    - name: NAS PVE CONFIG FILE
-      include_tasks: tasks/nas_pve_config.yml
     - name: SSH KEYS
       include_tasks: tasks/ssh_keys.yml
     - name: INSTALL PACKAGES
       include_tasks: tasks/install_packages.yml
-    - name: MOUNT EXTERNAL DRIVES FOR LXC
-      include_tasks: tasks/mount_external_drives_lxc.yml
-    - name: CONFIGURE NAS NFS
-      include_tasks: tasks/configure_nas_nfs.yml
+    - name: MOUNT EXTERNAL DRIVES
+      include_tasks: tasks/mount_external_drives.yml
     - name: SETUP SAMBDA SHARES
       include_tasks: tasks/samba_shares.yml
     - name: TAILSCALE
