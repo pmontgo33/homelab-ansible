@@ -1,0 +1,24 @@
+- name: Include Homelab Vars
+  include_vars: vars/homelab_vars.yml
+- name: Include Homelab Secret Vars
+  include_vars: vars/homelab_secret_vars.yml
+
+- name: install corosync-qdevice on cluster nodes
+  apt:
+    name: 
+      - corosync-qdevice 
+    state: present
+    update_cache: true
+  become: true
+  delegate_to: "{{ item }}"
+  loop: "{{ cluster_nodes }}"
+  
+- name: install corosync-qdevice and corosync-qnetd on qdevice
+  apt:
+    name: 
+      - corosync-qdevice 
+      - corosync-qnetd
+    state: present
+    update_cache: true
+  become: true
+  become_user: root

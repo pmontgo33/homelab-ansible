@@ -1,3 +1,5 @@
 roles:
   # Install a tailscale role from the Ansible Galaxy
   - src: artis3n.tailscale
+  # Install rclone role from Ansible Galaxy
+  - src: stefangweichinger.ansible_rclone

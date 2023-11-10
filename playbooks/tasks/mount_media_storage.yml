@@ -1,0 +1,20 @@
+- name: Create media directory if it does not already exist
+  ansible.builtin.file:
+    path: /mnt/media
+    mode: 0775
+    state: directory
+
+- name: add omv media mountpoint
+  ansible.builtin.lineinfile:
+    path: /etc/pve/lxc/{{ pve_id }}.conf
+    regexp: '^mp0:'
+    line: 'mp0: /mnt/pve/omv_media,mp=/mnt/media'
+  delegate_to: "{{ pve_host }}"
+  vars:
+    ansible_user: root
+  register: config
+  
+- name: reboot machine to accept new config file
+  become: true
+  ansible.builtin.reboot:
+  when: config.changed

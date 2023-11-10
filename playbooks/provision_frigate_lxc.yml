@@ -1,0 +1,23 @@
+# $ ansible-playbook ./playbooks/provision_frigate_lxc.yml
+
+- name: PROVISION FRIGATE LXC
+  hosts: frigate
+  become: yes
+  
+  pre_tasks:
+    - name: UPDATE SYSTEM
+      include_tasks: tasks/update_system.yml
+  
+  tasks:
+    - name: SSH KEYS
+      include_tasks: tasks/ssh_keys.yml
+    - name: SET TIMEZONE
+      include_tasks: tasks/set_timezone.yml
+    - name: MOUNT MEDIA STORAGE
+      include_tasks: tasks/mount_media_storage.yml
+    - name: LXC GPU PASSTHROUGH
+      include_tasks: tasks/lxc_gpu_passthrough.yml
+    - name: SETUP SAMBDA SHARES
+      include_tasks: tasks/samba_shares.yml
+    # - name: TAILSCALE
+      # include_tasks: tasks/install_and_setup_tailscale.yml

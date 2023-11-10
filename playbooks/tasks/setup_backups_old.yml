@@ -1,0 +1,29 @@
+- name: Copy backup_script directory
+  ansible.posix.synchronize:
+    src: templates/backup_script
+    dest: "/home/{{ ansible_user }}"
+#    owner: "{{ ansible_user }}"
+#    group: "{{ ansible_user }}"
+#    mode: 0777
+    delete: yes
+    
+- name: copy template backups.sh file
+  template:
+    src: "backups.sh.j2"
+    dest: "/home/{{ ansible_user }}/backup_script/backups.sh"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0777
+
+- name: Ensure a job that runs backups.sh at 23:59 exists.
+  ansible.builtin.cron:
+    user: pi
+    name: "backups"
+    minute: "58"
+    hour: "23"
+    job: "cd /home/pi/backup_script && ./backups.sh"
+  register: crontab
+
+- name: Set Timezone
+  include_tasks: "./tasks/set_timezone.yml"
+  when: crontab.changed

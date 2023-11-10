@@ -1,0 +1,34 @@
+- name: add omv backups mountpoint
+  ansible.builtin.lineinfile:
+    path: /etc/pve/lxc/{{ pve_id }}.conf
+    regexp: '^mp0:'
+    line: 'mp0: /mnt/pve/omv_backups,mp=/mnt/backups'
+  delegate_to: "{{ pve_host }}"
+  vars:
+    ansible_user: root
+  register: config1
+  
+- name: Create local backup directory if it does not already exist
+  ansible.builtin.file:
+    path: /mnt/local_backups
+    state: directory
+    mode: 0775
+    recurse: true
+  delegate_to: "{{ pve_host }}"
+  vars:
+    ansible_user: root
+
+- name: add local backups mountpoint
+  ansible.builtin.lineinfile:
+    path: /etc/pve/lxc/{{ pve_id }}.conf
+    regexp: '^mp1:'
+    line: 'mp1: /mnt/local_backups,mp=/mnt/local_backups'
+  delegate_to: "{{ pve_host }}"
+  vars:
+    ansible_user: root
+  register: config2
+
+- name: reboot machine to accept new config file
+  become: true
+  ansible.builtin.reboot:
+  when: config1.changed or config2.changed

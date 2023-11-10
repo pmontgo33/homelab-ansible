@@ -40,9 +40,18 @@
   # with_items: 
     # - "{{ ansible_play_hosts_all }}"
     
-- name: copy other ssh keys to hosts
+- name: copy other ssh keys to ansible_user hosts
   ansible.posix.authorized_key:
     user: "{{ ansible_user }}"
+    state: present
+    key: '{{ item }}'
+  with_file:
+    - ../public_keys/hp_laptop_id_rsa.pub
+    - ../public_keys/phone_id_rsa.pub
+    
+- name: copy other ssh keys to primary_user hosts
+  ansible.posix.authorized_key:
+    user: "{{ primary_user }}"
     state: present
     key: '{{ item }}'
   with_file:

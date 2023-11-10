@@ -6,6 +6,20 @@
 - name: Include Homelab Secret Vars
   include_vars: vars/homelab_secret_vars.yml
 
+- name: install samba
+  apt:
+    name:
+      - samba
+      - samba-common-bin
+    state: latest
+    update_cache: true
+  become: true
+
+- name: Start samba service, if not started
+  ansible.builtin.service:
+    name: smbd
+    state: started
+
 - name: Configuring samba share
   template:
     src: "smb.conf.j2"

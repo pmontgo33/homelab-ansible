@@ -11,4 +11,12 @@ samba_users:
 # This key will expire on Nov 27, 2023. If youʼll then want to continue using an auth key, youʼll need to generate a new one.
 tailscale_authkey: "{{ vault_tailscale_authkey }}"
 
+#omv SMB Credentials
+omv_username: "{{ vault_omv_username }}"
+omv_password: "{{ vault_omv_password }}"
+
+# Proxmox Cluster Hosts
+cluster_nodes:
+  - starlord
+  - stark
 

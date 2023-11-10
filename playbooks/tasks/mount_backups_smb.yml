@@ -1,0 +1,35 @@
+- name: Include Homelab Vars
+  include_vars: vars/homelab_vars.yml
+- name: Include Homelab Secret Vars
+  include_vars: vars/homelab_secret_vars.yml
+
+- name: install cifs-utils 
+  apt:
+    name: 
+      - cifs-utils
+    state: present
+    update_cache: true
+  become: true
+
+- name: make backups directory
+  file:
+    path: /mnt/backups
+    mode: 0775
+    state: directory
+
+- name: Mount backups SMB share
+  ansible.posix.mount:
+    src: //192.168.86.109/backups
+    path: /mnt/backups
+    opts: "rw,vers=3.0,username={{ omv_username }},password={{ omv_password }}"
+    fstype: cifs
+    state: mounted
+  become: true
+  register: fstab
+  
+- name: mount all drives
+  command: mount -a
+  args:
+    warn: no
+  become: true
+  when: fstab.changed

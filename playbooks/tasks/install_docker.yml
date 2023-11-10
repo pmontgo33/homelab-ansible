@@ -65,8 +65,8 @@
     groups: docker
     append: yes
     
-- name: install docker, docker-compose python packages
-  pip:
-    name:
-      - docker
-      - docker-compose
+# - name: install docker, docker-compose python packages
+  # pip:
+    # name:
+      # - docker
+      # - docker-compose

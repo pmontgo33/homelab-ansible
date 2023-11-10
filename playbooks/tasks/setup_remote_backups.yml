@@ -1,3 +1,17 @@
+- name: Install rclone
+  include_role:
+    name: stefangweichinger.ansible_rclone
+  vars:
+    rclone_arch: "arm64"
+    
+- name: Copy rclone.conf file
+  ansible.builtin.copy:
+    src: proton_rclone_encrypted.conf
+    dest: "/root/.config/rclone/rclone.conf"
+    owner: root
+    group: root
+    mode: '0600'
+    
 - name: copy template backups.sh file
   template:
     src: "backups.sh.j2"
