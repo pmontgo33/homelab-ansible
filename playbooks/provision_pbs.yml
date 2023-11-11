@@ -24,6 +24,8 @@
       include_tasks: tasks/samba_shares.yml
     - name: MOUNT BACKUPS SMB SHARE
       include_tasks: tasks/mount_backups_smb.yml
+    - name: MOUNT MEDIA SMB SHARE
+      include_tasks: tasks/mount_media_smb.yml
     - name: SETUP REMOTE BACKUPS
       include_tasks: tasks/setup_remote_backups.yml
     - name: TAILSCALE

@@ -1,21 +1,18 @@
 #!/bin/bash
 #exec > "/opt/pbs_server/backups/logs/$(date +'%Y-%m-%d')ultron_backup.log" 2>&1
-exec > >(tee "/opt/pbs_server/backups/logs/$(date +'%Y-%m-%d') ultron_backup.log") 2>&1
+exec > >(tee "/opt/pbs_server/backups/logs/$(date +'%Y-%m-%d')_ultron_backup.log") 2>&1
 
 echo "================================================="
-echo "Running Scheduled Offsite Backup for Ultron ($(date '+%m/%d/%Y %H:%M:%S'))"
+echo "Running Scheduled Offsite Backup ($(date '+%m/%d/%Y %H:%M:%S'))"
 echo "================================================="
 echo "-"
 
-echo "STARTING rclone backup to cloud..."
+echo "STARTING ultron backup to cloud..."
 sudo rclone sync /opt/pbs_server/backups/ultron-backups proton:Backups/homelab/ultron-backups
 
-echo "rclone backup to cloud COMPLETE!"
+echo "ultron backup to cloud COMPLETE!"
 echo "-"
 
-# dt=$(date '+%m/%d/%Y %H:%M:%S');
-# sudo echo $dt > /mnt/storage/scripts/backups/last_backup.log
-
 echo "================================================="
-echo "Scheduled Offsite Backup for Ultron is Complete ($(date '+%m/%d/%Y %H:%M:%S'))"
+echo "Scheduled Offsite Backup is Complete ($(date '+%m/%d/%Y %H:%M:%S'))"
 echo "================================================="

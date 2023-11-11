@@ -8,7 +8,7 @@
 
 - name: Ensure a job that runs backups.sh at 3:00 exists.
   ansible.builtin.cron:
-    user: "{{ primary_user }}"
+    user: root
     name: "backups"
     minute: "0"
     hour: "3"
