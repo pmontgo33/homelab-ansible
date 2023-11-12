@@ -1,0 +1,19 @@
+# files & directories to exclude in restic backup to storage drive
+
+/mnt/backups/server_restic/*
+/mnt/backups/homelab_restic/*
+/mnt/backups/latest/no_backup/*
+
+/mnt/media/concerts/*
+/mnt/media/extras/*
+/mnt/media/movies/*
+/mnt/media/downloads/*
+/mnt/media/music/*
+/mnt/media/sports/*
+/mnt/media/tv shows/*
+/mnt/media/kids shows/*
+/mnt/media/kids music/*
+/mnt/media/podcasts/*
+/mnt/media/audiobooks/*
+/mnt/media/books/*
+/mnt/media/dump/*

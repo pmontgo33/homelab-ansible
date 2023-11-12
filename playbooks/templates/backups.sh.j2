@@ -1,10 +1,42 @@
 #!/bin/bash
-#exec > "/opt/pbs_server/backups/logs/$(date +'%Y-%m-%d')ultron_backup.log" 2>&1
-exec > >(tee "/opt/pbs_server/backups/logs/$(date +'%Y-%m-%d')_ultron_backup.log") 2>&1
+exec > >(tee "/mnt/backups/logs/$(date +'%Y-%m-%d')_backup.log") 2>&1
 
 echo "================================================="
-echo "Running Scheduled Offsite Backup ($(date '+%m/%d/%Y %H:%M:%S'))"
+echo "Running Scheduled Backup ($(date '+%m/%d/%Y %H:%M:%S'))"
 echo "================================================="
+echo "-"
+
+{% for host in groups['servers'] %}
+{% if hostvars[host].backup_dirs is defined %}
+echo "STARTING rsync {{ hostvars[host].inventory_hostname|upper }} backup to latest folder..."
+{% for dir in hostvars[host].backup_dirs %}
+{% if hostvars[host].ansible_host == ansible_host %}
+sudo rsync -avhqr --delete --delete-excluded --exclude-from=backup_exclude.dat {{ dir }} /mnt/backups/latest/{{ inventory_hostname }}
+{% else %}
+rsync -avhq --delete --delete-excluded --exclude-from=rsync_exclude.dat --rsync-path="sudo rsync" -e "ssh -o StrictHostKeyChecking=no"{{ hostvars[host].primary_user }}@{{ hostvars[host].ansible_host }}:{{ dir }} /mnt/backups/latest/{{ hostvars[host].inventory_hostname }}
+{% endif %}
+{% endfor %}
+echo "rsync from {{ hostvars[host].inventory_hostname|upper }} COMPLETE"
+echo "-"
+{% endif %}
+{% endfor %}
+
+echo "STARTING restic backup to local repo..."
+sudo restic --password-file /mnt/backups/homelab_restic/.secret -r /mnt/backups/homelab_restic backup --tag SCRIPT --files-from restic_include.dat --exclude-file restic_exclude.dat
+
+echo "restic server backup to repo COMPLETE!"
+echo "-"
+
+echo "STARTING restic snapshot prune..."
+sudo restic forget --password-file /mnt/backups/homelab_restic/.secret -r /mnt/backups/homelab_restic --verbose --prune --keep-daily 7 --keep-weekly 4 --keep-monthly 3
+
+echo "restic snapshot prune COMPLETE"
+echo "-"
+
+echo "STARTING rclone backup to cloud..."
+rclone sync /mnt/backups/homelab_restic proton:Backups/homelab/homelab_restic --exclude-from rclone_exclude.dat
+
+echo "rclone backup to cloud COMPLETE!"
 echo "-"
 
 echo "STARTING ultron backup to cloud..."
@@ -14,5 +46,5 @@ echo "ultron backup to cloud COMPLETE!"
 echo "-"
 
 echo "================================================="
-echo "Scheduled Offsite Backup is Complete ($(date '+%m/%d/%Y %H:%M:%S'))"
+echo "Scheduled Backup is Complete ($(date '+%m/%d/%Y %H:%M:%S'))"
 echo "================================================="

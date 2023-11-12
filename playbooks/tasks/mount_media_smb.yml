@@ -14,7 +14,6 @@
 - name: make media directory
   file:
     path: /mnt/media
-    mode: 0775
     state: directory
 
 - name: Mount media SMB share
