@@ -1,4 +1,5 @@
 # files & directories to include in restic backup to external drive
 
 /mnt/backups/*
-/mnt/media/*
+/mnt/media/photos/*
+/mnt/media/videos/*
