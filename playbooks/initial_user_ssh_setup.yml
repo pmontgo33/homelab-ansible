@@ -8,8 +8,8 @@
 - hosts: "{{ hosts }}"
   become: true
   vars:
-    # - ansible_user: "{{ primary_user }}"
-    - ansible_user: root
+    - ansible_user: "{{ primary_user }}"
+    #- ansible_user: root
   
   pre_tasks:
     - name: UPDATE SYSTEM

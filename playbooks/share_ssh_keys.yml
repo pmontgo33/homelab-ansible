@@ -9,11 +9,11 @@
     - name: SSH KEYS
       include_tasks: tasks/ssh_keys.yml
       
-- name: SHARE ANSIBLE USER SSH KEYS
-  hosts: ssh_share
+# - name: SHARE ANSIBLE USER SSH KEYS
+  # hosts: ssh_share
   # become: yes
-  remote_user: "{{ ansible_user }}"
+  # remote_user: "{{ ansible_user }}"
   
-  tasks:
-    - name: SSH KEYS
-      include_tasks: tasks/ssh_keys.yml
+  # tasks:
+    # - name: SSH KEYS
+      # include_tasks: tasks/ssh_keys.yml
