@@ -1,4 +1,6 @@
 # $ ansible-playbook playbooks/provision_fury.yml
+# Docker LXC https://tteck.github.io/Proxmox/
+  # Options: Install Portainer
 
 - name: PROVISION FURY
   hosts: fury
@@ -17,5 +19,9 @@
       include_tasks: tasks/install_ansible.yml
     - name: SETUP SAMBDA SHARES
       include_tasks: tasks/samba_shares.yml
+    - name: ADD USERS TO DOCKER GROUP
+      include_tasks: tasks/add_users_to_docker_group.yml
     - name: TAILSCALE
       include_tasks: tasks/install_and_setup_tailscale.yml
+      vars:
+        ts_args: "--advertise-routes=192.168.86.0/24"

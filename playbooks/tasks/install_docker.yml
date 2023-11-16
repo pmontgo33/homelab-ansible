@@ -48,22 +48,8 @@
     state: started
     enabled: yes
 
-- name: Ensure group "docker" exists
-  ansible.builtin.group:
-    name: docker
-    state: present
-
-- name: add ansible user to docker group
-  user:
-    name: "{{ ansible_user }}"
-    groups: docker
-    append: yes
-
-- name: add primary user to docker group
-  user:
-    name: "{{ primary_user }}"
-    groups: docker
-    append: yes
+- name: add users to docker group
+  include_tasks: tasks/add_users_to_docker_group.yml
     
 # - name: install docker, docker-compose python packages
   # pip:

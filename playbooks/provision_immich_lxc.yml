@@ -1,7 +1,7 @@
-# $ ansible-playbook ./playbooks/provision_plex_lxc.yml
+# $ ansible-playbook ./playbooks/provision_immich_lxc.yml
 
-- name: PROVISION PLEX LXC
-  hosts: plex
+- name: PROVISION IMMICH LXC
+  hosts: immich
   become: yes
   
   pre_tasks:
@@ -15,5 +15,9 @@
       include_tasks: tasks/set_timezone.yml
     - name: MOUNT MEDIA STORAGE
       include_tasks: tasks/mount_media_storage.yml
+    - name: LXC GPU PASSTHROUGH
+      include_tasks: tasks/lxc_gpu_passthrough.yml
+    - name: SETUP SAMBDA SHARES
+      include_tasks: tasks/samba_shares.yml
     - name: TAILSCALE
       include_tasks: tasks/install_and_setup_tailscale.yml
