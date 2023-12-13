@@ -1,4 +1,4 @@
-# $ ansible-playbook ./playbooks/provision_jellyfin_lxc.yml
+# $ ansible-playbook playbooks/provision_jellyfin_lxc.yml
 
 - name: PROVISION JELLYFIN LXC
   hosts: jellyfin
@@ -13,8 +13,8 @@
       include_tasks: tasks/ssh_keys.yml
     - name: SET TIMEZONE
       include_tasks: tasks/set_timezone.yml
-    - name: MOUNT MEDIA STORAGE
-      include_tasks: tasks/mount_media_storage.yml
+    - name: MOUNT MEDIA NFS
+      include_tasks: tasks/mount_media_nfs.yml
     - name: LXC GPU PASSTHROUGH
       include_tasks: tasks/lxc_gpu_passthrough.yml
     # - name: TAILSCALE

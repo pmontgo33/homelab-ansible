@@ -1,23 +1,17 @@
-- name: install packages - samba, git, restic, software-properties-common, fail2ban, unattended-upgrades, screen
+- name: install packages - samba, git, restic, software-properties-common, fail2ban, unattended-upgrades, screen, rsync
   apt:
     name:
-      - samba
-      - samba-common-bin
       - git
       - restic
       - software-properties-common
       - fail2ban
       - unattended-upgrades
       - screen
+      - rsync
     state: latest
     update_cache: true
   become: true
   register: packages
-
-- name: Start samba service, if not started
-  ansible.builtin.service:
-    name: smbd
-    state: started
 
 - name: Start unattended-upgrades service, if not started
   ansible.builtin.service:

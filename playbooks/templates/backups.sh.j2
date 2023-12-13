@@ -11,7 +11,7 @@ echo "-"
 echo "STARTING rsync {{ hostvars[host].inventory_hostname|upper }} backup to latest folder..."
 {% for dir in hostvars[host].backup_dirs %}
 {% if hostvars[host].ansible_host == ansible_host %}
-sudo rsync -avhqr --delete --delete-excluded --exclude-from=backup_exclude.dat {{ dir }} /mnt/backups/latest/{{ inventory_hostname }}
+sudo rsync -avhqr --delete --delete-excluded --exclude-from=rsync_exclude.dat {{ dir }} /mnt/backups/latest/{{ inventory_hostname }}
 {% else %}
 rsync -avhq --delete --delete-excluded --exclude-from=rsync_exclude.dat --rsync-path="sudo rsync" -e "ssh -o StrictHostKeyChecking=no"{{ hostvars[host].primary_user }}@{{ hostvars[host].ansible_host }}:{{ dir }} /mnt/backups/latest/{{ hostvars[host].inventory_hostname }}
 {% endif %}
@@ -34,16 +34,16 @@ echo "restic snapshot prune COMPLETE"
 echo "-"
 
 echo "STARTING rclone backup to cloud..."
-rclone sync /mnt/backups/homelab_restic proton:Backups/homelab/homelab_restic --exclude-from rclone_exclude.dat
+sudo rclone sync /mnt/backups/homelab_restic proton:Backups/homelab/homelab_restic --exclude-from rclone_exclude.dat
 
 echo "rclone backup to cloud COMPLETE!"
 echo "-"
 
-echo "STARTING ultron backup to cloud..."
-sudo rclone sync /opt/pbs_server/backups/ultron-backups proton:Backups/homelab/ultron-backups
+# echo "STARTING ultron backup to cloud..."
+# sudo rclone sync /opt/pbs_server/backups/ultron-backups proton:Backups/homelab/ultron-backups
 
-echo "ultron backup to cloud COMPLETE!"
-echo "-"
+# echo "ultron backup to cloud COMPLETE!"
+# echo "-"
 
 echo "================================================="
 echo "Scheduled Backup is Complete ($(date '+%m/%d/%Y %H:%M:%S'))"

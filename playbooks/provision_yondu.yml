@@ -17,8 +17,8 @@
       # include_tasks: tasks/install_docker.yml
     - name: SETUP SAMBDA SHARES
       include_tasks: tasks/samba_shares.yml
-    - name: MOUNT MEDIA STORAGE
-      include_tasks: tasks/mount_media_storage.yml
+    - name: MOUNT MEDIA NFS
+      include_tasks: tasks/mount_media_nfs.yml
     - name: SETUP SAMBDA SHARES
       include_tasks: tasks/samba_shares.yml
     - name: TAILSCALE

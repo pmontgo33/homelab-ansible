@@ -1,7 +1,7 @@
-# $ ansible-playbook playbooks/provision_plex_lxc.yml
+# $ ansible-playbook playbooks/provision_truenas.yml
 
-- name: PROVISION PLEX LXC
-  hosts: plex
+- name: PROVISION TRUENAS
+  hosts: pbs
   become: yes
   
   pre_tasks:
@@ -11,9 +11,7 @@
   tasks:
     - name: SSH KEYS
       include_tasks: tasks/ssh_keys.yml
-    - name: SET TIMEZONE
-      include_tasks: tasks/set_timezone.yml
-    - name: MOUNT MEDIA NFS
-      include_tasks: tasks/mount_media_nfs.yml
+    - name: INSTALL PACKAGES
+      include_tasks: tasks/install_packages.yml
     - name: TAILSCALE
       include_tasks: tasks/install_and_setup_tailscale.yml
