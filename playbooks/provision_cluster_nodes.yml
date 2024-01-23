@@ -1,4 +1,4 @@
-# $ ansible-playbook playbooks/provision_starlord.yml
+# $ ansible-playbook playbooks/provision_cluster_nodes.yml
 
 - name: PROVISION STARLORD
   hosts: starlord
@@ -19,5 +19,7 @@
       include_tasks: tasks/ssh_keys.yml
     - name: UPDATE SYSTEM
       include_tasks: tasks/update_system.yml
+    - name: SETUP PROXMOX NOTIFICATIONS
+      include_tasks: tasks/setup_proxmox_ve_notifications.yml
     - name: TAILSCALE
       include_tasks: tasks/install_and_setup_tailscale.yml

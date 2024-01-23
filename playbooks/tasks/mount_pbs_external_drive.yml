@@ -1,0 +1,19 @@
+- name: make storage directory
+  file:
+    path: /mnt/storage
+    mode: 0775
+    state: directory
+
+- name: Mount up 4TB WD Easystore by UUID
+  ansible.posix.mount:
+    path: /mnt/storage
+    src: UUID=a2cd4721-3566-4c83-aba0-3830ab06e76e
+    fstype: ext4
+    opts: nobootwait,nofail
+    state: present
+  register: fstab
+
+- name: mount all drives
+  command: mount -a
+  become: true
+  when: fstab.changed

@@ -4,7 +4,7 @@
 - name:  add lxc.cgroup2.devices.allow to pve config
   ansible.builtin.lineinfile:
     path: /etc/pve/lxc/{{ pve_id }}.conf
-    regexp: '^lxc.cgroup2.devices.allow:'
+    regexp: '^lxc.cgroup2.devices.allow: c 10:200 rwm'
     line: 'lxc.cgroup2.devices.allow: c 10:200 rwm'
   delegate_to: "{{ pve_host }}"
   vars:
@@ -15,7 +15,7 @@
 - name: mount tun in pve config
   ansible.builtin.lineinfile:
     path: /etc/pve/lxc/{{ pve_id }}.conf
-    regexp: '^lxc.mount.entry:'
+    regexp: '^lxc.mount.entry: /dev/net/tun dev/net/tun none bind,create=file'
     line: 'lxc.mount.entry: /dev/net/tun dev/net/tun none bind,create=file'
   delegate_to: "{{ pve_host }}"
   vars:
@@ -31,12 +31,12 @@
   include_role:
     name: artis3n.tailscale
   vars:
-    tailscale_args: "{{ ts_args | default('') }} --reset"
+    tailscale_args: "{{ ts_args | default('') }} --ssh --reset"
   when: ansible_virtualization_role != "host"
 
 - name: Install and Setup Tailscale for virtualization hosts
   include_role:
     name: artis3n.tailscale
   vars:
-    tailscale_args: "{{ ts_args | default('') }} --accept-dns=false --reset"
+    tailscale_args: "{{ ts_args | default('') }} --ssh --accept-dns=false --reset"
   when: ansible_virtualization_role == "host"

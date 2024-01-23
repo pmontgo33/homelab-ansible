@@ -1,7 +1,7 @@
-# $ ansible-playbook playbooks/provision_frigate_lxc.yml
+# $ ansible-playbook playbooks/provision_duplicati.yml
 
-- name: PROVISION FRIGATE LXC
-  hosts: frigate
+- name: PROVISION DUPLICATI
+  hosts: duplicati
   become: yes
   
   pre_tasks:
@@ -13,11 +13,16 @@
       include_tasks: tasks/ssh_keys.yml
     - name: SET TIMEZONE
       include_tasks: tasks/set_timezone.yml
+    - name: INSTALL PACKAGES
+      include_tasks: tasks/install_packages.yml
     - name: MOUNT MEDIA NFS
       include_tasks: tasks/mount_media_nfs.yml
-    - name: LXC GPU PASSTHROUGH
-      include_tasks: tasks/lxc_gpu_passthrough.yml
+    - name: MOUNT BACKUPS NFS
+      include_tasks: tasks/mount_backups_nfs.yml
     - name: SETUP SAMBDA SHARES
       include_tasks: tasks/samba_shares.yml
     - name: TAILSCALE
       include_tasks: tasks/install_and_setup_tailscale.yml
+    - name: DUPLICATI
+      include_role:
+        name: hwwilliams.duplicati

@@ -1,0 +1,45 @@
+- name: Include Homelab Vars
+  include_vars: vars/homelab_vars.yml
+- name: Include Homelab Secret Vars
+  include_vars: vars/homelab_secret_vars.yml
+
+- name: install authentication library
+  apt:
+    name:
+      - libsasl2-modules
+    state: present
+    update_cache: true
+  become: true
+
+- name: copy password file
+  template:
+    src: "sasl_passwd.j2"
+    dest: /etc/postfix/sasl_passwd
+    owner: root
+    group: root
+    mode: 0600
+  register: sasl_passwd
+
+- name: hash password file
+  command: postmap hash:/etc/postfix/sasl_passwd
+  when: sasl_passwd.changed
+    
+- name: Add to /etc/postfix/main.cf
+  lineinfile:
+    dest: /etc/postfix/main.cf
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  loop:
+    - { regexp: '^relayhost =', line: 'relayhost = smtp.gmail.com:587' }
+    - { regexp: '^smtp_use_tls =', line: 'smtp_use_tls = yes' }
+    - { regexp: '^smtp_sasl_auth_enable =', line: 'smtp_sasl_auth_enable = yes' }
+    - { regexp: '^smtp_sasl_security_options =', line: 'smtp_sasl_security_options =' }
+    - { regexp: '^smtp_sasl_password_maps =', line: 'smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd' }
+    - { regexp: '^smtp_tls_CAfile =', line: 'smtp_tls_CAfile = /etc/ssl/certs/Entrust_Root_Certification_Authority.pem' }
+    - { regexp: '^smtp_tls_session_cache_database =', line: 'smtp_tls_session_cache_database = btree:/var/lib/postfix/smtp_tls_session_cache' }
+    - { regexp: '^smtp_tls_session_cache_timeout =', line: 'smtp_tls_session_cache_timeout = 3600s' }
+  register: postfix
+
+- name: reload postfix
+  command: postfix reload
+  when: postfix.changed

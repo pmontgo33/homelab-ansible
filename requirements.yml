@@ -3,3 +3,5 @@ roles:
   - src: artis3n.tailscale
   # Install rclone role from Ansible Galaxy
   - src: stefangweichinger.ansible_rclone
+  # Install and setup duplicati
+  - src: hwwilliams.duplicati

@@ -17,5 +17,5 @@
       include_tasks: tasks/mount_media_nfs.yml
     - name: LXC GPU PASSTHROUGH
       include_tasks: tasks/lxc_gpu_passthrough.yml
-    # - name: TAILSCALE
-      # include_tasks: tasks/install_and_setup_tailscale.yml
+    - name: TAILSCALE
+      include_tasks: tasks/install_and_setup_tailscale.yml

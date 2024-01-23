@@ -1,0 +1,13 @@
+# $ ansible-playbook playbooks/install_update_all_tailscale.yml
+
+- name: Install or Update all Tailscale
+  hosts: tailscale
+  become: yes
+  
+  pre_tasks:
+    - name: UPDATE SYSTEM
+      include_tasks: tasks/update_system.yml
+  
+  tasks:
+    - name: TAILSCALE
+      include_tasks: tasks/install_and_setup_tailscale.yml

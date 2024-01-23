@@ -20,3 +20,5 @@ cluster_nodes:
   - starlord
   - stark
 
+#SMTP Credentials
+gmail_credentials: "{{ vault_gmail_credentials }}"
