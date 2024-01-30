@@ -1,0 +1,13 @@
+- name: install pip, makedeb
+  apt:
+    name:
+      - python3-pip
+      - makedeb
+    state: present
+    update_cache: true
+  become: true
+
+- name: install passlib
+  pip:
+    name:
+      - passlib

@@ -1,4 +1,4 @@
-- name: install packages - samba, git, restic, software-properties-common, fail2ban, unattended-upgrades, screen, rsync
+- name: install packages - samba, git, restic, software-properties-common, fail2ban, unattended-upgrades, screen, rsync, sudo
   apt:
     name:
       - git
@@ -8,6 +8,7 @@
       - unattended-upgrades
       - screen
       - rsync
+      - sudo
     state: latest
     update_cache: true
   become: true

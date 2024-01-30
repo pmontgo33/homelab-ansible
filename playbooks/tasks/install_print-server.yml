@@ -1,0 +1,54 @@
+- name: install packages print-server
+  apt:
+    name:
+      - cups
+      - avahi-daemon
+      - samba
+      - printer-driver-splix
+    state: present
+    update_cache: true
+  become: true
+
+- name: Add the primary_user to the lpadmin group
+  ansible.builtin.user:
+    name: "{{ primary_user }}"
+    groups: lpadmin
+    append: yes
+    
+- name: Copy cupsd.conf file
+  ansible.builtin.copy:
+    src: cups/cupsd.conf
+    dest: /etc/cups/cupsd.conf
+    owner: root
+    group: root
+    mode: 0644
+  register: cupsd
+
+# - name: Copy drivers
+  # ansible.builtin.copy:
+    # src: cups/OpenPrinting-SpliX/
+    # dest: /opt/OpenPrinting-SpliX/
+    # owner: root
+    # group: root
+    # mode: 0777
+    
+- name: Restart cups service
+  ansible.builtin.service:
+    name: cups
+    state: restarted
+  when: cupsd.changed
+  
+- name: Copy smb.conf file
+  ansible.builtin.copy:
+    src: cups/cups_smb.conf
+    dest: /etc/samba/smb.conf
+    owner: root
+    group: root
+    mode: 0644
+  register: samba
+  
+- name: Restart samba service
+  ansible.builtin.service:
+    name: smbd
+    state: restarted
+  when: samba.changed
