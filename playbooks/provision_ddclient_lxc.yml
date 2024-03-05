@@ -1,0 +1,23 @@
+# $ ansible-playbook playbooks/provision_ddclient_lxc.yml
+
+- name: PROVISION DDCLIENT LXC
+  hosts: ddclient
+  become: yes
+  
+  pre_tasks:
+    - name: UPDATE SYSTEM
+      include_tasks: tasks/update_system.yml
+  
+  tasks:
+    - name: SSH KEYS
+      include_tasks: tasks/ssh_keys.yml
+    - name: INSTALL PACKAGES
+      include_tasks: tasks/install_packages.yml
+    - name: SETUP SAMBDA SHARES
+      include_tasks: tasks/samba_shares.yml
+    - name: INSTALL SETUP DDCLIENT
+      include_tasks: tasks/install_setup_ddclient.yml
+    - name: ADD HOSTNAME TO ROUTER
+      include_tasks: tasks/add_hostname_to_router.yml
+    - name: TAILSCALE
+      include_tasks: tasks/install_and_setup_tailscale.yml

@@ -4,10 +4,12 @@
   hosts: tailscale
   become: yes
   
-  pre_tasks:
-    - name: UPDATE SYSTEM
-      include_tasks: tasks/update_system.yml
+  # pre_tasks:
+    # - name: UPDATE SYSTEM
+      # include_tasks: tasks/update_system.yml
   
   tasks:
     - name: TAILSCALE
       include_tasks: tasks/install_and_setup_tailscale.yml
+      # vars:
+        # ts_args: "--advertise-tags= --force-reauth"

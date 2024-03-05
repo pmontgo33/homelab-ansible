@@ -15,5 +15,7 @@
       include_tasks: tasks/set_timezone.yml
     - name: MOUNT MEDIA NFS
       include_tasks: tasks/mount_media_nfs.yml
+    - name: MOUNT HOME MEDIA NFS
+      include_tasks: tasks/mount_home_media_nfs.yml
     - name: TAILSCALE
       include_tasks: tasks/install_and_setup_tailscale.yml

@@ -1,0 +1,8 @@
+daemon=600
+usev4=webv4
+
+protocol=cloudflare,                                         \
+zone={{ cloudflare_domain }},                                               \
+login=token,                                                 \
+password={{ cloudflare_token }}            \
+{{ cloudflare_domain }}

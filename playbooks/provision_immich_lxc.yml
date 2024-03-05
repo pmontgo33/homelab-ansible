@@ -15,6 +15,8 @@
       include_tasks: tasks/set_timezone.yml
     - name: MOUNT MEDIA NFS
       include_tasks: tasks/mount_media_nfs.yml
+    - name: MOUNT HOME MEDIA NFS
+      include_tasks: tasks/mount_home_media_nfs.yml
     - name: LXC GPU PASSTHROUGH
       include_tasks: tasks/lxc_gpu_passthrough.yml
     - name: SETUP SAMBDA SHARES

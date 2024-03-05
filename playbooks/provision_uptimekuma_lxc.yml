@@ -1,0 +1,15 @@
+# $ ansible-playbook playbooks/provision_uptimekuma_lxc.yml
+
+- name: PROVISION UPTIMEKUMA LXC
+  hosts: uptimekuma
+  become: yes
+  
+  pre_tasks:
+    - name: UPDATE SYSTEM
+      include_tasks: tasks/update_system.yml
+  
+  tasks:
+    - name: SSH KEYS
+      include_tasks: tasks/ssh_keys.yml
+    - name: TAILSCALE
+      include_tasks: tasks/install_and_setup_tailscale.yml

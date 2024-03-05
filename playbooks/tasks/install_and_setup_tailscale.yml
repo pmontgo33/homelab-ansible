@@ -31,12 +31,14 @@
   include_role:
     name: artis3n.tailscale
   vars:
-    tailscale_args: "{{ ts_args | default('') }} --ssh --reset"
+    #tailscale_args: "{{ ts_args | default('') }} --ssh --reset"
+    tailscale_args: "{{ ts_args | default('') }} --reset --force-reauth --ssh"
   when: ansible_virtualization_role != "host"
 
 - name: Install and Setup Tailscale for virtualization hosts
   include_role:
     name: artis3n.tailscale
   vars:
-    tailscale_args: "{{ ts_args | default('') }} --ssh --accept-dns=false --reset"
+   # tailscale_args: "{{ ts_args | default('') }} --ssh --accept-dns=false --reset"
+    tailscale_args: "{{ ts_args | default('') }} --accept-dns=false --reset --force-reauth --ssh"
   when: ansible_virtualization_role == "host"

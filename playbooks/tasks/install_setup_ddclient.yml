@@ -1,0 +1,24 @@
+- include_vars: vars/homelab_vars.yml
+- include_vars: vars/homelab_secret_vars.yml
+
+- name: ensure ddclient is installed
+  apt:
+    name:
+      - ddclient
+    state: latest
+    update_cache: true
+  become: true
+  
+- name: copy ddclient config file
+  template:
+    src: "ddclient.conf.j2"
+    dest: /etc/ddclient.conf
+    owner: root
+    group: root
+    mode: 0600
+  register: ddclient_config
+
+# - name: run ddclient
+  # command: ddclient -daemon=0 -debug -verbose -noquiet
+  # become: true
+  # when: ddclient_config.changed

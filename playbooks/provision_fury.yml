@@ -17,8 +17,8 @@
       include_tasks: tasks/install_packages.yml
     - name: INSTALL ANSIBLE
       include_tasks: tasks/install_ansible.yml
-    - name: INSTALL PASSLIB
-      include_tasks: tasks/install_passlib.yml
+    # - name: INSTALL PASSLIB
+      # include_tasks: tasks/install_passlib.yml
     - name: SETUP SAMBDA SHARES
       include_tasks: tasks/samba_shares.yml
     - name: ADD USERS TO DOCKER GROUP

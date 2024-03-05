@@ -1,14 +1,13 @@
-- name: install packages - samba, git, restic, software-properties-common, fail2ban, unattended-upgrades, screen, rsync, sudo
+- name: install packages - git, software-properties-common, fail2ban, unattended-upgrades, rsync, sudo, vim-nox
   apt:
     name:
       - git
-      - restic
       - software-properties-common
       - fail2ban
       - unattended-upgrades
-      - screen
       - rsync
       - sudo
+      - vim-nox
     state: latest
     update_cache: true
   become: true
@@ -18,11 +17,9 @@
   ansible.builtin.service:
     name: unattended-upgrades
     state: started
-  
-- name: restic self-update
-  ansible.builtin.shell:
-    cmd: restic self-update
-  changed_when: false
+
+- name: Install & Configure tmux
+  include_tasks: tasks/install_config_tmux.yml
   
 - name: install qemu-guest-agent
   apt:
