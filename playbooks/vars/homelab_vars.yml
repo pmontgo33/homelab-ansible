@@ -26,3 +26,4 @@ gmail_credentials: "{{ vault_gmail_credentials }}"
 #Cloudflare Credentials
 cloudflare_domain: "{{ vault_cloudflare_domain }}"
 cloudflare_token: "{{ vault_cloudflare_token }}"
+cloudflare_net_token: "{{ vault_cloudflare_net_token }}"

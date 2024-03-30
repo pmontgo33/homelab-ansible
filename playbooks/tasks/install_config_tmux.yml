@@ -5,6 +5,7 @@
     state: present
     update_cache: true
   become: true
+  # when: skip_install == false
     
 - name: Copy tmux.conf file
   ansible.builtin.copy:

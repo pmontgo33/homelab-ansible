@@ -11,9 +11,9 @@
     - ansible_user: "{{ primary_user }}"
     #- ansible_user: root
   
-  pre_tasks:
-    - name: UPDATE SYSTEM
-      include_tasks: tasks/update_system.yml
+  # pre_tasks:
+    # - name: UPDATE SYSTEM
+      # include_tasks: tasks/update_system.yml
 
   tasks:
     - include_vars: vars/homelab_vars.yml

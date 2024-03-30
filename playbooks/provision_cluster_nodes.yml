@@ -1,6 +1,6 @@
 # $ ansible-playbook playbooks/provision_cluster_nodes.yml
 
-- name: PROVISION STARLORD
+- name: PROVISION STARK & STARLORD
   hosts: stark, starlord
   become: yes
   tasks:

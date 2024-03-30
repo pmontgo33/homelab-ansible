@@ -1,0 +1,24 @@
+# $ ansible-playbook playbooks/provision_caddy.yml
+
+- name: PROVISION CADDY
+  hosts: caddy
+  become: yes
+  
+  pre_tasks:
+    - name: UPDATE SYSTEM
+      include_tasks: tasks/update_system.yml
+  
+  tasks:
+    - name: SSH KEYS
+      include_tasks: tasks/ssh_keys.yml
+    - name: SET TIMEZONE
+      include_tasks: tasks/set_timezone.yml
+    - name: INSTALL PACKAGES
+      include_tasks: tasks/install_packages.yml
+    - name: SETUP SAMBDA SHARES
+      include_tasks: tasks/samba_shares.yml
+    - name: TAILSCALE
+      include_tasks: tasks/install_and_setup_tailscale.yml
+    - name: INSTALL AND CONFIGURE CADDY
+      include_tasks: tasks/install_config_caddy.yml
+      

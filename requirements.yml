@@ -5,3 +5,5 @@ roles:
   - src: stefangweichinger.ansible_rclone
   # Install and setup duplicati
   - src: hwwilliams.duplicati
+  # Install Caddy
+  - src: caddy_ansible.caddy_ansible
