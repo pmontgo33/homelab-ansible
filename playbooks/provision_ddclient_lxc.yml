@@ -17,7 +17,7 @@
       include_tasks: tasks/samba_shares.yml
     - name: INSTALL SETUP DDCLIENT
       include_tasks: tasks/install_setup_ddclient.yml
-    - name: ADD HOSTNAME TO ROUTER
-      include_tasks: tasks/add_hostname_to_router.yml
+    # - name: ADD HOSTNAME TO ROUTER
+      # include_tasks: tasks/add_hostname_to_router.yml
     - name: TAILSCALE
       include_tasks: tasks/install_and_setup_tailscale.yml
