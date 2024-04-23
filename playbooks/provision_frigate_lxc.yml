@@ -23,7 +23,7 @@
       include_tasks: tasks/install_and_setup_tailscale.yml
     - name: Print variable value
       ansible.builtin.debug:
-      msg: "The value of my_variable is {{ update_docker }}"
+        msg: "The value of my_variable is {{ update_docker }}"
     - name: UPDATE DOCKER
       include_tasks: tasks/update_docker.yml
       when: update_docker is defined and update_docker == true
