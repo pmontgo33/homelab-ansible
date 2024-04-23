@@ -26,4 +26,4 @@
         msg: "The value of my_variable is {{ update_docker }}"
     - name: UPDATE DOCKER
       include_tasks: tasks/update_docker.yml
-      when: update_docker is defined and update_docker == "true"
+      when: update_docker is defined and update_docker | bool
