@@ -7,3 +7,5 @@ roles:
   - src: hwwilliams.duplicati
   # Install Caddy
   - src: caddy_ansible.caddy_ansible
+  # Install Docker
+  - src: geerlingguy.docker

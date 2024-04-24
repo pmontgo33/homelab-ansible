@@ -13,6 +13,8 @@
       include_tasks: tasks/ssh_keys.yml
     - name: SET TIMEZONE
       include_tasks: tasks/set_timezone.yml
+    # - name: INSTALL DOCKER
+    #   include_tasks: tasks/install_docker.yml
     - name: MOUNT MEDIA NFS
       include_tasks: tasks/mount_media_nfs.yml
     - name: LXC GPU PASSTHROUGH
