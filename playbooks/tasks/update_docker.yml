@@ -1,7 +1,7 @@
 - name: docker compose pull, up, remove-orphans
   community.docker.docker_compose_v2:
     project_src: "{{ item }}"
-    pull: true
+    pull: always
     remove_orphans: true
   become: true
   loop: "{{ docker_compose_dirs }}"
