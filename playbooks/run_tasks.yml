@@ -1,4 +1,4 @@
-# $ ansible-playbook playbooks/run_tasks.yml -e "hosts=HOST tasks=TASKS"
+# $ ansible-playbook playbooks/run_tasks.yml
 
 - name: "RUN TASKS: {{ tasks }}"
   hosts: "{{ hosts }}"
