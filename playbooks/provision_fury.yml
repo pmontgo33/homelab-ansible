@@ -6,6 +6,12 @@
   hosts: fury
   become: yes
   
+  vars_prompt:
+    - name: update_docker
+      prompt: "Would you like to update docker containers? (yes/no)"
+      default: "no"
+      private: no
+
   pre_tasks:
     - name: UPDATE SYSTEM
       include_tasks: tasks/update_system.yml
@@ -27,3 +33,6 @@
       include_tasks: tasks/install_and_setup_tailscale.yml
       vars:
         ts_args: "--advertise-routes=192.168.86.0/24"
+    - name: UPDATE DOCKER
+      include_tasks: tasks/update_docker.yml
+      when: update_docker is defined and update_docker|bool is true
