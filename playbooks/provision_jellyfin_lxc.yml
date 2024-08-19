@@ -17,9 +17,9 @@
       include_tasks: tasks/mount_media_nfs.yml
     - name: MOUNT HOME MEDIA NFS
       include_tasks: tasks/mount_home_media_nfs.yml
-    - name: LXC GPU PASSTHROUGH
-      include_tasks: tasks/lxc_gpu_passthrough.yml
-    - name: ADD HOSTNAME TO ROUTER
-      include_tasks: tasks/add_hostname_to_router.yml
+    # - name: LXC GPU PASSTHROUGH
+    #   include_tasks: tasks/lxc_gpu_passthrough.yml
+    # - name: ADD HOSTNAME TO ROUTER
+    #   include_tasks: tasks/add_hostname_to_router.yml
     - name: TAILSCALE
       include_tasks: tasks/install_and_setup_tailscale.yml
