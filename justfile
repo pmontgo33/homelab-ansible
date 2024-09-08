@@ -1,5 +1,5 @@
 ap host:
-  ansible-playbook playbooks/provision_{{host}}.yml
+  ansible-playbook playbooks/hosts/{{host}}.yml
 
 git-acpush message:
   git add .

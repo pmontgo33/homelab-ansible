@@ -47,8 +47,8 @@
     state: present
     key: '{{ item }}'
   with_file:
-    - ../public_keys/hp_laptop_id_rsa.pub
-    - ../public_keys/phone_id_rsa.pub
+    - ../../public_keys/hp_laptop_id_rsa.pub
+    - ../../public_keys/phone_id_rsa.pub
     
 - name: copy other ssh keys to primary_user hosts
   ansible.posix.authorized_key:
@@ -56,5 +56,5 @@
     state: present
     key: '{{ item }}'
   with_file:
-    - ../public_keys/hp_laptop_id_rsa.pub
-    - ../public_keys/phone_id_rsa.pub
+    - ../../public_keys/hp_laptop_id_rsa.pub
+    - ../../public_keys/phone_id_rsa.pub
