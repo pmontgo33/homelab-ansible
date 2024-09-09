@@ -1,5 +1,8 @@
 ap host:
-  ansible-playbook playbooks/hosts/{{host}}.yml
+  ansible-playbook playbooks/host_{{host}}.yml
+
+reqs:
+  ansible-galaxy install -r requirements.yml
 
 git-acpush message:
   git add .

@@ -1,0 +1,15 @@
+collections:
+  # Install / Update Docker Collection
+  - name: community.docker
+
+roles:
+  # Install a tailscale role from the Ansible Galaxy
+  - src: artis3n.tailscale
+  # Install rclone role from Ansible Galaxy
+  - src: stefangweichinger.ansible_rclone
+  # Install and setup duplicati
+  - src: hwwilliams.duplicati
+  # Install Caddy
+  - src: caddy_ansible.caddy_ansible
+  # Install Docker
+  - src: geerlingguy.docker
