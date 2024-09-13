@@ -27,6 +27,25 @@
   ansible.builtin.reboot:
   when: config_cgroup2.changed or config_tun.changed
 
+- name: check if /etc/sysctl.d directory exists
+  stat:
+    path: /etc/sysctl.d
+  register: sysctld_dir
+
+- name: Enable IP forwarding step 1 for subnet routers when /etc/sysctl.d dir is present
+  ansible.posix.sysctl:
+    sysctl_file: /etc/sysctl.d/99-tailscale.conf
+    name: net.ipv4.ip_forward
+    value: 1
+  when: '"advertise-routes" in ts_args|default("") and sysctld_dir.stat.exists'
+
+- name: Enable IP forwarding step 2 for subnet routers when /etc/sysctl.d dir is present
+  ansible.posix.sysctl:
+    sysctl_file: /etc/sysctl.d/99-tailscale.conf
+    name: net.ipv6.conf.all.forwarding
+    value: 1
+  when: '"advertise-routes" in ts_args|default("") and sysctld_dir.stat.exists'
+
 - name: Install and Setup Tailscale for non-virtualization hosts
   include_role:
     name: artis3n.tailscale

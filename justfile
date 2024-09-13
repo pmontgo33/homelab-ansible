@@ -1,6 +1,9 @@
 ap host:
   ansible-playbook playbooks/host_{{host}}.yml
 
+av-edit-vars:
+  ansible-vault edit playbooks/vars/homelab_secret_vars.yml
+
 reqs:
   ansible-galaxy install -r requirements.yml
 

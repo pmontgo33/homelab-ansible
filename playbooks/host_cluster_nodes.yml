@@ -1,11 +1,19 @@
-# $ ansible-playbook playbooks/provision_cluster_nodes.yml
+# $ ansible-playbook playbooks/host_cluster_nodes.yml
 
-- name: PROVISION STARK & STARLORD
-  hosts: stark, starlord
-  become: yes
+- name: ENSURE PRIMARY & ANSIBLE USERS ARE PRESENT AND CONFIGURED
+  hosts: cluster_nodes
+  become: true
+  vars:
+    - ansible_user: "{{ primary_user }}"
   tasks:
-    - name: SSH KEYS
-      include_tasks: tasks/ssh_keys.yml
+    - include_tasks: tasks/create_primary_ansible_users.yml
+
+- name: PROVISION CLUSTER NODES - 
+  hosts: cluster_nodes
+  become: true
+  tasks:
+    # - name: SSH KEYS
+    #   include_tasks: tasks/ssh_keys.yml
     - name: UPDATE SYSTEM
       include_tasks: tasks/update_system.yml
     - name: INSTALL PACKAGES
@@ -15,16 +23,6 @@
       when: inventory_hostname == "stark"
     - name: TAILSCALE
       include_tasks: tasks/install_and_setup_tailscale.yml
+      vars:
+        ts_args: "--advertise-routes=192.168.86.0/24 --advertise-exit-node"
       
-#- name: PROVISION STARK
-#  hosts: stark
-#  become: yes
-#  tasks:
-#    - name: SSH KEYS
-#      include_tasks: tasks/ssh_keys.yml
-#    - name: UPDATE SYSTEM
-#      include_tasks: tasks/update_system.yml
-#    - name: SETUP PROXMOX NOTIFICATIONS
-#      include_tasks: tasks/setup_proxmox_ve_notifications.yml
-#    - name: TAILSCALE
-#      include_tasks: tasks/install_and_setup_tailscale.yml
