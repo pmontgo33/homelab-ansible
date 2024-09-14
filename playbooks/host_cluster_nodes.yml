@@ -2,7 +2,7 @@
 
 - name: ENSURE PRIMARY & ANSIBLE USERS ARE PRESENT AND CONFIGURED
   hosts: cluster_nodes
-  become: true
+  become: yes
   vars:
     - ansible_user: "{{ primary_user }}"
   tasks:
@@ -10,7 +10,7 @@
 
 - name: PROVISION CLUSTER NODES - 
   hosts: cluster_nodes
-  become: true
+  become: yes
   tasks:
     # - name: SSH KEYS
     #   include_tasks: tasks/ssh_keys.yml
