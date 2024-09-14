@@ -1,5 +1,5 @@
-ap host:
-  ansible-playbook playbooks/host_{{host}}.yml
+ap host tags="all":
+  ansible-playbook playbooks/host_{{host}}.yml --tags "{{tags}}"
 
 av-edit-vars:
   ansible-vault edit playbooks/vars/homelab_secret_vars.yml
