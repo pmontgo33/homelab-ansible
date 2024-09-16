@@ -27,3 +27,6 @@ gmail_credentials: "{{ vault_gmail_credentials }}"
 cloudflare_domain: "{{ vault_cloudflare_domain }}"
 cloudflare_token: "{{ vault_cloudflare_token }}"
 cloudflare_net_token: "{{ vault_cloudflare_net_token }}"
+
+#Digital Ocean
+digital_ocean_token: "{{ vault_digital_ocean_token }}"
