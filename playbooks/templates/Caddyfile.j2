@@ -5,7 +5,28 @@
 }
 
 # jellyfin
-jellyfin.montycasa.com {
-	reverse_proxy http://jellyfin:8096
-	import cloudflare
+#jellyfin.{{ cloudflare_domain }} {
+#	reverse_proxy http://jellyfin:8096
+#	import cloudflare
+#}
+
+{% if caddy_endpoints is defined %}
+{% for endpoint in caddy_endpoints %}
+# {{ endpoint.friendly_name }}
+{% if endpoint.tls_insecure %}
+{{ endpoint.fqdn }} {
+    reverse_proxy {{ endpoint.upstream }} {
+        transport http {
+            tls_insecure_skip_verify
+        }
+    }
+    import {{ endpoint.tls_provider }}
 }
+{% else %}
+{{ endpoint.fqdn }} {
+    reverse_proxy {{ endpoint.upstream }}
+    import {{ endpoint.tls_provider }}
+}
+{% endif %}
+{% endfor %}
+{% endif %}

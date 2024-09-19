@@ -1,0 +1,6 @@
+caddy_endpoints:
+  - friendly_name: jellyfin
+    fqdn: jellyfin.{{ cloudflare_domain }}
+    upstream: "jellyfin:8096"
+    tls_insecure: false
+    tls_provider: cloudflare

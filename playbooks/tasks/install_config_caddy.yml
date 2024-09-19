@@ -2,6 +2,8 @@
   include_vars: vars/homelab_vars.yml
 - name: Include Homelab Secret Vars
   include_vars: vars/homelab_secret_vars.yml
+- name: Include Caddy Vars
+  include_vars: vars/caddy.yml
 
 - name: install and configure caddy
   include_role:
