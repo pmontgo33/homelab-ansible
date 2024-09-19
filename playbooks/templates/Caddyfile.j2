@@ -1,23 +1,11 @@
 (cloudflare) {
 	tls {
-		dns cloudflare {{ cloudflare_net_token }}
+		dns cloudflare {{ cloudflare_token }}
 	}
 }
 
-# immich
-immich.montycasa.net {
-	reverse_proxy http://immich:2283
-	import cloudflare
-}
-
-# audiobookshelf
-audiobooks.montycasa.net {
-	reverse_proxy http://audiobookshelf:2284
-	import cloudflare
-}
-
 # jellyfin
-jellyfin.ts.montycasa.com {
-	reverse_proxy http://jellyfin:2285
+jellyfin.montycasa.com {
+	reverse_proxy http://jellyfin:8096
 	import cloudflare
 }

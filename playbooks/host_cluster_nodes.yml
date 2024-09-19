@@ -8,7 +8,7 @@
   tasks:
     - include_tasks: tasks/create_primary_ansible_users.yml
 
-- name: PROVISION CLUSTER NODES - 
+- name: PROVISION CLUSTER NODES
   hosts: cluster_nodes
   become: yes
   tasks:

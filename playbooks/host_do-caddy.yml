@@ -1,0 +1,15 @@
+- name: PROVISION DIGITAL OCEAN CADDY
+  hosts: do-caddy
+  become: yes
+  
+  pre_tasks:
+    - name: UPDATE SYSTEM
+      include_tasks: tasks/update_system.yml
+  
+  tasks:
+    - name: INSTALL PACKAGES
+      include_tasks: tasks/install_packages.yml
+    - name: INSTALL CONFIGURE CADDY
+      include_tasks: tasks/install_config_caddy.yml
+    - name: TAILSCALE
+      include_tasks: tasks/install_and_setup_tailscale.yml
