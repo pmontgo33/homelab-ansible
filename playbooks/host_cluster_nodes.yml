@@ -25,4 +25,6 @@
       include_tasks: tasks/install_and_setup_tailscale.yml
       vars:
         ts_args: "--advertise-routes=192.168.86.0/24 --advertise-exit-node"
+    - name: ADD HOST TO DNS SERVER
+      include_tasks: tasks/add_hostname_to_pihole_dns.yml
       

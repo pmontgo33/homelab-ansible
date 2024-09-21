@@ -1,0 +1,9 @@
+- name: add hostname to pihole dns
+  ansible.builtin.lineinfile:
+    path: /etc/pihole/custom.list
+    search_string: "{{ ip }}"
+    line: "{{ ip }} {{ inventory_hostname }}"
+  delegate_to: pihole1
+  vars:
+    ansible_user: root
+  tags: me

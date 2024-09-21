@@ -10,8 +10,8 @@
       include_tasks: tasks/update_system.yml
   
   tasks:
-    - name: SSH KEYS
-      include_tasks: tasks/ssh_keys.yml
+    # - name: SSH KEYS
+    #   include_tasks: tasks/ssh_keys.yml
     - name: INSTALL PACKAGES
       include_tasks: tasks/install_packages.yml
 #    - name: SETUP SAMBDA SHARES
@@ -24,3 +24,5 @@
 #      include_tasks: tasks/setup_backups.yml
     - name: TAILSCALE
       include_tasks: tasks/install_and_setup_tailscale.yml
+    - name: ADD HOST TO DNS SERVER
+      include_tasks: tasks/add_hostname_to_pihole_dns.yml

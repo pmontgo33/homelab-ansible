@@ -4,3 +4,8 @@ caddy_endpoints:
     upstream: "jellyfin:8096"
     tls_insecure: false
     tls_provider: cloudflare
+  - friendly_name: audiobookshelf
+    fqdn: audiobookshelf.{{ cloudflare_domain }}
+    upstream: "audiobookshelf:13378"
+    tls_insecure: false
+    tls_provider: cloudflare

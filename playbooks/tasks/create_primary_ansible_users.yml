@@ -29,7 +29,7 @@
 - name: create ansible user
   ansible.builtin.user:
     name: ansible
-    groups: wheel
+    groups: root
     shell: /bin/bash
 
 - name: add ansible user to sudoers

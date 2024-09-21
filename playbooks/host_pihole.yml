@@ -4,12 +4,14 @@
   hosts: pihole1, pihole2
   become: yes
   tasks:
-    - name: SSH KEYS
-      include_tasks: tasks/ssh_keys.yml
+    # - name: SSH KEYS
+    #   include_tasks: tasks/ssh_keys.yml
     - name: UPDATE SYSTEM
       include_tasks: tasks/update_system.yml
     - name: TAILSCALE
       include_tasks: tasks/install_and_setup_tailscale.yml
+    - name: ADD HOST TO DNS SERVER
+      include_tasks: tasks/add_hostname_to_pihole_dns.yml
       
 # - name: PROVISION PIHOLE2
   # hosts: pihole2

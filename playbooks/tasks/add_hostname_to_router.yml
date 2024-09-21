@@ -1,7 +1,0 @@
-- name: add hostname to router's host file
-  ansible.builtin.raw: sed -i 's/^{{ ip | replace(".","\.") }}.*$/{{ ip }} {{ inventory_hostname }}/g' /etc/hosts
-  #ansible.builtin.raw: sed -i 's/^192\.168\.86\.99.*$/192.168.86.99 truenas/g' /etc/hosts
-  delegate_to: glinet-flint
-  vars:
-    ansible_user: root
-    ansible_ssh_pass: "hzR!j@CNJcaE5F"

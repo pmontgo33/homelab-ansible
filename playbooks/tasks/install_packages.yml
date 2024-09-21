@@ -1,9 +1,9 @@
-- name: install packages - git, software-properties-common, fail2ban, unattended-upgrades, rsync, sudo, vim-nox
+- name: install packages - git, software-properties-common, crowdsec, unattended-upgrades, rsync, sudo, vim-nox
   apt:
     name:
       - git
       - software-properties-common
-      - fail2ban
+      - crowdsec
       - unattended-upgrades
       - rsync
       - sudo
@@ -12,6 +12,13 @@
     update_cache: true
   become: true
   register: packages
+
+- name: ensure fail2ban is removed TEMP UNTIL ALL HOSTS UPDATED
+  apt:
+    name:
+      - fail2ban
+    state: absent
+  become: true
 
 - name: Start unattended-upgrades service, if not started
   ansible.builtin.service:

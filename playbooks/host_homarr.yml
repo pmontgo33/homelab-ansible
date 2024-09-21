@@ -15,14 +15,16 @@
       include_tasks: tasks/update_system.yml
   
   tasks:
-    - name: SSH KEYS
-      include_tasks: tasks/ssh_keys.yml
+    # - name: SSH KEYS
+    #   include_tasks: tasks/ssh_keys.yml
     - name: SET TIMEZONE
       include_tasks: tasks/set_timezone.yml
     - name: SETUP SAMBDA SHARES
       include_tasks: tasks/samba_shares.yml
     - name: TAILSCALE
       include_tasks: tasks/install_and_setup_tailscale.yml
+    - name: ADD HOST TO DNS SERVER
+      include_tasks: tasks/add_hostname_to_pihole_dns.yml
     - name: UPDATE DOCKER
       include_tasks: tasks/update_docker.yml
       when: update_docker is defined and update_docker|bool is true
