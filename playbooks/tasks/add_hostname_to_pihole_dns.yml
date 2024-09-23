@@ -1,4 +1,4 @@
-- name: add hostname to pihole dns
+- name: add "{{ inventory_hostname }}" hostname to pihole dns
   ansible.builtin.lineinfile:
     path: /etc/pihole/custom.list
     search_string: "{{ ip }}"
@@ -6,4 +6,16 @@
   delegate_to: pihole1
   vars:
     ansible_user: root
+
+- name: add other_hosts.list to pihole dns
+  vars:
+    line: "{{ item | split }}"
+    ansible_user: root
+  ansible.builtin.lineinfile:
+   path: /etc/pihole/custom.list
+   search_string: "{{line[0]}}"
+   line: "{{ line[0]  }} {{ line[1] }}"
+  with_lines: cat files/other_hosts.list
+  delegate_to: pihole1
+  run_once: true
   tags: me
