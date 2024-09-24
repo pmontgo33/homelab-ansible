@@ -1,0 +1,5 @@
+{% for host in groups['servers'] %}
+{% if hostvars[host].ip is defined %}
+{{ hostvars[host].ip }} {{ host }}
+{% endif %}
+{% endfor %}
