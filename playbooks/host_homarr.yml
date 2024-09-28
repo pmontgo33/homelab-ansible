@@ -19,6 +19,8 @@
     #   include_tasks: tasks/ssh_keys.yml
     - name: SET TIMEZONE
       include_tasks: tasks/set_timezone.yml
+    - name: INSTALL PACKAGES
+      include_tasks: tasks/install_packages.yml
     - name: SETUP SAMBDA SHARES
       include_tasks: tasks/samba_shares.yml
     - name: TAILSCALE

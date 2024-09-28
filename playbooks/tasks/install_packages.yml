@@ -1,4 +1,4 @@
-- name: install packages - git, software-properties-common, crowdsec, unattended-upgrades, rsync, sudo, vim-nox
+- name: install packages - git, software-properties-common, crowdsec, unattended-upgrades, rsync, sudo, vim-nox, just
   apt:
     name:
       - git
@@ -8,6 +8,7 @@
       - rsync
       - sudo
       - vim-nox
+     # - just
     state: latest
     update_cache: true
   become: true
