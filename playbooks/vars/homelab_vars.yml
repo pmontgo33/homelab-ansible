@@ -25,7 +25,13 @@ gmail_credentials: "{{ vault_gmail_credentials }}"
 
 #Cloudflare Credentials
 cloudflare_domain: "{{ vault_cloudflare_domain }}"
+local_cloudflare_domain: "{{ vault_local_cloudflare_domain }}"
 cloudflare_token: "{{ vault_cloudflare_token }}"
 
 #Digital Ocean
 digital_ocean_token: "{{ vault_digital_ocean_token }}"
+
+#Proxmox Terraform
+proxmox_terraform_token_id: "{{ vault_proxmox_terraform_token_id }}"
+proxmox_terraform_token_secret: "{{ vault_proxmox_terraform_token_secret}}"
+proxmox_default_root_passwd: "{{ vault_proxmox_default_root_passwd }}"

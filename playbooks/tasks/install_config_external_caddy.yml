@@ -1,0 +1,14 @@
+- name: Include Homelab Vars
+  include_vars: vars/homelab_vars.yml
+- name: Include Homelab Secret Vars
+  include_vars: vars/homelab_secret_vars.yml
+# - name: Include Caddy Vars
+#   include_vars: vars/caddy.yml
+
+- name: install and configure caddy
+  include_role:
+    name: caddy_ansible.caddy_ansible
+  vars:
+    caddy_config: "{{ lookup('template', 'templates/external_Caddyfile.j2') }}"
+    caddy_packages: ["github.com/caddy-dns/cloudflare"]
+    caddy_systemd_capabilities_enabled: true

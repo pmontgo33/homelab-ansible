@@ -1,0 +1,35 @@
+(cloudflare) {
+	tls {
+		dns cloudflare {{ cloudflare_token }}
+	}
+}
+
+(headers) {
+  header {
+    Permissions-Policy interest-cohort=()
+    Strict-Transport-Security "max-age=31536000; includeSubdomains"
+    X-XSS-Protection "1; mode=block"
+    X-Content-Type-Options "nosniff"
+    X-Robots-Tag noindex, nofollow
+    Referrer-Policy "same-origin"
+    Content-Security-Policy "frame-ancestors {{ local_cloudflare_domain }} *.{{ local_cloudflare_domain }}"
+    -Server
+    Permissions-Policy "geolocation=(self {{ local_cloudflare_domain }} *.{{ local_cloudflare_domain }}), microphone=()"
+  }
+}
+
+
+{% for host in groups['servers'] %}
+{% if hostvars[host].local_fqdn_port is defined %}
+
+# {{ host }}  
+{{ host }}.{{ local_cloudflare_domain }} {
+  reverse_proxy http://{{ hostvars[host].ip }}:{{ hostvars[host].local_fqdn_port }} {
+    transport http {
+      tls_insecure_skip_verify
+    }
+  }
+  import cloudflare
+}
+{% endif %}
+{% endfor %}

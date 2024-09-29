@@ -9,6 +9,6 @@
   include_role:
     name: caddy_ansible.caddy_ansible
   vars:
-    caddy_config: "{{ lookup('template', 'templates/Caddyfile.j2') }}"
+    caddy_config: "{{ lookup('template', 'templates/external_Caddyfile.j2') }}"
     caddy_packages: ["github.com/caddy-dns/cloudflare"]
     caddy_systemd_capabilities_enabled: true
