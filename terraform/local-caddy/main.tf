@@ -27,6 +27,7 @@ resource "proxmox_lxc" "local-caddy" {
   target_node  = "loki"
   hostname     = "local-caddy"
   ostemplate   = "local:vztmpl/debian-12-standard_12.7-1_amd64.tar.zst"
+ # ostype = "cloud-init"
   password     = var.proxmox_default_root_passwd
   unprivileged = true
   onboot = true
@@ -49,5 +50,5 @@ resource "proxmox_lxc" "local-caddy" {
     ip = "192.168.86.118/24"
   }
 
-  #user_data = templatefile("proxmox_cloud_init.tftpl", { tailscale_auth_key = var.tailscale_auth_key })
+  #cicustom = templatefile("proxmox_cloud_init.tftpl", { tailscale_auth_key = var.tailscale_auth_key })
 }
