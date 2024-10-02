@@ -9,6 +9,7 @@
   delegate_to: "{{ pve_host }}"
   vars:
     ansible_user: root
+    ansible_host: "{{ hostvars[inventory_hostname].pve_host }}"
   when: ansible_virtualization_type == "lxc"
   register: config_cgroup2
 
@@ -20,6 +21,7 @@
   delegate_to: "{{ pve_host }}"
   vars:
     ansible_user: root
+    ansible_host: "{{ hostvars[inventory_hostname].pve_host }}"
   when: ansible_virtualization_type == "lxc"
   register: config_tun
 

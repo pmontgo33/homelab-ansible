@@ -1,6 +1,9 @@
 ap host tags="all":
   ansible-playbook playbooks/host_{{host}}.yml --tags "{{tags}}"
 
+ap-bootstrap host:
+  ansible-playbook playbooks/bootstrap_new_host.yml -e "host={{host}}"
+
 av-edit-vars:
   ansible-vault edit playbooks/vars/homelab_secret_vars.yml
 

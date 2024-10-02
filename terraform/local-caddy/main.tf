@@ -31,6 +31,7 @@ resource "proxmox_lxc" "local-caddy" {
   password     = var.proxmox_default_root_passwd
   unprivileged = true
   onboot = true
+  cores = 2
   memory = 2048
   swap = 0
   vmid = 118
@@ -49,6 +50,10 @@ resource "proxmox_lxc" "local-caddy" {
     gw = "192.168.86.1"
     ip = "192.168.86.118/24"
   }
+
+  ssh_public_keys = <<-EOT
+    ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE+WBmDc0ACtIS4DZl2fHyFCxxAMIa6c5PuMgvuSBD5R patrick@nix-fury
+  EOT
 
   #cicustom = templatefile("proxmox_cloud_init.tftpl", { tailscale_auth_key = var.tailscale_auth_key })
 }
