@@ -5,6 +5,11 @@
     remove_orphans: true
   become: true
   loop: "{{ docker_compose_dirs }}"
+  register: output
+
+- name: Show docker results
+  ansible.builtin.debug:
+    var: output
     
 - name: docker image prune
   community.docker.docker_prune:
