@@ -20,15 +20,19 @@
 
 
 {% for host in groups['servers'] %}
-{% if hostvars[host].local_fqdn_port is defined %}
+{% if hostvars[host].local_proxy is defined %}
 
 # {{ host }}  
 {{ host }}.{{ local_cloudflare_domain }} {
-  reverse_proxy http://{{ hostvars[host].ip }}:{{ hostvars[host].local_fqdn_port }} {
-#    transport http {
-#      tls_insecure_skip_verify
-#    }
+{% if hostvars[host].local_proxy.https %}
+  reverse_proxy https://{{ hostvars[host].ip }}:{{ hostvars[host].local_proxy.port }} {
+    transport http {
+      tls_insecure_skip_verify
+    }
   }
+{% else %}
+  reverse_proxy http://{{ hostvars[host].ip }}:{{ hostvars[host].local_proxy.port }}
+{% endif %}
   import cloudflare
 }
 {% endif %}
