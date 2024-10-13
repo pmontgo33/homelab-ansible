@@ -1,24 +1,24 @@
-- name: install packages - git, software-properties-common, crowdsec, unattended-upgrades, rsync, sudo, vim-nox, iperf
+- name: install packages - git, software-properties-common, fail2ban, unattended-upgrades, rsync, sudo, vim-nox, iperf
   apt:
     name:
       - git
       - software-properties-common
-      - crowdsec
+      - fail2ban
       - unattended-upgrades
       - rsync
       - sudo
       - vim-nox
-      - iperf
+      - iperf3
      # - just
     state: latest
     update_cache: true
   become: true
   register: packages
 
-- name: ensure fail2ban is removed TEMP UNTIL ALL HOSTS UPDATED
+- name: ensure old packages are removed
   apt:
     name:
-      - fail2ban
+      - crowdsec
     state: absent
   become: true
 

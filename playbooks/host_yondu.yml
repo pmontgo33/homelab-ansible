@@ -19,8 +19,11 @@
     #   include_tasks: tasks/ssh_keys.yml
     - name: INSTALL PACKAGES
       include_tasks: tasks/install_packages.yml
-    # - name: INSTALL DOCKER
-      # include_tasks: tasks/install_docker.yml
+    - name: INSTALL DOCKER
+      include_tasks: tasks/install_docker.yml
+    - name: INSTALL LAZYDOCKER
+      include_role: 
+        name: darkwizard242.lazydocker
     - name: SETUP SAMBDA SHARES
       include_tasks: tasks/samba_shares.yml
     - name: MOUNT MEDIA NFS

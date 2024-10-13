@@ -13,3 +13,5 @@ roles:
   - src: caddy_ansible.caddy_ansible
   # Install Docker
   - src: geerlingguy.docker
+  # Install Lazydocker
+  - src: darkwizard242.lazydocker
