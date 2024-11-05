@@ -1,6 +1,11 @@
 - include_vars: vars/homelab_vars.yml
 - include_vars: vars/homelab_secret_vars.yml
 
+- name: Print ts_args
+  ansible.builtin.debug:
+    var: "{{ts_args}}"
+    verbosity: 2
+
 - name:  add lxc.cgroup2.devices.allow to pve config
   ansible.builtin.lineinfile:
     path: /etc/pve/lxc/{{ pve_id }}.conf

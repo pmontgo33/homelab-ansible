@@ -33,9 +33,6 @@
       include_tasks: tasks/install_and_setup_tailscale.yml
       vars:
         ts_args: "--advertise-routes=192.168.86.0/24"
-    - name: ADD HOST TO DNS SERVER
-      include_tasks: tasks/add_hostname_to_pihole_dns.yml
-      tags: me
     - name: UPDATE DOCKER
       include_tasks: tasks/update_docker.yml
       when: update_docker is defined and update_docker|bool is true
