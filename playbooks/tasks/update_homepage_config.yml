@@ -1,0 +1,15 @@
+- name: Include Homelab Vars
+  include_vars: vars/homelab_vars.yml
+  tags: config
+- name: Include Homelab Secret Vars
+  include_vars: vars/homelab_secret_vars.yml
+  tags: config
+
+- name: copy services template
+  template:
+    src: "homepage/services.yaml.j2"
+    dest: /opt/homepage/config/services.yaml
+    owner: root
+    group: root
+    mode: 0644
+  tags: config

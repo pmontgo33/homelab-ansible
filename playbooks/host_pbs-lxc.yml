@@ -1,0 +1,26 @@
+# $ ansible-playbook playbooks/provision_pbs_truenas.yml
+
+
+- name: PROVISION PROXMOX BACKUP SERVER on TRUENAS
+  hosts: pbs-lxc
+  become: yes
+  
+  pre_tasks:
+    - name: UPDATE SYSTEM
+      include_tasks: tasks/update_system.yml
+  
+  tasks:
+    # - name: SSH KEYS
+    #   include_tasks: tasks/ssh_keys.yml
+    - name: INSTALL PACKAGES
+      include_tasks: tasks/install_packages.yml
+#    - name: SETUP SAMBDA SHARES
+#      include_tasks: tasks/samba_shares.yml
+    - name: MOUNT BACKUPS NFS SHARE
+      include_tasks: tasks/mount_backups_nfs.yml
+    # - name: MOUNT MEDIA NFS SHARE
+    #   include_tasks: tasks/mount_media_nfs.yml
+#    - name: SETUP REMOTE BACKUPS
+#      include_tasks: tasks/setup_backups.yml
+    - name: TAILSCALE
+      include_tasks: tasks/install_and_setup_tailscale.yml

@@ -1,3 +1,4 @@
 playbooks/buffer/**
 .vscode/
 *.tfvars
+playbooks/templates/homepage/
