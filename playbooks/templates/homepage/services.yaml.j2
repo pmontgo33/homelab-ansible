@@ -1,0 +1,378 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/services
+
+
+### ALL TABS ###
+
+- Status:
+    - Uptime Kuma:
+        href: http://{{hostvars['uptimekuma'].ip}}:{{hostvars['uptimekuma'].port}}
+        siteMonitor: http://{{hostvars['uptimekuma'].ip}}:{{hostvars['uptimekuma'].port}}
+        icon: sh-uptime-kuma.svg
+        widget:
+            type: uptimekuma
+            url: http://{{hostvars['uptimekuma'].ip}}:{{hostvars['uptimekuma'].port}}
+            slug: homepage
+- VPN:    
+    - Tailscale:
+        href: https://login.tailscale.com/admin/machines
+        description: Tailscale VPN
+        icon: sh-tailscale.svg
+
+### MACHINES ###
+
+- Proxmox:
+    - Stark:
+        href: https://{{hostvars['stark'].ip}}:{{hostvars['stark'].port}}
+        siteMonitor: https://{{hostvars['stark'].ip}}:{{hostvars['stark'].port}}
+        description: Proxmox VE
+        icon: sh-proxmox.svg
+        widget:
+            type: proxmox
+            url: https://{{hostvars['stark'].ip}}:{{hostvars['stark'].port}}
+            username: {{proxmox_username}}
+            password: {{proxmox_password}}
+            node: stark # optional
+    - Loki:
+        href: https://{{hostvars['loki'].ip}}:{{hostvars['loki'].port}}
+        siteMonitor: https://{{hostvars['loki'].ip}}:{{hostvars['loki'].port}}
+        description: Proxmox VE
+        icon: sh-proxmox.svg
+        widget:
+            type: proxmox
+            url: https://{{hostvars['loki'].ip}}:{{hostvars['loki'].port}}
+            username: {{proxmox_username}}
+            password: {{proxmox_password}}
+            node: loki # optional
+    - Starlord:
+        href: https://{{hostvars['starlord'].ip}}:{{hostvars['starlord'].port}}
+        siteMonitor: https://{{hostvars['starlord'].ip}}:{{hostvars['starlord'].port}}
+        description: Proxmox VE
+        icon: sh-proxmox.svg
+        widget:
+            type: proxmox
+            url: https://{{hostvars['starlord'].ip}}:{{hostvars['starlord'].port}}
+            username: {{proxmox_username}}
+            password: {{proxmox_password}}
+            node: starlord # optional
+    
+- Storage:    
+    - TrueNAS Home:
+        href: https://{{hostvars['truenas_home'].ip}}
+        siteMonitor: https://{{hostvars['truenas_home'].ip}}
+        description: TrueNAS Scale
+        icon: sh-truenas-scale.svg
+        widget:
+            type: truenas
+            url: https://{{hostvars['truenas_home'].ip}}
+            username: {{truenas_username}} # not required if using api key
+            password: {{truenas_password}} # not required if using api key
+            # key: yourtruenasapikey # not required if using username / password
+            #enablePools: true # optional, defaults to false
+            nasType: scale # defaults to scale, must be set to 'core' if using enablePools with TrueNAS Core
+    - Proxmox Backup Server:
+        href: https://{{hostvars['pbs'].ip}}:{{hostvars['pbs'].port}}
+        siteMonitor: https://{{hostvars['pbs'].ip}}:{{hostvars['pbs'].port}}
+        #description: Proxmox
+        icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/proxmox-light.png
+        widget:
+            type: proxmoxbackupserver
+            url: https://{{hostvars['pbs'].ip}}:{{hostvars['pbs'].port}}
+            username: {{pbs_username}}
+            password: {{pbs_password}}
+    - Syncthing:
+        href: https://{{hostvars['truenas_home'].ip}}:20910/
+        siteMonitor: https://{{hostvars['truenas_home'].ip}}:20910/
+        icon: sh-syncthing.svg
+        
+    - Backblaze:
+        href: https://secure.backblaze.com/user_signin.htm
+        icon: sh-backblaze.svg
+
+- Other Machines:    
+    - PiKVM:
+        href: https://pikvm.skink-galaxy.ts.net
+        siteMonitor: https://pikvm.skink-galaxy.ts.net
+     #   description: 
+        icon: https://avatars.githubusercontent.com/u/41749659?s=200&v=4
+    - Print Server:
+        href: http://print-server.skink-galaxy.ts.net:631/
+        siteMonitor: http://print-server.skink-galaxy.ts.net:631/
+        icon: sh-openprinting-cups.svg
+    - Homepage VS Code:
+        href: http://{{hostvars['homepage'].ip}}:8680
+        siteMonitor: http://{{hostvars['homepage'].ip}}:8680
+        description: VS Code Server to edit homepage config
+        icon: sh-homepage.png
+    - Yondu VS Code:
+        href: http://{{hostvars['yondu'].ip}}:8680
+        siteMonitor: http://{{hostvars['yondu'].ip}}:8680
+        description: VS Code Server for yondu server
+        icon: https://cdn3.iconfinder.com/data/icons/marvel-avatars-flaticons/64/yondu-avangers-marvel-avatars-gartoon-marvel_avatars-hero-512.png
+- Offsite:
+    - Wakanda:
+        href: https://wakanda.skink-galaxy.ts.net:8006/
+        siteMonitor: https://wakanda.skink-galaxy.ts.net:8006/
+        description: Offsite Proxmox VE
+        icon: sh-proxmox.svg
+        widget:
+            type: proxmox
+            url: https://wakanda.skink-galaxy.ts.net:8006
+            username: {{wakanda_username}}
+            password: {{wakanda_password}}
+            node: wakanda # optional
+    - Bucky TrueNAS:
+        href: https://bucky.skink-galaxy.ts.net/
+        siteMonitor: https://bucky.skink-galaxy.ts.net/
+        description: Offsite TrueNAS Scale
+        icon: sh-truenas-scale.svg
+        widget:
+            type: truenas
+            url: https://bucky.skink-galaxy.ts.net/
+            username: {{bucky_username}} # not required if using api key
+            password: {{bucky_password}} # not required if using api key
+            # key: yourtruenasapikey # not required if using username / password
+            #enablePools: true # optional, defaults to false
+            nasType: scale # defaults to scale, must be set to 'core' if using enablePools with TrueNAS Core
+    - DigitalOcean:
+        href: https://cloud.digitalocean.com/projects/8c2d35b4-ab76-4750-87db-4230144b4a44/resources?i=d4b54a
+        description: DigitalOcean VPS
+        icon: sh-digitalocean.svg
+
+### NETWORKING ###
+
+- Routers & Switches:
+    - OPNSense:
+        href: https://192.168.86.1
+        siteMonitor: https://192.168.86.1
+        description: Router/Firewall
+        icon: sh-opnsense.svg
+        widget:
+            type: opnsense
+            url: https://192.168.86.1
+            username: {{opnsense_username}}
+            password: {{opnsense_password}}
+    - Guest Room Switch:
+        href: http://192.168.86.3/
+        siteMonitor: http://192.168.86.3
+        description: 2x10GbE SPF+ / 4x2.5GbE
+        icon: mdi-router-network
+    - Basement PoE Switch:
+        href: http://192.168.86.5/
+        siteMonitor: http://192.168.86.5
+        description: 8x1GbE with 4x PoE
+        icon: mdi-router-network
+- Access Points:
+    - Guest Room AP:
+        href: http://192.168.86.11/
+        siteMonitor: http://192.168.86.11/
+        description: Gli-net Flint
+        icon: mdi-access-point-network
+    - KItchen AP:
+        href: http://192.168.86.13/
+        siteMonitor: http://192.168.86.13/
+        description: TP-link
+        icon: mdi-access-point-network
+    - Garage AP:
+        href: http://192.168.86.15/
+        siteMonitor: http://192.168.86.15/
+        description: TP-link
+        icon: mdi-access-point-network
+- DNS:    
+    - Pi-hole 1:
+        href: http://{{hostvars['pihole1'].ip}}/admin
+        siteMonitor: http://{{hostvars['pihole1'].ip}}
+        description: Network ad blocker
+        icon: sh-pi-hole.svg
+        widget:
+            type: pihole
+            url: http://{{hostvars['pihole1'].ip}}
+            #version: 6 # required if running v6 or higher, defaults to 5
+            key: {{pihole_key}} # optional, in v6 can be your password or app password
+    - Pi-hole 2:
+        href: http://{{hostvars['pihole2'].ip}}/admin
+        siteMonitor: http://{{hostvars['pihole2'].ip}}
+        description: Network ad blocker
+        icon: sh-pi-hole.svg
+        widget:
+            type: pihole
+            url: http://{{hostvars['pihole2'].ip}}
+            #version: 6 # required if running v6 or higher, defaults to 5
+            key: {{pihole_key}} # optional, in v6 can be your password or app password
+
+### HOME ###
+
+- Home Automation:
+    - Home Assistant:
+        href: http://{{hostvars['homeassistant'].ip}}:{{hostvars['homeassistant'].port}}
+        siteMonitor: http://{{hostvars['homeassistant'].ip}}:{{hostvars['homeassistant'].port}}
+        description: Home Automation System
+        icon: sh-home-assistant.svg
+        widget:
+            type: homeassistant
+            url: http://{{hostvars['homeassistant'].ip}}:{{hostvars['homeassistant'].port}}
+            key: {{homeassistant_key}}
+#- Home Automation Devices:    
+    - WLED Patio:
+        href: http://192.168.10.19/
+        siteMonitor: http://192.168.10.19/
+        description: Patio wall lights
+        icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/wled.png    
+    - WLED Cabinets:
+        href: http://192.168.10.17/
+        siteMonitor: http://192.168.10.17/
+        description: Kitchen under cabinet lights
+        icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/wled.png
+
+- NVR:
+    - Frigate:
+        href: http://{{hostvars['frigate'].ip}}:{{hostvars['frigate'].port}}
+        siteMonitor: http://{{hostvars['frigate'].ip}}:{{hostvars['frigate'].port}}
+        description: Network Video Recorder
+        icon: sh-frigate.svg
+        widget:
+            type: frigate
+            url: http://{{hostvars['frigate'].ip}}:{{hostvars['frigate'].port}}
+           # enableRecentEvents: true # Optional, defaults to false
+#- Cameras:    
+    - Ali's Room:
+        href: http://192.168.10.51/
+        siteMonitor: http://192.168.10.51/
+        description: IP Camera
+        icon: mdi-webcam
+    - Emma's Room:
+        href: http://192.168.10.50/
+        siteMonitor: http://192.168.10.50/
+        description: IP Camera
+        icon: mdi-webcam
+    - Nursery:
+        href: http://192.168.10.52/
+        siteMonitor: http://192.168.10.52/
+        description: IP Camera
+        icon: mdi-webcam
+    - Front Door:
+        href: http://192.168.10.54/
+        siteMonitor: http://192.168.10.54/
+        description: IP Camera
+        icon: mdi-cctv
+    - Back Door:
+        href: http://192.168.10.53/
+        siteMonitor: http://192.168.10.53/
+        description: IP Camera
+        icon: mdi-cctv
+    
+### MEDIA ###
+
+- Media Servers:
+    - Jellyfin:
+        href: http://{{hostvars['jellyfin'].ip}}:{{hostvars['jellyfin'].port}}
+        siteMonitor: http://{{hostvars['jellyfin'].ip}}:{{hostvars['jellyfin'].port}}
+        description: Movie and TV Show Library
+        icon: sh-jellyfin.svg
+        widget:
+          type: jellyfin
+          url: http://{{hostvars['jellyfin'].ip}}:{{hostvars['jellyfin'].port}}
+          key: {{jellyfin_key}}
+        #  enableBlocks: true # optional, defaults to false
+          enableNowPlaying: true # optional, defaults to true
+          enableUser: true # optional, defaults to false
+          showEpisodeNumber: true # optional, defaults to false
+          expandOneStreamToTwoRows: false # optional, defaults to true
+    - Immich:
+        href: http://{{hostvars['immich'].ip}}:{{hostvars['immich'].port}}
+        siteMonitor: http://{{hostvars['immich'].ip}}:{{hostvars['immich'].port}}
+        description: Photo Library
+        icon: sh-immich.svg
+        widget:
+          type: immich
+          url: http://{{hostvars['immich'].ip}}:{{hostvars['immich'].port}}
+          key: {{immich_key}}
+          version: 2 # optional, default is 1
+    - Audiobookshelf:
+        href: http://{{hostvars['audiobookshelf'].ip}}:{{hostvars['audiobookshelf'].port}}
+        siteMonitor: http://{{hostvars['audiobookshelf'].ip}}:{{hostvars['audiobookshelf'].port}}
+        description: Audiobook Library
+        icon: sh-audiobookshelf.svg
+        widget:
+          type: audiobookshelf
+          url: http://{{hostvars['audiobookshelf'].ip}}:{{hostvars['audiobookshelf'].port}}
+          key: {{audiobookshelf_key}}
+
+- Aar:
+    - qBittorrent:
+        href: http://{{hostvars['yondu'].ip}}:8080
+        siteMonitor: http://{{hostvars['yondu'].ip}}:8080
+      #  description: torrent downloader
+        icon: sh-qbittorrent.svg
+        widget:
+            type: qbittorrent
+            url: http://{{hostvars['yondu'].ip}}:8080
+            username: {{qbittorrent_username}}
+            password: {{qbittorrent_password}}
+    - Radarr:
+        href: http://{{hostvars['yondu'].ip}}:7878/
+        siteMonitor: http://{{hostvars['yondu'].ip}}:7878/
+      #  description: torrent downloader
+        icon: sh-radarr.svg
+        widget:
+            type: radarr
+            url: http://{{hostvars['yondu'].ip}}:7878
+            key: {{radarr_key}}
+            enableQueue: true # optional, defaults to false
+    - Sonarr:
+        href: http://{{hostvars['yondu'].ip}}:8989/
+        siteMonitor: http://{{hostvars['yondu'].ip}}:8989/
+        icon: sh-sonarr.svg
+        widget:
+            type: sonarr
+            url: http://{{hostvars['yondu'].ip}}:8989
+            key: {{sonarr_key}}
+            enableQueue: true # optional, defaults to false
+    - Readarr:
+        href: http://{{hostvars['yondu'].ip}}:8787/
+        siteMonitor: http://{{hostvars['yondu'].ip}}:8787/
+      #  description: torrent downloader
+        icon: sh-readarr.svg
+        widget:
+            type: readarr
+            url: http://{{hostvars['yondu'].ip}}:8787
+            key: {{readarr_key}}
+    - Bazarr:
+        href: http://{{hostvars['yondu'].ip}}:6767/
+        siteMonitor: http://{{hostvars['yondu'].ip}}:6767/
+      #  description: torrent downloader
+        icon: sh-bazarr.png
+        widget:
+            type: bazarr
+            url: http://{{hostvars['yondu'].ip}}:6767
+            key: {{bazarr_key}}
+    - Prowlarr:
+        href: http://{{hostvars['yondu'].ip}}:9696/
+        siteMonitor: http://{{hostvars['yondu'].ip}}:9696/
+      #  description: torrent downloader
+        icon: sh-prowlarr.svg
+        widget:
+            type: prowlarr
+            url: http://{{hostvars['yondu'].ip}}:9696
+            key: {{prowlarr_key}}
+    - Transmission:
+        href: http://{{hostvars['yondu'].ip}}:9092/
+        siteMonitor: http://{{hostvars['yondu'].ip}}:9092/
+        description: NO VPN
+        icon: sh-transmission.svg
+        widget:
+            type: transmission
+            url: http://{{hostvars['yondu'].ip}}:9092
+            username: ""
+            password: "{{transmission_key}}"
+            rpcUrl: /transmission/ # Optional. Matches the value of "rpc-url" in your Transmission's settings.json file
+    - Jackett:
+        href: http://{{hostvars['yondu'].ip}}:9117/
+        siteMonitor: http://{{hostvars['yondu'].ip}}:9117/
+        description: NO VPN
+        icon: sh-jackett.svg
+        widget:
+            type: jackett
+            url: http://{{hostvars['yondu'].ip}}:9117
+           # password: jackettadminpassword # optional
