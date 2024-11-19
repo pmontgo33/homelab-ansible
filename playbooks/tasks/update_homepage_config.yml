@@ -13,3 +13,12 @@
     group: root
     mode: 0644
   tags: config
+
+- name: copy bookmarks template
+  template:
+    src: "homepage/bookmarks.yaml.j2"
+    dest: /opt/homepage/config/bookmarks.yaml
+    owner: root
+    group: root
+    mode: 0644
+  tags: config
