@@ -12,5 +12,5 @@
     - name: UPDATE HOMEPAGE CONFIGURATION
       include_tasks: tasks/update_homepage_config.yml
       tags: config
-    # - name: TAILSCALE
-    #   include_tasks: tasks/install_and_setup_tailscale.yml
+    - name: TAILSCALE
+      include_tasks: tasks/install_and_setup_tailscale.yml

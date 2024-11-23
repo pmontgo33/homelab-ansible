@@ -14,6 +14,14 @@
             type: uptimekuma
             url: http://{{hostvars['uptimekuma'].ip}}:{{hostvars['uptimekuma'].port}}
             slug: homepage
+    - Gotify:
+        href: http://{{hostvars['gotify'].ip}}
+        siteMonitor: http://{{hostvars['gotify'].ip}}
+        icon: sh-gotify.svg
+        widget:
+            type: gotify
+            url: http://{{hostvars['gotify'].ip}}
+            key: {{gotify_client}}
 - VPN:    
     - Tailscale:
         href: https://login.tailscale.com/admin/machines
