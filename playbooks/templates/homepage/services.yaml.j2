@@ -22,7 +22,7 @@
             type: gotify
             url: http://{{hostvars['gotify'].ip}}
             key: {{gotify_client}}
-- VPN:    
+- Other:    
     - Tailscale:
         href: https://login.tailscale.com/admin/machines
         description: Tailscale VPN
@@ -166,6 +166,11 @@
             url: https://192.168.86.1
             username: {{opnsense_username}}
             password: {{opnsense_password}}
+    - 10GbE Aggregate Swith:
+        href: http://192.168.86.2/
+        siteMonitor: http://192.168.86.2
+        description: 8x10GbE SPF+
+        icon: mdi-router-network
     - Guest Room Switch:
         href: http://192.168.86.3/
         siteMonitor: http://192.168.86.3
@@ -369,6 +374,11 @@
             type: prowlarr
             url: http://{{hostvars['yondu'].ip}}:9696
             key: {{prowlarr_key}}
+    - Pinchflat:
+        href: http://{{hostvars['yondu'].ip}}:8945
+        siteMonitor: http://{{hostvars['yondu'].ip}}:8945
+      #  description: torrent downloader
+        icon: sh-pinchflat.png
     - Transmission:
         href: http://{{hostvars['yondu'].ip}}:9092/
         siteMonitor: http://{{hostvars['yondu'].ip}}:9092/

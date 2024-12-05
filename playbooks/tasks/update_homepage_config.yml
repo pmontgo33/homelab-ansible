@@ -22,3 +22,12 @@
     group: root
     mode: 0644
   tags: config
+
+- name: copy settings template
+  template:
+    src: "homepage/settings.yaml.j2"
+    dest: /opt/homepage/config/settings.yaml
+    owner: root
+    group: root
+    mode: 0644
+  tags: config
