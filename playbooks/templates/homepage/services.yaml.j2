@@ -23,10 +23,14 @@
             url: http://{{hostvars['gotify'].ip}}
             key: {{gotify_client}}
 - Other:    
-    - Tailscale:
-        href: https://login.tailscale.com/admin/machines
-        description: Tailscale VPN
-        icon: sh-tailscale.svg
+    - Linkwarden:
+        href: http://{{hostvars['linkwarden'].ip}}:{{hostvars['linkwarden'].port}}
+        siteMonitor: http://{{hostvars['linkwarden'].ip}}:{{hostvars['linkwarden'].port}}
+        icon: sh-linkwarden.svg
+        widget:
+            type: linkwarden
+            url: http://{{hostvars['linkwarden'].ip}}:{{hostvars['linkwarden'].port}}
+            key: {{linkwarden_key}}
 
 ### MACHINES ###
 
