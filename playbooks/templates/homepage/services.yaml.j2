@@ -22,11 +22,19 @@
             type: gotify
             url: http://{{hostvars['gotify'].ip}}
             key: {{gotify_client}}
-- Other:    
+    - MySpeed:
+        href: http://{{hostvars['myspeed'].ip}}:{{hostvars['myspeed'].port}}
+        siteMonitor: http://{{hostvars['myspeed'].ip}}:{{hostvars['myspeed'].port}}
+        icon: sh-myspeed.png
+        widget:
+            type: myspeed
+            url: http://{{hostvars['myspeed'].ip}}:{{hostvars['myspeed'].port}}
+
+- Other:
     - Linkwarden:
         href: http://{{hostvars['linkwarden'].ip}}:{{hostvars['linkwarden'].port}}
         siteMonitor: http://{{hostvars['linkwarden'].ip}}:{{hostvars['linkwarden'].port}}
-        icon: sh-linkwarden.svg
+        icon: sh-linkwarden.png
         widget:
             type: linkwarden
             url: http://{{hostvars['linkwarden'].ip}}:{{hostvars['linkwarden'].port}}
