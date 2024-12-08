@@ -1,6 +1,8 @@
 collections:
   # Install / Update Docker Collection
   - name: community.docker
+  # Configure OPNSense
+  - name: ansibleguy.opnsense
 
 roles:
   # Install a tailscale role from the Ansible Galaxy

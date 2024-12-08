@@ -1,0 +1,23 @@
+- hosts: localhost
+  gather_facts: no
+  vars_files:
+    - vars/homelab_vars.yml
+    - vars/homelab_secret_vars.yml
+  module_defaults:
+    group/ansibleguy.opnsense.all:
+        firewall: '192.168.86.1'
+        api_key: "{{ opnsense_api_key }}"
+        api_secret: "{{ opnsense_api_secret }}"
+        ssl_verify: false
+    ansibleguy.opnsense.unbound_host:
+      match_fields: ['value']
+
+  tasks:
+    - name: Add All hosts from servers group to OPNSense Unbound DNS Overrides
+      ansibleguy.opnsense.unbound_host:
+        hostname: "{{hostvars[item].inventory_hostname}}"
+        domain: "lan"
+        value: "{{hostvars[item].ip}}"
+        state: "present"
+      loop: "{{ groups['servers'] }}"
+      when: hostvars[item].ip is defined

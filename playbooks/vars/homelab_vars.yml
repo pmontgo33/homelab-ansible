@@ -36,6 +36,10 @@ proxmox_terraform_token_id: "{{ vault_proxmox_terraform_token_id }}"
 proxmox_terraform_token_secret: "{{ vault_proxmox_terraform_token_secret}}"
 proxmox_default_root_passwd: "{{ vault_proxmox_default_root_passwd }}"
 
+#OPNSense
+opnsense_api_key: "{{ vault_opnsense_api_key }}"
+opnsense_api_secret: "{{ vault_opnsense_api_secret }}"
+
 #Homepage
 proxmox_username: "{{ vault_proxmox_username }}"
 proxmox_password: "{{ vault_proxmox_password }}"
