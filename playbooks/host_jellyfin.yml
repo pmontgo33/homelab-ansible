@@ -13,6 +13,8 @@
     #   include_tasks: tasks/ssh_keys.yml
     - name: SET TIMEZONE
       include_tasks: tasks/set_timezone.yml
+    - name: SETUP JELLYFIN USER
+      include_tasks: tasks/setup_jellyfin_user.yml
     - name: MOUNT MEDIA NFS
       include_tasks: tasks/mount_media_nfs.yml
     - name: MOUNT HOME MEDIA NFS

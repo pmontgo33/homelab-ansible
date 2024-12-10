@@ -1,0 +1,5 @@
+- name: Add jellyfin user to required groups for transcoding
+  user:
+    name: jellyfin
+    groups: render,video,ssl-cert
+    append: yes
