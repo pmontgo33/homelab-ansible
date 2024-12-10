@@ -30,7 +30,7 @@
             type: myspeed
             url: http://{{hostvars['myspeed'].ip}}:{{hostvars['myspeed'].port}}
 
-- Other:
+- Info Repos:
     - Linkwarden:
         href: http://{{hostvars['linkwarden'].ip}}:{{hostvars['linkwarden'].port}}
         siteMonitor: http://{{hostvars['linkwarden'].ip}}:{{hostvars['linkwarden'].port}}
@@ -39,6 +39,14 @@
             type: linkwarden
             url: http://{{hostvars['linkwarden'].ip}}:{{hostvars['linkwarden'].port}}
             key: {{linkwarden_key}}
+    - Paperless-ngx:
+        href: http://{{hostvars['paperless-ngx'].ip}}:{{hostvars['paperless-ngx'].port}}
+        siteMonitor: http://{{hostvars['paperless-ngx'].ip}}:{{hostvars['paperless-ngx'].port}}
+        icon: sh-paperless-ngx.svg
+        widget:
+            type: paperlessngx
+            url: http://{{hostvars['paperless-ngx'].ip}}:{{hostvars['paperless-ngx'].port}}
+            key: {{paperlessngx_token}}
 
 ### MACHINES ###
 
@@ -79,13 +87,13 @@
     
 - Storage:    
     - TrueNAS Home:
-        href: https://{{hostvars['truenas_home'].ip}}
-        siteMonitor: https://{{hostvars['truenas_home'].ip}}
+        href: https://{{hostvars['truenas'].ip}}
+        siteMonitor: https://{{hostvars['truenas'].ip}}
         description: TrueNAS Scale
         icon: sh-truenas-scale.svg
         widget:
             type: truenas
-            url: https://{{hostvars['truenas_home'].ip}}
+            url: https://{{hostvars['truenas'].ip}}
             username: {{truenas_username}} # not required if using api key
             password: {{truenas_password}} # not required if using api key
             # key: yourtruenasapikey # not required if using username / password
@@ -102,8 +110,8 @@
             username: {{pbs_username}}
             password: {{pbs_password}}
     - Syncthing:
-        href: https://{{hostvars['truenas_home'].ip}}:20910/
-        siteMonitor: https://{{hostvars['truenas_home'].ip}}:20910/
+        href: https://{{hostvars['truenas'].ip}}:20910/
+        siteMonitor: https://{{hostvars['truenas'].ip}}:20910/
         icon: sh-syncthing.svg
         
     - Backblaze:
@@ -120,11 +128,11 @@
         href: http://print-server.skink-galaxy.ts.net:631/
         siteMonitor: http://print-server.skink-galaxy.ts.net:631/
         icon: sh-openprinting-cups.svg
-    - Homepage VS Code:
-        href: http://{{hostvars['homepage'].ip}}:8680
-        siteMonitor: http://{{hostvars['homepage'].ip}}:8680
+    - Nix Fury VS Code:
+        href: http://{{hostvars['nix-fury'].ip}}:8443
+        siteMonitor: http://{{hostvars['nix-fury'].ip}}:8443
         description: VS Code Server to edit homepage config
-        icon: sh-homepage.png
+        icon: sh-visual-studio-code.svg
     - Yondu VS Code:
         href: http://{{hostvars['yondu'].ip}}:8680
         siteMonitor: http://{{hostvars['yondu'].ip}}:8680
@@ -209,7 +217,7 @@
         siteMonitor: http://192.168.86.15/
         description: TP-link
         icon: mdi-access-point-network
-- DNS:    
+{# - DNS:    
     - Pi-hole 1:
         href: http://{{hostvars['pihole1'].ip}}/admin
         siteMonitor: http://{{hostvars['pihole1'].ip}}
@@ -229,7 +237,7 @@
             type: pihole
             url: http://{{hostvars['pihole2'].ip}}
             #version: 6 # required if running v6 or higher, defaults to 5
-            key: {{pihole_key}} # optional, in v6 can be your password or app password
+            key: {{pihole_key}} # optional, in v6 can be your password or app password #}
 
 ### HOME ###
 
