@@ -1,0 +1,24 @@
+- name: PROVISION MEALIE LXC
+  hosts: immich
+  become: yes
+  
+  vars_prompt:
+    - name: update_docker
+      prompt: "Would you like to update docker containers? (yes/no)"
+      default: "no"
+      private: no
+
+  pre_tasks:
+    - name: UPDATE SYSTEM
+      include_tasks: tasks/update_system.yml
+  
+  tasks:
+    # - name: SSH KEYS
+    #   include_tasks: tasks/ssh_keys.yml
+    - name: SET TIMEZONE
+      include_tasks: tasks/set_timezone.yml
+    - name: TAILSCALE
+      include_tasks: tasks/install_and_setup_tailscale.yml
+    - name: UPDATE DOCKER
+      include_tasks: tasks/update_docker.yml
+      when: update_docker is defined and update_docker|bool is true

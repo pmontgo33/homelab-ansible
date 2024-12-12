@@ -46,8 +46,8 @@
         user: ansible
         commands: ALL
 
-    - name: TAILSCALE 
-      include_tasks: tasks/install_and_setup_tailscale.yml
+    # - name: TAILSCALE 
+    #   include_tasks: tasks/install_and_setup_tailscale.yml
 
 # - name: "INCLUDE {{ host }} PLAYBOOK"
 #   import_playbook: "host_{{host}}.yml"
