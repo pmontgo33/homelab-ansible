@@ -30,7 +30,16 @@
             type: myspeed
             url: http://{{hostvars['myspeed'].ip}}:{{hostvars['myspeed'].port}}
 
-- Info Repos:
+- Documents:
+    - Nextcloud:
+        href: https://nextcloud.montycasa.com
+        siteMonitor: https://nextcloud.montycasa.com
+        icon: sh-nextcloud.png
+        widget:
+            type: nextcloud
+            url: https://nextcloud.montycasa.com
+            username: {{nextcloud_username}}
+            password: {{nextcloud_password}}
     - Linkwarden:
         href: http://{{hostvars['linkwarden'].ip}}:{{hostvars['linkwarden'].port}}
         siteMonitor: http://{{hostvars['linkwarden'].ip}}:{{hostvars['linkwarden'].port}}
