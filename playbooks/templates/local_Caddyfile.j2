@@ -24,14 +24,14 @@
 
 # {{ host }}  
 {{ host }}.{{ local_cloudflare_domain }} {
-{% if hostvars[host].local_proxy.https %}
-  reverse_proxy https://{{ hostvars[host].ip }}:{{ hostvars[host].local_proxy.port }} {
+{% if hostvars[host].local_proxy.https is defined and hostvars[host].local_proxy.https is true %}
+  reverse_proxy https://{{ hostvars[host].ip }}:{{ hostvars[host].port | default(443) }} {
     transport http {
       tls_insecure_skip_verify
     }
   }
 {% else %}
-  reverse_proxy http://{{ hostvars[host].ip }}:{{ hostvars[host].local_proxy.port }}
+  reverse_proxy http://{{ hostvars[host].ip }}:{{ hostvars[host].port }}
 {% endif %}
   import cloudflare
 }

@@ -1,0 +1,17 @@
+# - name: Install required packages
+#   apt:
+#     name:
+#       - curl
+#     state: present
+
+- name: Download just binary
+  get_url:
+    url: https://github.com/casey/just/releases/download/v1.38.0/just-v1.38.0-x86_64-unknown-linux-gnu
+    dest: /usr/local/bin/just
+    mode: '0755'
+
+- name: Create just symlink
+  file:
+    src: /usr/local/bin/just
+    dest: /usr/bin/just
+    state: link
