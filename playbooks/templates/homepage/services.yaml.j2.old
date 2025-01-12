@@ -7,89 +7,89 @@
 
 - Status:
     - Uptime Kuma:
-        href: https://uptimekuma.{{ local_cloudflare_domain }}
-        siteMonitor: https://uptimekuma.{{ local_cloudflare_domain }}
+        href: http://{{hostvars['uptimekuma'].ip}}:{{hostvars['uptimekuma'].port}}
+        siteMonitor: http://{{hostvars['uptimekuma'].ip}}:{{hostvars['uptimekuma'].port}}
         icon: sh-uptime-kuma.svg
         widget:
             type: uptimekuma
-            url: https://uptimekuma.{{ local_cloudflare_domain }}
+            url: http://{{hostvars['uptimekuma'].ip}}:{{hostvars['uptimekuma'].port}}
             slug: homepage
     - Gotify:
-        href: https://gotify.{{ cloudflare_domain }}
-        siteMonitor: https://gotify.{{ cloudflare_domain }}
+        href: http://{{hostvars['gotify'].ip}}
+        siteMonitor: http://{{hostvars['gotify'].ip}}
         icon: sh-gotify.svg
         widget:
             type: gotify
-            url: https://gotify.{{ cloudflare_domain }}
+            url: http://{{hostvars['gotify'].ip}}
             key: {{gotify_client}}
     - MySpeed:
-        href: https://myspeed.{{ local_cloudflare_domain }}
-        siteMonitor: https://myspeed.{{ local_cloudflare_domain }}
+        href: http://{{hostvars['myspeed'].ip}}:{{hostvars['myspeed'].port}}
+        siteMonitor: http://{{hostvars['myspeed'].ip}}:{{hostvars['myspeed'].port}}
         icon: sh-myspeed.png
         widget:
             type: myspeed
-            url: https://myspeed.{{ local_cloudflare_domain }}
+            url: http://{{hostvars['myspeed'].ip}}:{{hostvars['myspeed'].port}}
 
 - Documents:
     - Nextcloud:
-        href: https://nextcloud.{{ cloudflare_domain }}
-        siteMonitor: https://nextcloud.{{ cloudflare_domain }}
+        href: https://{{hostvars['nextcloud'].ip}}/login
+        siteMonitor: https://{{hostvars['nextcloud'].ip}}/login
         icon: sh-nextcloud.png
         widget:
             type: nextcloud
-            url: https://nextcloud.{{ cloudflare_domain }}
+            url: https://nextcloud.montycasa.com
             username: {{nextcloud_username}}
             password: {{nextcloud_password}}
     - Linkwarden:
-        href: https://linkwarden.{{ cloudflare_domain }}
-        siteMonitor: https://linkwarden.{{ cloudflare_domain }}
+        href: http://{{hostvars['linkwarden'].ip}}:{{hostvars['linkwarden'].port}}
+        siteMonitor: http://{{hostvars['linkwarden'].ip}}:{{hostvars['linkwarden'].port}}
         icon: sh-linkwarden.png
         widget:
             type: linkwarden
-            url: https://linkwarden.{{ cloudflare_domain }}
+            url: http://{{hostvars['linkwarden'].ip}}:{{hostvars['linkwarden'].port}}
             key: {{linkwarden_key}}
     - Paperless-ngx:
-        href: https://paperless-ngx.{{ local_cloudflare_domain }}
-        siteMonitor: https://paperless-ngx.{{ local_cloudflare_domain }}
+        href: http://{{hostvars['paperless-ngx'].ip}}:{{hostvars['paperless-ngx'].port}}
+        siteMonitor: http://{{hostvars['paperless-ngx'].ip}}:{{hostvars['paperless-ngx'].port}}
         icon: sh-paperless-ngx.svg
         widget:
             type: paperlessngx
-            url: https://paperless-ngx.{{ local_cloudflare_domain }}
+            url: http://{{hostvars['paperless-ngx'].ip}}:{{hostvars['paperless-ngx'].port}}
             key: {{paperlessngx_token}}
 
 ### MACHINES ###
 
 - Proxmox:
     - Stark:
-        href: https://stark.{{ local_cloudflare_domain }}
-        siteMonitor: https://stark.{{ local_cloudflare_domain }}
+        href: https://{{hostvars['stark'].ip}}:{{hostvars['stark'].port}}
+        siteMonitor: https://{{hostvars['stark'].ip}}:{{hostvars['stark'].port}}
         description: Proxmox VE
         icon: sh-proxmox.svg
         widget:
             type: proxmox
-            url: https://stark.{{ local_cloudflare_domain }}
+            url: https://{{hostvars['stark'].ip}}:{{hostvars['stark'].port}}
             username: {{proxmox_username}}
             password: {{proxmox_password}}
             node: stark # optional
     - Loki:
-        href: https://loki.{{ local_cloudflare_domain }}
-        siteMonitor: https://loki.{{ local_cloudflare_domain }}
+        href: https://{{hostvars['loki'].ip}}:{{hostvars['loki'].port}}
+        siteMonitor: https://{{hostvars['loki'].ip}}:{{hostvars['loki'].port}}
         description: Proxmox VE
         icon: sh-proxmox.svg
         widget:
             type: proxmox
-            url: https://loki.{{ local_cloudflare_domain }}
+            url: https://{{hostvars['loki'].ip}}:{{hostvars['loki'].port}}
             username: {{proxmox_username}}
             password: {{proxmox_password}}
             node: loki # optional
     - Starlord:
-        href: https://starlord.{{ local_cloudflare_domain }}
-        siteMonitor: https://starlord.{{ local_cloudflare_domain }}
+        href: https://{{hostvars['starlord'].ip}}:{{hostvars['starlord'].port}}
+        siteMonitor: https://{{hostvars['starlord'].ip}}:{{hostvars['starlord'].port}}
         description: Proxmox VE
         icon: sh-proxmox.svg
         widget:
             type: proxmox
-            url: https://starlord.{{ local_cloudflare_domain }}
+            url: https://{{hostvars['starlord'].ip}}:{{hostvars['starlord'].port}}
             username: {{proxmox_username}}
             password: {{proxmox_password}}
             node: starlord # optional
