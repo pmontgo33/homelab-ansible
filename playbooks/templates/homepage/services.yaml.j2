@@ -96,26 +96,26 @@
     
 - Storage:    
     - TrueNAS Home:
-        href: https://{{hostvars['truenas'].ip}}
-        siteMonitor: https://{{hostvars['truenas'].ip}}
+        href: https://truenas.{{ local_cloudflare_domain }}
+        siteMonitor: https://truenas.{{ local_cloudflare_domain }}
         description: TrueNAS Scale
         icon: sh-truenas-scale.svg
         widget:
             type: truenas
-            url: https://{{hostvars['truenas'].ip}}
+            url: https://truenas.{{ local_cloudflare_domain }}
             username: {{truenas_username}} # not required if using api key
             password: {{truenas_password}} # not required if using api key
             # key: yourtruenasapikey # not required if using username / password
             #enablePools: true # optional, defaults to false
             nasType: scale # defaults to scale, must be set to 'core' if using enablePools with TrueNAS Core
     - Proxmox Backup Server:
-        href: https://{{hostvars['pbs'].ip}}:{{hostvars['pbs'].port}}
-        siteMonitor: https://{{hostvars['pbs'].ip}}:{{hostvars['pbs'].port}}
+        href: https://pbs.{{ local_cloudflare_domain }}
+        siteMonitor: https://pbs.{{ local_cloudflare_domain }}
         #description: Proxmox
         icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/proxmox-light.png
         widget:
             type: proxmoxbackupserver
-            url: https://{{hostvars['pbs'].ip}}:{{hostvars['pbs'].port}}
+            url: https://pbs.{{ local_cloudflare_domain }}
             username: {{pbs_username}}
             password: {{pbs_password}}
     - Syncthing:
@@ -274,13 +274,13 @@
 
 - NVR:
     - Frigate:
-        href: http://{{hostvars['frigate'].ip}}:{{hostvars['frigate'].port}}
-        siteMonitor: http://{{hostvars['frigate'].ip}}:{{hostvars['frigate'].port}}
+        href: https://frigate.{{ local_cloudflare_domain }}
+        siteMonitor: https://frigate.{{ local_cloudflare_domain }}
         description: Network Video Recorder
         icon: sh-frigate.svg
         widget:
             type: frigate
-            url: http://{{hostvars['frigate'].ip}}:{{hostvars['frigate'].port}}
+            url: https://frigate.{{ local_cloudflare_domain }}
            # enableRecentEvents: true # Optional, defaults to false
 #- Cameras:    
     - Ali's Room:
@@ -348,60 +348,60 @@
 
 - Aar:
     - qBittorrent:
-        href: http://{{hostvars['yondu'].ip}}:8080
-        siteMonitor: http://{{hostvars['yondu'].ip}}:8080
+        href: https://qbittorrent.{{ local_cloudflare_domain }}
+        siteMonitor: https://qbittorrent.{{ local_cloudflare_domain }}
       #  description: torrent downloader
         icon: sh-qbittorrent.svg
         widget:
             type: qbittorrent
-            url: http://{{hostvars['yondu'].ip}}:8080
+            url: https://qbittorrent.{{ local_cloudflare_domain }}
             username: {{qbittorrent_username}}
             password: {{qbittorrent_password}}
     - Radarr:
-        href: http://{{hostvars['yondu'].ip}}:7878/
-        siteMonitor: http://{{hostvars['yondu'].ip}}:7878/
+        href: https://radarr.{{ local_cloudflare_domain }}
+        siteMonitor: https://radarr.{{ local_cloudflare_domain }}
       #  description: torrent downloader
         icon: sh-radarr.svg
         widget:
             type: radarr
-            url: http://{{hostvars['yondu'].ip}}:7878
+            url: https://radarr.{{ local_cloudflare_domain }}
             key: {{radarr_key}}
             enableQueue: true # optional, defaults to false
     - Sonarr:
-        href: http://{{hostvars['yondu'].ip}}:8989/
-        siteMonitor: http://{{hostvars['yondu'].ip}}:8989/
+        href: https://sonarr.{{ local_cloudflare_domain }}
+        siteMonitor: https://sonarr.{{ local_cloudflare_domain }}
         icon: sh-sonarr.svg
         widget:
             type: sonarr
-            url: http://{{hostvars['yondu'].ip}}:8989
+            url: https://sonarr.{{ local_cloudflare_domain }}
             key: {{sonarr_key}}
             enableQueue: true # optional, defaults to false
     - Readarr:
-        href: http://{{hostvars['yondu'].ip}}:8787/
-        siteMonitor: http://{{hostvars['yondu'].ip}}:8787/
+        href: https://readarr.{{ local_cloudflare_domain }}
+        siteMonitor: https://readarr.{{ local_cloudflare_domain }}
       #  description: torrent downloader
         icon: sh-readarr.svg
         widget:
             type: readarr
-            url: http://{{hostvars['yondu'].ip}}:8787
+            url: https://readarr.{{ local_cloudflare_domain }}
             key: {{readarr_key}}
     - Bazarr:
-        href: http://{{hostvars['yondu'].ip}}:6767/
-        siteMonitor: http://{{hostvars['yondu'].ip}}:6767/
+        href: https://bazarr.{{ local_cloudflare_domain }}
+        siteMonitor: https://bazarr.{{ local_cloudflare_domain }}
       #  description: torrent downloader
         icon: sh-bazarr.png
         widget:
             type: bazarr
-            url: http://{{hostvars['yondu'].ip}}:6767
+            url: https://bazarr.{{ local_cloudflare_domain }}
             key: {{bazarr_key}}
     - Prowlarr:
-        href: http://{{hostvars['yondu'].ip}}:9696/
-        siteMonitor: http://{{hostvars['yondu'].ip}}:9696/
+        href: https://prowlarr.{{ local_cloudflare_domain }}
+        siteMonitor: https://prowlarr.{{ local_cloudflare_domain }}
       #  description: torrent downloader
         icon: sh-prowlarr.svg
         widget:
             type: prowlarr
-            url: http://{{hostvars['yondu'].ip}}:9696
+            url: https://prowlarr.{{ local_cloudflare_domain }}
             key: {{prowlarr_key}}
     - Pinchflat:
         href: http://{{hostvars['yondu'].ip}}:8945

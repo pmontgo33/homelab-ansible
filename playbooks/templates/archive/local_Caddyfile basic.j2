@@ -18,28 +18,23 @@
   }
 }
 
+
 {% for host in groups['servers'] %}
 {% if hostvars[host].local_proxy is defined %}
-{% if hostvars[host].local_proxy is mapping %}
-  {% set services = [hostvars[host].local_proxy] %}
-{% else %}
-  {% set services = hostvars[host].local_proxy %}
-{% endif %}
-{% for service in services %}
 
-# {{ service.subdomain | default(host) }}  
-{{ service.subdomain | default(host) }}.{{ local_cloudflare_domain }} {
-{% if service.https is  true | default(false) %}
-  reverse_proxy https://{{ hostvars[host].ip }}:{{ service.port | default(hostvars[host].port | default(443)) }} {
+
+# {{ host }}  
+{{ host }}.{{ local_cloudflare_domain }} {
+{% if hostvars[host].local_proxy.https is  true | default(false) %}
+  reverse_proxy https://{{ hostvars[host].ip }}:{{ hostvars[host].port | default(443) }} {
     transport http {
       tls_insecure_skip_verify
     }
   }
 {% else %}
-  reverse_proxy http://{{ hostvars[host].ip }}:{{ service.port | default(hostvars[host].port)}}
+  reverse_proxy http://{{ hostvars[host].ip }}:{{ hostvars[host].port }}
 {% endif %}
   import cloudflare
 }
-{% endfor %}
 {% endif %}
 {% endfor %}
