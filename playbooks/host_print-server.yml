@@ -5,6 +5,8 @@
   become: yes
   
   pre_tasks:
+    - name: TAILSCALE
+      include_tasks: tasks/install_and_setup_tailscale.yml
     - name: UPDATE SYSTEM
       include_tasks: tasks/update_system.yml
   
@@ -13,7 +15,5 @@
       include_tasks: tasks/install_packages.yml
     - name: INSTALL PRINT-SERVER
       include_tasks: tasks/install_print-server.yml
-    - name: TAILSCALE
-      include_tasks: tasks/install_and_setup_tailscale.yml
     - name: ADD HOST TO DNS SERVER
       include_tasks: tasks/add_hostname_to_pihole_dns.yml

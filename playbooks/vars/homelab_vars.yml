@@ -26,6 +26,7 @@ gmail_credentials: "{{ vault_gmail_credentials }}"
 #Cloudflare Credentials
 cloudflare_domain: "{{ vault_cloudflare_domain }}"
 local_cloudflare_domain: "{{ vault_local_cloudflare_domain }}"
+bc_cloudflare_domain: "{{ vault_bc_cloudflare_domain }}"
 cloudflare_token: "{{ vault_cloudflare_token }}"
 
 #Digital Ocean
@@ -71,3 +72,4 @@ linkwarden_key: "{{ vault_linkwarden_key }}"
 paperlessngx_token: "{{ vault_paperlessngx_token }}"
 nextcloud_username: "{{ vault_nextcloud_username }}"
 nextcloud_password: "{{ vault_nextcloud_password }}"
+mealie_api_token: "{{ vault_mealie_api_token }}"

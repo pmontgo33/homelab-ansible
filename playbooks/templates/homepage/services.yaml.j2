@@ -30,32 +30,7 @@
             type: myspeed
             url: https://myspeed.{{ local_cloudflare_domain }}
 
-- Documents:
-    - Nextcloud:
-        href: https://nextcloud.{{ cloudflare_domain }}
-        siteMonitor: https://nextcloud.{{ cloudflare_domain }}
-        icon: sh-nextcloud.png
-        widget:
-            type: nextcloud
-            url: https://nextcloud.{{ cloudflare_domain }}
-            username: {{nextcloud_username}}
-            password: {{nextcloud_password}}
-    - Linkwarden:
-        href: https://linkwarden.{{ cloudflare_domain }}
-        siteMonitor: https://linkwarden.{{ cloudflare_domain }}
-        icon: sh-linkwarden.png
-        widget:
-            type: linkwarden
-            url: https://linkwarden.{{ cloudflare_domain }}
-            key: {{linkwarden_key}}
-    - Paperless-ngx:
-        href: https://paperless-ngx.{{ local_cloudflare_domain }}
-        siteMonitor: https://paperless-ngx.{{ local_cloudflare_domain }}
-        icon: sh-paperless-ngx.svg
-        widget:
-            type: paperlessngx
-            url: https://paperless-ngx.{{ local_cloudflare_domain }}
-            key: {{paperlessngx_token}}
+
 
 ### MACHINES ###
 
@@ -428,3 +403,48 @@
             type: jackett
             url: http://{{hostvars['yondu'].ip}}:9117
            # password: jackettadminpassword # optional
+
+### APPS ###
+
+- Documents:
+    - Nextcloud:
+        href: https://nextcloud.{{ cloudflare_domain }}
+        siteMonitor: https://nextcloud.{{ cloudflare_domain }}
+        icon: sh-nextcloud.png
+        widget:
+            type: nextcloud
+            url: https://nextcloud.{{ cloudflare_domain }}
+            username: {{nextcloud_username}}
+            password: {{nextcloud_password}}
+    - Linkwarden:
+        href: https://linkwarden.{{ cloudflare_domain }}
+        siteMonitor: https://linkwarden.{{ cloudflare_domain }}
+        icon: sh-linkwarden.png
+        widget:
+            type: linkwarden
+            url: https://linkwarden.{{ cloudflare_domain }}
+            key: {{linkwarden_key}}
+    - Paperless-ngx:
+        href: https://paperless-ngx.{{ local_cloudflare_domain }}
+        siteMonitor: https://paperless-ngx.{{ local_cloudflare_domain }}
+        icon: sh-paperless-ngx.svg
+        widget:
+            type: paperlessngx
+            url: https://paperless-ngx.{{ local_cloudflare_domain }}
+            key: {{paperlessngx_token}}
+
+- Other:
+    - Alby Hub:
+        href: https://ln.{{ bc_cloudflare_domain }}
+        siteMonitor: https://ln.{{ bc_cloudflare_domain }}
+        icon: si-alby
+    
+    - Mealie:
+        href: https://mealie.{{ cloudflare_domain }}
+        siteMonitor: https://mealie.{{ cloudflare_domain }}
+        icon: sh-mealie.svg
+        widget:
+            type: mealie
+            url: https://mealie.{{ cloudflare_domain }}
+            key: {{mealie_api_token}}
+            version: 2 # only required if version > 1, defaults to 1
