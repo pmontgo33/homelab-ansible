@@ -31,3 +31,9 @@
 {% endif %}
 {% endif %}
 {% endfor %}
+
+# albyhub
+ln.montybitcoin.com {
+  reverse_proxy http://bitcoin:8080
+  import cloudflare
+}

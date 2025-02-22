@@ -3,6 +3,3 @@
     name: geerlingguy.docker
   vars:
     docker_users: ["ansible", "{{ primary_user }}"]
-
-- name: Install Just
-  include_tasks: tasks/install_just.yml
