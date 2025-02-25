@@ -12,8 +12,10 @@
   hosts: cluster_nodes
   become: yes
   tasks:
-    # - name: SSH KEYS
-    #   include_tasks: tasks/ssh_keys.yml
+    - name: TAILSCALE
+      include_tasks: tasks/install_and_setup_tailscale.yml
+      vars:
+        ts_args: "--advertise-routes={{tailscale_routes|default('192.168.86.0/24')}} --advertise-exit-node"
     - name: UPDATE SYSTEM
       include_tasks: tasks/update_system.yml
     - name: INSTALL PACKAGES
