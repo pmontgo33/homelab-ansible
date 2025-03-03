@@ -16,8 +16,8 @@
     #   include_tasks: tasks/ssh_keys.yml
     - name: INSTALL PACKAGES
       include_tasks: tasks/install_packages.yml
-#    - name: SETUP SAMBDA SHARES
-#      include_tasks: tasks/samba_shares.yml
+    - name: SETUP QDEVICE
+      include_tasks: tasks/setup_qdevice.yml
     - name: MOUNT BACKUPS NFS SHARE
       include_tasks: tasks/mount_backups_nfs.yml
     - name: MOUNT MEDIA NFS SHARE

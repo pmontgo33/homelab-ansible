@@ -1,5 +1,5 @@
-ap host tags="all":
-  ansible-playbook playbooks/host_{{host}}.yml --tags "{{tags}}"
+ap host tags="all" vars="":
+  ansible-playbook playbooks/host_{{host}}.yml --tags "{{tags}}" -e "{{vars}}"
 
 ap-bootstrap host:
   ansible-playbook playbooks/bootstrap_new_host.yml -e "host={{host}}"

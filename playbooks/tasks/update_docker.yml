@@ -14,3 +14,4 @@
 - name: docker image prune
   community.docker.docker_prune:
     images: true
+    timeout: 300

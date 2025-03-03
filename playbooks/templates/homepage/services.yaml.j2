@@ -68,6 +68,17 @@
             username: {{proxmox_username}}
             password: {{proxmox_password}}
             node: starlord # optional
+    - Cap:
+        href: https://cap.{{ local_cloudflare_domain }}
+        siteMonitor: https://cap.{{ local_cloudflare_domain }}
+        description: Proxmox VE
+        icon: sh-proxmox.svg
+        widget:
+            type: proxmox
+            url: https://cap.{{ local_cloudflare_domain }}
+            username: {{proxmox_username}}
+            password: {{proxmox_password}}
+            node: cap # optional
     
 - Storage:    
     - TrueNAS Home:

@@ -11,14 +11,18 @@
     update_cache: true
   become: true
   delegate_to: "{{ item }}"
-  loop: "{{ cluster_nodes }}"
+  loop: "{{ groups['local_cluster_nodes'] }}"
   
 - name: install corosync-qdevice and corosync-qnetd on qdevice
   apt:
-    name: 
-      - corosync-qdevice 
+    name:
       - corosync-qnetd
     state: present
     update_cache: true
   become: true
-  become_user: root
+  #become_user: root
+
+# - name: qdevice setup commmand
+#   ansible.builtin.shell:
+#     cmd: "pvecm qdevice setup {{ ip }}"
+#   delegate_to: "{{ groups['local_cluster_nodes'] | random }}"
