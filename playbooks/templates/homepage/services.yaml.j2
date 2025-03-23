@@ -181,7 +181,7 @@
             url: https://192.168.86.1
             username: {{opnsense_username}}
             password: {{opnsense_password}}
-    - 10GbE Aggregate Swith:
+    - 10GbE Aggregate Switch:
         href: http://192.168.86.2/
         siteMonitor: http://192.168.86.2
         description: 8x10GbE SPF+
@@ -197,20 +197,31 @@
         description: 8x1GbE with 4x PoE
         icon: mdi-router-network
 - Access Points:
-    - Guest Room AP:
+    - Omada:
+        href: https://omada.montycasa.net
+        siteMonitor: https://omada.montycasa.net
+        description: Omada Controller
+        icon: sh-omada.svg
+        widget:
+            type: omada
+            url: https://omada.montycasa.net
+            username: {{omada_username}}
+            password: {{omada_password}}
+            site: {{omada_site}}
+    - Homelab AP:
         href: http://192.168.86.11/
         siteMonitor: http://192.168.86.11/
-        description: Gli-net Flint
+        description: TP-Link Omada EAP723
         icon: mdi-access-point-network
-    - KItchen AP:
+    - Kitchen AP:
         href: http://192.168.86.13/
         siteMonitor: http://192.168.86.13/
-        description: TP-link
+        description: TP-Link Omada EAP723
         icon: mdi-access-point-network
     - Garage AP:
         href: http://192.168.86.15/
         siteMonitor: http://192.168.86.15/
-        description: TP-link
+        description: TP-Link Omada EAP235-Wall
         icon: mdi-access-point-network
 {# - DNS:    
     - Pi-hole 1:
