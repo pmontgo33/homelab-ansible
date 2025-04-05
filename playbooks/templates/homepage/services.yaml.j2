@@ -172,24 +172,29 @@
 
 - Routers & Switches:
     - OPNSense:
-        href: https://192.168.86.1
-        siteMonitor: https://192.168.86.1
+        href: https://opnsense.{{ local_cloudflare_domain }}
+        siteMonitor: https://opnsense.{{ local_cloudflare_domain }}
         description: Router/Firewall
         icon: sh-opnsense.svg
         widget:
             type: opnsense
-            url: https://192.168.86.1
+            url: https://opnsense.{{ local_cloudflare_domain }}
             username: {{opnsense_username}}
             password: {{opnsense_password}}
-    - 10GbE Aggregate Switch:
+    - Homelab 10GbE Aggregate Switch:
         href: http://192.168.86.2/
         siteMonitor: http://192.168.86.2
         description: 8x10GbE SPF+
         icon: mdi-router-network
-    - Guest Room Switch:
+    - Homelab 2.5GbE Mini Switch:
         href: http://192.168.86.3/
         siteMonitor: http://192.168.86.3
         description: 2x10GbE SPF+ / 4x2.5GbE
+        icon: mdi-router-network
+    - Homelab 2.5GbE PoE Switch:
+        href: http://192.168.86.4/
+        siteMonitor: http://192.168.86.4
+        description: 1x10GbE SPF+ / 8x2.5GbE PoE
         icon: mdi-router-network
     - Basement PoE Switch:
         href: http://192.168.86.5/
@@ -310,13 +315,13 @@
 
 - Media Servers:
     - Jellyfin:
-        href: http://{{hostvars['jellyfin'].ip}}:{{hostvars['jellyfin'].port}}
-        siteMonitor: http://{{hostvars['jellyfin'].ip}}:{{hostvars['jellyfin'].port}}
+        href: https://jellyfin.{{ cloudflare_domain }}
+        siteMonitor: https://jellyfin.{{ cloudflare_domain }}
         description: Movie and TV Show Library
         icon: sh-jellyfin.svg
         widget:
           type: jellyfin
-          url: http://{{hostvars['jellyfin'].ip}}:{{hostvars['jellyfin'].port}}
+          url: https://jellyfin.{{ cloudflare_domain }}
           key: {{jellyfin_key}}
         #  enableBlocks: true # optional, defaults to false
           enableNowPlaying: true # optional, defaults to true
@@ -324,23 +329,23 @@
           showEpisodeNumber: true # optional, defaults to false
           expandOneStreamToTwoRows: false # optional, defaults to true
     - Immich:
-        href: http://{{hostvars['immich'].ip}}:{{hostvars['immich'].port}}
-        siteMonitor: http://{{hostvars['immich'].ip}}:{{hostvars['immich'].port}}
+        href: https://immich.{{ cloudflare_domain }}
+        siteMonitor: https://immich.{{ cloudflare_domain }}
         description: Photo Library
         icon: sh-immich.svg
         widget:
           type: immich
-          url: http://{{hostvars['immich'].ip}}:{{hostvars['immich'].port}}
+          url: https://immich.{{ cloudflare_domain }}
           key: {{immich_key}}
           version: 2 # optional, default is 1
     - Audiobookshelf:
-        href: http://{{hostvars['audiobookshelf'].ip}}:{{hostvars['audiobookshelf'].port}}
-        siteMonitor: http://{{hostvars['audiobookshelf'].ip}}:{{hostvars['audiobookshelf'].port}}
+        href: https://audiobooks.{{ cloudflare_domain }}
+        siteMonitor: https://audiobooks.{{ cloudflare_domain }}
         description: Audiobook Library
         icon: sh-audiobookshelf.svg
         widget:
           type: audiobookshelf
-          url: http://{{hostvars['audiobookshelf'].ip}}:{{hostvars['audiobookshelf'].port}}
+          url: https://audiobooks.{{ cloudflare_domain }}
           key: {{audiobookshelf_key}}
 
 - Aar:

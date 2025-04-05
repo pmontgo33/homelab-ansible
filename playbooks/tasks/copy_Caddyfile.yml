@@ -1,0 +1,22 @@
+- name: Include Homelab Vars
+  include_vars: vars/homelab_vars.yml
+  tags: config
+- name: Include Homelab Secret Vars
+  include_vars: vars/homelab_secret_vars.yml
+  tags: config
+
+- name: copy template backups.sh file
+  template:
+    src: "{{ caddy_file }}"
+    dest: "/etc/caddy/Caddyfile"
+    owner: root
+    group: root
+    mode: 0644
+  register: caddy_config
+  tags: config
+
+- name: reload caddy when Caddyfile is updated
+  command: caddy reload --config /etc/caddy/Caddyfile
+  become: true
+  when: caddy_config.changed
+  tags: config
