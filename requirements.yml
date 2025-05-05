@@ -3,10 +3,12 @@ collections:
   - name: community.docker
   # Configure OPNSense
   - name: ansibleguy.opnsense
+  # Install a tailscale role from the Ansible Galaxy
+  - name: artis3n.tailscale
 
 roles:
   # Install a tailscale role from the Ansible Galaxy
-  - src: artis3n.tailscale
+  #- src: artis3n.tailscale
   # Install rclone role from Ansible Galaxy
   - src: stefangweichinger.ansible_rclone
   # Install and setup duplicati
