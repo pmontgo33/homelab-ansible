@@ -7,6 +7,7 @@
   become: true
   vars:
     - ansible_user: "{{ primary_user }}"
+   # - ansible_user: root
     # - ansible_host: "{{ ip }}"
 
   tasks:

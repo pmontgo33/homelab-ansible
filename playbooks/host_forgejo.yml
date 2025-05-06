@@ -1,0 +1,9 @@
+- name: PROVISION UPTIMEKUMA LXC
+  hosts: forgejo
+  become: yes
+  
+  tasks:
+    - name: UPDATE SYSTEM
+      include_tasks: tasks/update_system.yml
+    - name: TAILSCALE
+      include_tasks: tasks/install_and_setup_tailscale.yml
