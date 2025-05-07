@@ -59,4 +59,4 @@ This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) f
 
 ## Acknowledgments
 
-This repository is a reflection of my personal homelab journey. A big thank you to the open-source community for providing the tools and inspiration to build and maintain homelabs. 🙌
+This repository is a work in progress, current state of my personal homelab configuration. A big thank you to the open-source community for providing the tools and inspiration to build and maintain homelabs. 🙌
