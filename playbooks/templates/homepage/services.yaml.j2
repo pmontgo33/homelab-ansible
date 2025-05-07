@@ -14,6 +14,13 @@
             type: uptimekuma
             url: https://uptimekuma.{{ local_cloudflare_domain }}
             slug: homepage
+    - MySpeed:
+        href: https://myspeed.{{ local_cloudflare_domain }}
+        siteMonitor: https://myspeed.{{ local_cloudflare_domain }}
+        icon: sh-myspeed.png
+        widget:
+            type: myspeed
+            url: https://myspeed.{{ local_cloudflare_domain }}
     - Dockge:
         href: https://dockge.{{ local_cloudflare_domain }}
         siteMonitor: https://dockge.{{ local_cloudflare_domain }}
@@ -22,17 +29,6 @@
         href: https://gotify.{{ cloudflare_domain }}
         siteMonitor: https://gotify.{{ cloudflare_domain }}
         icon: sh-gotify.svg
-        widget:
-            type: gotify
-            url: https://gotify.{{ cloudflare_domain }}
-            key: {{gotify_client}}
-    - MySpeed:
-        href: https://myspeed.{{ local_cloudflare_domain }}
-        siteMonitor: https://myspeed.{{ local_cloudflare_domain }}
-        icon: sh-myspeed.png
-        widget:
-            type: myspeed
-            url: https://myspeed.{{ local_cloudflare_domain }}
 
 
 
@@ -232,27 +228,7 @@
         siteMonitor: http://192.168.86.15/
         description: TP-Link Omada EAP235-Wall
         icon: mdi-access-point-network
-{# - DNS:    
-    - Pi-hole 1:
-        href: http://{{hostvars['pihole1'].ip}}/admin
-        siteMonitor: http://{{hostvars['pihole1'].ip}}
-        description: Network ad blocker
-        icon: sh-pi-hole.svg
-        widget:
-            type: pihole
-            url: http://{{hostvars['pihole1'].ip}}
-            #version: 6 # required if running v6 or higher, defaults to 5
-            key: {{pihole_key}} # optional, in v6 can be your password or app password
-    - Pi-hole 2:
-        href: http://{{hostvars['pihole2'].ip}}/admin
-        siteMonitor: http://{{hostvars['pihole2'].ip}}
-        description: Network ad blocker
-        icon: sh-pi-hole.svg
-        widget:
-            type: pihole
-            url: http://{{hostvars['pihole2'].ip}}
-            #version: 6 # required if running v6 or higher, defaults to 5
-            key: {{pihole_key}} # optional, in v6 can be your password or app password #}
+
 
 ### HOME ###
 
@@ -262,11 +238,6 @@
         siteMonitor: http://{{hostvars['homeassistant'].ip}}:{{hostvars['homeassistant'].port}}
         description: Home Automation System
         icon: sh-home-assistant.svg
-        widget:
-            type: homeassistant
-            url: http://{{hostvars['homeassistant'].ip}}:{{hostvars['homeassistant'].port}}
-            key: {{homeassistant_key}}
-#- Home Automation Devices:    
     - WLED Patio:
         href: http://192.168.10.19/
         siteMonitor: http://192.168.10.19/
@@ -284,11 +255,7 @@
         siteMonitor: https://frigate.{{ local_cloudflare_domain }}
         description: Network Video Recorder
         icon: sh-frigate.svg
-        widget:
-            type: frigate
-            url: https://frigate.{{ local_cloudflare_domain }}
-           # enableRecentEvents: true # Optional, defaults to false
-#- Cameras:    
+#- Cameras:
     - Ali's Room:
         href: http://192.168.10.51/
         siteMonitor: http://192.168.10.51/
@@ -442,27 +409,18 @@
         href: https://nextcloud.{{ cloudflare_domain }}
         siteMonitor: https://nextcloud.{{ cloudflare_domain }}
         icon: sh-nextcloud.png
-        widget:
-            type: nextcloud
-            url: https://nextcloud.{{ cloudflare_domain }}
-            username: {{nextcloud_username}}
-            password: {{nextcloud_password}}
+    - Forgejo:
+        href: https://git.{{ local_cloudflare_domain }}
+        siteMonitor: https://git.{{ local_cloudflare_domain }}
+        icon: sh-forgejo.svg
     - Linkwarden:
         href: https://linkwarden.{{ cloudflare_domain }}
         siteMonitor: https://linkwarden.{{ cloudflare_domain }}
         icon: sh-linkwarden.png
-        widget:
-            type: linkwarden
-            url: https://linkwarden.{{ cloudflare_domain }}
-            key: {{linkwarden_key}}
     - Paperless-ngx:
         href: https://paperless-ngx.{{ local_cloudflare_domain }}
         siteMonitor: https://paperless-ngx.{{ local_cloudflare_domain }}
         icon: sh-paperless-ngx.svg
-        widget:
-            type: paperlessngx
-            url: https://paperless-ngx.{{ local_cloudflare_domain }}
-            key: {{paperlessngx_token}}
 
 - Other:
     - Alby Hub:
@@ -474,8 +432,3 @@
         href: https://mealie.{{ cloudflare_domain }}
         siteMonitor: https://mealie.{{ cloudflare_domain }}
         icon: sh-mealie.svg
-        widget:
-            type: mealie
-            url: https://mealie.{{ cloudflare_domain }}
-            key: {{mealie_api_token}}
-            version: 2 # only required if version > 1, defaults to 1
