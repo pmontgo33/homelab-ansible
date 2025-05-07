@@ -53,16 +53,6 @@ Execute a playbook to configure or manage your homelab environment:
 ansible-playbook -i inventory playbooks/<playbook-name>.yml
 ```
 
-## Languages & Tools Used
-
-This repository uses a mix of tools and languages to support its flexibility and functionality:
-
-- **Shell (57.3%)**: Scripting for task automation and system setup.
-- **Jinja (36%)**: Templating for dynamic configuration files.
-- **HCL (4.9%)**: Infrastructure provisioning with Terraform.
-- **Just (1.2%)**: Task runner for simplified workflows.
-- **JavaScript (0.6%)**: For any web-related scripts or utilities.
-
 ## License
 
 This project is licensed under the [MIT License](LICENSE). Feel free to use or adapt it for your own homelab projects.
