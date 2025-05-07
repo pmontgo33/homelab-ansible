@@ -55,7 +55,7 @@ ansible-playbook -i inventory playbooks/<playbook-name>.yml
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE). Feel free to use or adapt it for your own homelab projects.
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 
