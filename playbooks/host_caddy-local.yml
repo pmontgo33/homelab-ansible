@@ -1,9 +1,3 @@
-# Start with a caddy LXC (https://community-scripts.github.io/ProxmoxVE/scripts?id=caddy)
- #  Select "y" when promted to install xcaddy
-# cd /usr/bin
-# xcaddy build --with github.com/caddy-dns/cloudflare
-# run "$ caddy list-modules" to confirm that cloudflare dns is installed
-
 - name: PROVISION LOCAL CADDY
   hosts: caddy-local
   become: yes
@@ -13,10 +7,11 @@
       include_tasks: tasks/update_system.yml
     - name: INSTALL PACKAGES
       include_tasks: tasks/install_packages.yml
-    - name: COPY CADDY FILE
-      include_tasks: tasks/copy_Caddyfile.yml
+    - name: INSTALL CONFIGURE CADDY
+      include_tasks: tasks/install_config_caddy.yml
       vars:
         - caddy_file: "local_Caddyfile.j2"
       tags: config
     - name: TAILSCALE
       include_tasks: tasks/install_and_setup_tailscale.yml
+
