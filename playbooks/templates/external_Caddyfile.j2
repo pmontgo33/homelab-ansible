@@ -3,11 +3,23 @@
 		dns cloudflare {{ cloudflare_token }}
 	}
 }
-# jellyfin
-#jellyfin.{{ cloudflare_domain }} {
-#	reverse_proxy http://jellyfin:8096
-#	import cloudflare
-#}
+
+(tailscale_auth) {
+  forward_auth unix//run/tailscale.nginx-auth.sock {
+      uri /auth
+      header_up Remote-Addr {remote_host}
+      header_up Remote-Port {remote_port}
+      header_up Original-URI {uri}
+      copy_headers {
+          Tailscale-User>X-Webauth-User
+          Tailscale-Name>X-Webauth-Name
+          Tailscale-Login>X-Webauth-Login
+          Tailscale-Tailnet>X-Webauth-Tailnet
+          Tailscale-Profile-Picture>X-Webauth-Profile-Picture
+      }
+  }
+
+}
 
 {% for host in groups['servers'] %}
 {% if hostvars[host].reverse_proxy is defined %}
@@ -15,8 +27,16 @@
 # {{ host }}  
 {% if hostvars[host].reverse_proxy.tls_insecure | default(false) %}
 {{ hostvars[host].reverse_proxy.subdomain }}.{{ cloudflare_domain }} {
+  {% if hostvars[host].reverse_proxy.auth is defined and hostvars[host].reverse_proxy.auth == "tailscale" %}
+  import tailscale_auth
+  {% endif %}
+
   reverse_proxy https://{{ host }}:{{ hostvars[host].reverse_proxy.port }} {
    # header_up X-Forwarded-Proto https
+    header_up Host {host}
+    header_up X-Real-IP {remote_host}
+    header_up X-Forwarded-Proto {scheme}
+    header_up X-Forwarded-For {remote_host}
     transport http {
       tls_insecure_skip_verify
     }
@@ -25,9 +45,17 @@
 }
 {% else %}
 {{ hostvars[host].reverse_proxy.subdomain }}.{{ cloudflare_domain }} {
-  reverse_proxy http://{{ host }}:{{ hostvars[host].reverse_proxy.port }}
   import cloudflare
-}
+  {% if hostvars[host].reverse_proxy.auth is defined and hostvars[host].reverse_proxy.auth == "tailscale" %}
+  import tailscale_auth
+  {% endif %}
+  reverse_proxy http://{{ host }}:{{ hostvars[host].reverse_proxy.port }} {
+    header_up Host {host}
+    header_up X-Real-IP {remote_host}
+    header_up X-Forwarded-Proto {scheme}
+    header_up X-Forwarded-For {remote_host}
+  }
+c}
 {% endif %}
 {% endif %}
 {% endfor %}

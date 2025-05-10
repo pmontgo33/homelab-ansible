@@ -12,3 +12,17 @@
     caddy_config: "{{ lookup('template', '{{ caddy_file }}') }}"
     caddy_packages: ["github.com/caddy-dns/cloudflare"]
     caddy_systemd_capabilities_enabled: true
+
+- name: install package tailscale-nginx-auth
+  apt:
+    name:
+      - tailscale-nginx-auth
+    state: present
+  become: true
+
+- name: Enable and start tailscale.nginx-auth.socket
+  ansible.builtin.systemd:
+    name: tailscale.nginx-auth.socket
+    enabled: yes
+    state: started
+
