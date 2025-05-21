@@ -68,17 +68,6 @@
             username: {{proxmox_username}}
             password: {{proxmox_password}}
             node: starlord # optional
-    - Cap:
-        href: https://cap.{{ local_cloudflare_domain }}
-        siteMonitor: https://cap.{{ local_cloudflare_domain }}
-        description: Proxmox VE
-        icon: sh-proxmox.svg
-        widget:
-            type: proxmox
-            url: https://cap.{{ local_cloudflare_domain }}
-            username: {{proxmox_username}}
-            password: {{proxmox_password}}
-            node: cap # optional
     
 - Storage:    
     - TrueNAS Home:
@@ -229,6 +218,18 @@
         description: TP-Link Omada EAP235-Wall
         icon: mdi-access-point-network
 
+- Remote Access:
+    - Pangolin:
+        href: https://pangolin.{{ cloudflare_domain }}
+        siteMonitor: https://pangolin.{{ cloudflare_domain }}
+        description: Proxy and Authentication
+        icon: sh-pangolin.svg
+    - Tailscale:
+        href: https://login.tailscale.com/admin/machines
+        icon: sh-tailscale.svg
+    - Cloudflare:
+        href: https://dash.cloudflare.com/login
+        icon: sh-cloudflare.svg
 
 ### HOME ###
 
