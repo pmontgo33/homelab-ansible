@@ -9,7 +9,7 @@
       include_tasks: tasks/update_system.yml
   
   tasks:
-    # - name: SSH KEYS
-    #   include_tasks: tasks/ssh_keys.yml
     - name: TAILSCALE
       include_tasks: tasks/install_and_setup_tailscale.yml
+    # - name: HELPER SCRIPTS UPDATE
+    #   include_tasks: tasks/helper_scripts_update.yml

@@ -1,0 +1,4 @@
+- name: updateable Proxmox Helper Scripts update script
+  ansible.builtin.shell:
+    cmd: echo | update
+    chdir: ~/
