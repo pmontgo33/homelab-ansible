@@ -1,0 +1,7 @@
+- name: UPDATE HOMEPAGE LXC CONFIG
+  hosts: homepage
+  become: yes
+  
+  tasks:
+    - name: UPDATE HOMEPAGE CONFIGURATION
+      include_tasks: tasks/update_homepage_config.yml
