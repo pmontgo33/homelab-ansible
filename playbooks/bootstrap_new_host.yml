@@ -8,7 +8,7 @@
   vars:
    # - ansible_user: "{{ primary_user }}"
     - ansible_user: root
-    # - ansible_host: "{{ ip }}"
+  #  - ansible_host: "{{ ip }}"
 
   tasks:
     - include_vars: vars/homelab_vars.yml
