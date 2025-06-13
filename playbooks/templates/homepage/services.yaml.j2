@@ -159,7 +159,7 @@
 
 ### NETWORKING ###
 
-- Routers & Switches:
+- Routers, DNS, Switches:
     - OPNSense:
         href: https://opnsense.{{ local_cloudflare_domain }}
         siteMonitor: https://opnsense.{{ local_cloudflare_domain }}
@@ -170,6 +170,16 @@
             url: https://opnsense.{{ local_cloudflare_domain }}
             username: {{opnsense_username}}
             password: {{opnsense_password}}
+    - Adguard Home:
+        href: https://blocker.{{ local_cloudflare_domain }}
+        siteMonitor: https://blocker.{{ local_cloudflare_domain }}
+        description: Network DNS Adblocker
+        icon: sh-adguard-home.svg
+        widget:
+            type: adguard
+            url: https://blocker.{{ local_cloudflare_domain }}
+            username: {{adguard_username}}
+            password: {{adguard_password}}
     - Homelab 10GbE Aggregate Switch:
         href: http://192.168.86.2/
         siteMonitor: http://192.168.86.2
