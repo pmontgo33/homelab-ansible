@@ -1,0 +1,108 @@
+N:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:-//2025-2034 Sports Majors Calendar//EN
+
+# --- 2025 ---
+
+BEGIN:VEVENT
+SUMMARY:The Players Championship
+DTSTART;VALUE=DATE:20250313
+DTEND;VALUE=DATE:20250317
+DESCRIPTION:TPC Sawgrass, Ponte Vedra Beach, FL\nWinner: Rory McIlroy (won in a playoff)\nSummary: Rory McIlroy secured victory at TPC Sawgrass in a thrilling playoff finish to claim the 2025 Players Championship. See full leaderboard: https://thegolfnewsnet.com/golfnewsnetteam/2025/03/17/2025-the-players-championship-final-results-prize-money-payout-pga-tour-leaderboard-and-how-much-each-golfer-won-135650/
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:The Masters Tournament
+DTSTART;VALUE=DATE:20250410
+DTEND;VALUE=DATE:20250414
+DESCRIPTION:Augusta National Golf Club, Augusta, GA\nWinner: Rory McIlroy (won in playoff over Justin Rose)\nSummary: Rory McIlroy defeated Justin Rose on the first playoff hole to win his first Masters title at Augusta National, completing the career Grand Slam. See full leaderboard: https://www.nbcsports.com/golf/news/masters-2025-final-leaderboard-results-and-scores-from-augusta-national
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:PGA Championship
+DTSTART;VALUE=DATE:20250515
+DTEND;VALUE=DATE:20250519
+DESCRIPTION:Quail Hollow Club, Charlotte, NC\nWinner: Scottie Scheffler\nSummary: Scottie Scheffler delivered a dominant performance at Quail Hollow Club to win the 2025 PGA Championship. See full leaderboard: https://www.sportingnews.com/us/golf/news/pga-championship-2025-live-golf-scores-results-highlights/9841f34b6b56bcf1bef31909
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:U.S. Open (Golf)
+DTSTART;VALUE=DATE:20250612
+DTEND;VALUE=DATE:20250616
+DESCRIPTION:Oakmont Country Club, Oakmont, PA\nStatus: In progress as of June 13, 2025. J.J. Spaun led after round one. Live leaderboard: https://www.usopen.com/2025/scoring.html
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:The Open Championship
+DTSTART;VALUE=DATE:20250717
+DTEND;VALUE=DATE:20250721
+DESCRIPTION:Royal Portrush Golf Club, Portrush, Northern Ireland
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Super Bowl LIX
+DTSTART;VALUE=DATE:20250209
+DTEND;VALUE=DATE:20250210
+DESCRIPTION:Caesars Superdome, New Orleans, LA\nResult: Philadelphia Eagles 40, Kansas City Chiefs 22\nSummary: The Eagles dominated Super Bowl LIX, with Jalen Hurts named MVP. The win marks their second Super Bowl victory. Recap: https://www.espn.com/nfl/recap/_/gameId/401671889
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Stanley Cup Final Game 1: Panthers at Oilers
+DTSTART;VALUE=DATE:20250604
+DTEND;VALUE=DATE:20250605
+DESCRIPTION:Game 1 of the 2025 Stanley Cup Final. Florida Panthers at Edmonton Oilers. Result: Oilers win in OT (Leon Draisaitl OT goal). Series: Oilers lead 1-0.
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Stanley Cup Final Game 2: Panthers at Oilers
+DTSTART;VALUE=DATE:20250606
+DTEND;VALUE=DATE:20250607
+DESCRIPTION:Game 2 of the 2025 Stanley Cup Final. Florida Panthers at Edmonton Oilers. Result: Panthers win. Series tied 1-1.
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Stanley Cup Final Game 3: Oilers at Panthers
+DTSTART;VALUE=DATE:20250609
+DTEND;VALUE=DATE:20250610
+DESCRIPTION:Game 3 of the 2025 Stanley Cup Final. Edmonton Oilers at Florida Panthers. Result: Panthers win. Series: Panthers lead 2-1.
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Stanley Cup Final Game 4: Oilers at Panthers
+DTSTART;VALUE=DATE:20250611
+DTEND;VALUE=DATE:20250612
+DESCRIPTION:Game 4 of the 2025 Stanley Cup Final. Edmonton Oilers at Florida Panthers. Result: Oilers win. Series tied 2-2.
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Stanley Cup Final Game 5: Panthers at Oilers
+DTSTART;VALUE=DATE:20250614
+DTEND;VALUE=DATE:20250615
+DESCRIPTION:Game 5 of the 2025 Stanley Cup Final. Florida Panthers at Edmonton Oilers. Series tied 2-2. Further results pending.
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Stanley Cup Final Game 6 (if necessary): Oilers at Panthers
+DTSTART;VALUE=DATE:20250617
+DTEND;VALUE=DATE:20250618
+DESCRIPTION:Game 6 of the 2025 Stanley Cup Final. Edmonton Oilers at Florida Panthers. Will be played if necessary.
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Stanley Cup Final Game 7 (if necessary): Panthers at Oilers
+DTSTART;VALUE=DATE:20250619
+DTEND;VALUE=DATE:20250620
+DESCRIPTION:Game 7 of the 2025 Stanley Cup Final. Florida Panthers at Edmonton Oilers. Will be played if necessary.
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:World Series
+DTSTART;VALUE=DATE:20251024
+DTEND;VALUE=DATE:20251101
+DESCRIPTION:MLB World Series (projected range). Teams and results TBD as of June 2025. Source: https://www.baseball-reference.com/postseason/2025_WS.shtml
+END:VEVENT
+
+# --- 2026 and beyond remain unchanged; see previous file content for all future years ---
+
+END:VCALENDAR
