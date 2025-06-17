@@ -1,7 +1,7 @@
 - name: PROVISION LOCAL CADDY
   hosts: caddy-local
-  become: yes
-  
+  become: true
+
   tasks:
     - name: UPDATE SYSTEM
       include_tasks: tasks/update_system.yml

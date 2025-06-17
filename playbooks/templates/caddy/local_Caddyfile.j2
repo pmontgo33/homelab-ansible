@@ -5,40 +5,39 @@
 }
 
 (headers) {
-  header {
-    Permissions-Policy interest-cohort=()
-    Strict-Transport-Security "max-age=31536000; includeSubdomains"
-    X-XSS-Protection "1; mode=block"
-    X-Content-Type-Options "nosniff"
-    X-Robots-Tag noindex, nofollow
-    Referrer-Policy "same-origin"
-    Content-Security-Policy "frame-ancestors {{ local_cloudflare_domain }} *.{{ local_cloudflare_domain }}"
-    -Server
-    Permissions-Policy "geolocation=(self {{ local_cloudflare_domain }} *.{{ local_cloudflare_domain }}), microphone=()"
-  }
+	header {
+		Permissions-Policy interest-cohort=()
+		Strict-Transport-Security "max-age=31536000; includeSubdomains"
+		X-XSS-Protection "1; mode=block"
+		X-Content-Type-Options "nosniff"
+		X-Robots-Tag noindex, nofollow
+		Referrer-Policy "same-origin"
+		Content-Security-Policy "frame-ancestors {{ local_cloudflare_domain }} *.{{ local_cloudflare_domain }}"
+		-Server
+		Permissions-Policy "geolocation=(self {{ local_cloudflare_domain }} *.{{ local_cloudflare_domain }}), microphone=()"
+	}
 }
 
 {% for host in groups['servers'] %}
 {% if hostvars[host].local_proxy is defined %}
 {% if hostvars[host].local_proxy is mapping %}
-  {% set services = [hostvars[host].local_proxy] %}
+{% set services = [hostvars[host].local_proxy] %}
 {% else %}
-  {% set services = hostvars[host].local_proxy %}
+{% set services = hostvars[host].local_proxy %}
 {% endif %}
 {% for service in services %}
-
-# {{ service.subdomain | default(host) }}  
+# {{ service.subdomain | default(host) }}
 {{ service.subdomain | default(host) }}.{{ local_cloudflare_domain }} {
 {% if service.https is  true | default(false) %}
-  reverse_proxy https://{{ hostvars[host].ip }}:{{ service.port | default(hostvars[host].port | default(443)) }} {
-    transport http {
-      tls_insecure_skip_verify
-    }
-  }
+	reverse_proxy https://{{ hostvars[host].ip }}:{{ service.port | default(hostvars[host].port | default(443)) }} {
+		transport http {
+			tls_insecure_skip_verify
+		}
+	}
 {% else %}
-  reverse_proxy http://{{ hostvars[host].ip }}:{{ service.port | default(hostvars[host].port)}}
+	reverse_proxy http://{{ hostvars[host].ip }}:{{ service.port | default(hostvars[host].port)}}
 {% endif %}
-  import cloudflare
+	import cloudflare
 }
 {% endfor %}
 {% endif %}
