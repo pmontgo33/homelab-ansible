@@ -1,16 +1,5 @@
-(cloudflare) {
-	tls {
-		dns cloudflare {{ cloudflare_token }}
-	}
-}
-# jellyfin
-#jellyfin.{{ cloudflare_domain }} {
-#	reverse_proxy http://jellyfin:8096
-#	import cloudflare
-#}
-
 {% for host in groups['servers'] %}
-{% if hostvars[host].reverse_proxy is defined %}
+{% if hostvars[host].reverse_proxy.secure | default(false) %}
 
 # {{ host }}  
 {% if hostvars[host].reverse_proxy.tls_insecure | default(false) %}
@@ -31,9 +20,3 @@
 {% endif %}
 {% endif %}
 {% endfor %}
-
-# albyhub
-ln.{{ bc_cloudflare_domain }} {
-  reverse_proxy http://bitcoin:8080
-  import cloudflare
-}

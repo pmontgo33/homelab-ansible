@@ -1,0 +1,36 @@
+(cloudflare) {
+	tls {
+		dns cloudflare {{ cloudflare_token }}
+	}
+}
+{% for host in groups['servers'] %}
+{% if hostvars[host].reverse_proxy is defined and not hostvars[host].reverse_proxy.secure | default(false) %}
+
+# {{ host }}  
+{% if hostvars[host].reverse_proxy.tls_insecure | default(false) %}
+{{ hostvars[host].reverse_proxy.subdomain }}.{{ cloudflare_domain }} {
+  reverse_proxy https://{{ host }}:{{ hostvars[host].reverse_proxy.port }} {
+   # header_up X-Forwarded-Proto https
+    transport http {
+      tls_insecure_skip_verify
+    }
+  }
+  import cloudflare
+}
+{% else %}
+{{ hostvars[host].reverse_proxy.subdomain }}.{{ cloudflare_domain }} {
+  reverse_proxy http://{{ host }}:{{ hostvars[host].reverse_proxy.port }}
+  import cloudflare
+}
+{% endif %}
+{% endif %}
+{% endfor %}
+
+# albyhub
+ln.{{ bc_cloudflare_domain }} {
+  reverse_proxy http://bitcoin:8080
+  import cloudflare
+}
+
+# Import secure services if file exists
+import /etc/caddy/secure/*.caddy

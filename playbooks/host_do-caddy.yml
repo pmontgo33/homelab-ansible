@@ -12,7 +12,7 @@
     - name: INSTALL PACKAGES
       include_tasks: tasks/install_packages.yml
     - name: INSTALL CONFIGURE EXTERNAL CADDY
-      include_tasks: tasks/install_config_caddy.yml
-      vars:
-        - caddy_file: "external_Caddyfile.j2"
+      include_tasks: tasks/install_config_external_caddy.yml
+      # vars:
+      #   - caddy_file: "external_Caddyfile.j2"
     

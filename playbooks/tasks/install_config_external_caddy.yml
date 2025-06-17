@@ -2,13 +2,18 @@
   include_vars: vars/homelab_vars.yml
 - name: Include Homelab Secret Vars
   include_vars: vars/homelab_secret_vars.yml
-# - name: Include Caddy Vars
-#   include_vars: vars/caddy.yml
 
-- name: install and configure caddy
-  include_role:
-    name: caddy_ansible.caddy_ansible
+- name: INSTALL CONFIGURE EXTERNAL CADDY
+  include_tasks: tasks/install_config_caddy.yml
   vars:
-    caddy_config: "{{ lookup('template', 'templates/external_Caddyfile.j2') }}"
-    caddy_packages: ["github.com/caddy-dns/cloudflare"]
-    caddy_systemd_capabilities_enabled: true
+    caddy_file: "caddy/external_Caddyfile.j2"
+
+- name: Ensure secure caddy directory exists
+  ansible.builtin.file:
+    path: /etc/caddy/secure
+    state: directory
+
+- name: Deploy secure caddy configuration
+  ansible.builtin.template:
+    src: templates/caddy/external_Caddyfile_secure.j2      # Path relative to your playbook's templates/ directory
+    dest: /etc/caddy/secure/secure-services.caddy.disabled
