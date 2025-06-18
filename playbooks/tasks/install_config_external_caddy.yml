@@ -17,3 +17,18 @@
   ansible.builtin.template:
     src: templates/caddy/external_Caddyfile_secure.j2      # Path relative to your playbook's templates/ directory
     dest: /etc/caddy/secure/secure-services.caddy.disabled
+
+- name: Copy enable-secure.sh file
+  ansible.builtin.copy:
+    src: templates/caddy/enable-secure.sh
+    dest: /etc/caddy/secure/enable-secure.sh
+
+- name: Copy disable-secure.sh file
+  ansible.builtin.copy:
+    src: templates/caddy/disable-secure.sh
+    dest: /etc/caddy/secure/disable-secure.sh
+
+- name: Copy status-secure.sh file
+  ansible.builtin.copy:
+    src: templates/caddy/status-secure.sh
+    dest: /etc/caddy/secure/status-secure.sh

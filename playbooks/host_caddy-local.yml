@@ -14,4 +14,3 @@
       tags: config
     - name: TAILSCALE
       include_tasks: tasks/install_and_setup_tailscale.yml
-
