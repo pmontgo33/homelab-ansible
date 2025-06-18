@@ -22,13 +22,16 @@
   ansible.builtin.copy:
     src: templates/caddy/enable-secure.sh
     dest: /etc/caddy/secure/enable-secure.sh
+    mode: '0770'
 
 - name: Copy disable-secure.sh file
   ansible.builtin.copy:
     src: templates/caddy/disable-secure.sh
     dest: /etc/caddy/secure/disable-secure.sh
+    mode: '0770'
 
 - name: Copy status-secure.sh file
   ansible.builtin.copy:
     src: templates/caddy/status-secure.sh
     dest: /etc/caddy/secure/status-secure.sh
+    mode: '0770'
