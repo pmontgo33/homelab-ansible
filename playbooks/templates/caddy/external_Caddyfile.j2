@@ -34,13 +34,25 @@ ln.{{ bc_cloudflare_domain }} {
 
 # calendars
 calendar.{{ cloudflare_domain }} {
+    # Enable logging for debugging
+    log {
+        output stdout
+        level DEBUG
+    }
+    
     root * /var/www/calendar
     
     # Serve .ics files with proper headers
     header *.ics Content-Type "text/calendar; charset=utf-8"
     header *.ics Cache-Control "no-cache, must-revalidate"
     
-    file_server
+    # Add a simple response to test if subdomain is working
+    respond /test "Subdomain is working!" 200
+    
+    file_server {
+        # Enable directory browsing temporarily for debugging
+        browse
+    }
 }
 
 # Import secure services if file exists

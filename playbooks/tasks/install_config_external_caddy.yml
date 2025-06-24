@@ -45,4 +45,4 @@
   ansible.builtin.copy:
     src: templates/caddy/sports-calendar.ics
     dest: /var/www/calendar/sports-calendar.ics
-    mode: '0770'
+    mode: '0644'
