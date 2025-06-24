@@ -32,5 +32,16 @@ ln.{{ bc_cloudflare_domain }} {
 	import cloudflare
 }
 
+# calendars
+calendar.{{ cloudflare_domain }} {
+    root * /var/www/calendar
+    
+    # Serve .ics files with proper headers
+    header *.ics Content-Type "text/calendar; charset=utf-8"
+    header *.ics Cache-Control "no-cache, must-revalidate"
+    
+    file_server
+}
+
 # Import secure services if file exists
 import /etc/caddy/secure/*.caddy

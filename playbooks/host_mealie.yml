@@ -1,12 +1,12 @@
 - name: PROVISION MEALIE LXC
-  hosts: immich
-  become: yes
+  hosts: mealie
+  become: true
   
   vars_prompt:
     - name: update_docker
       prompt: "Would you like to update docker containers? (yes/no)"
       default: "no"
-      private: no
+      private: false
 
   pre_tasks:
     - name: UPDATE SYSTEM

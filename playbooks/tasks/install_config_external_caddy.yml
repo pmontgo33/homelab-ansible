@@ -35,3 +35,9 @@
     src: templates/caddy/status-secure.sh
     dest: /etc/caddy/secure/status-secure.sh
     mode: '0770'
+
+- name: Copy sports-calendar file
+  ansible.builtin.copy:
+    src: templates/caddy/sports-calendar.ics
+    dest: /var/www/calendar/sports-calendar.ics
+    mode: '0770'
