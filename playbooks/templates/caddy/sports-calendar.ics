@@ -7,38 +7,56 @@ X-WR-CALNAME:Sports Majors Calendar
 X-WR-CALDESC:Major sporting events from 2025-2034
 
 BEGIN:VEVENT
-UID:players-championship-2025@sportscalendar.com
-SUMMARY:The Players Championship
+UID:super-bowl-lix-completed-2025@sportscalendar.com
+SUMMARY:Super Bowl LIX - COMPLETED
+DTSTART;VALUE=DATE:20250209
+DTEND;VALUE=DATE:20250210
+DESCRIPTION:Caesars Superdome, New Orleans, LA - COMPLETED EVENT
+DTSTAMP:20250623T000000Z
+END:VEVENT
+
+BEGIN:VEVENT
+UID:players-championship-completed-2025@sportscalendar.com
+SUMMARY:The Players Championship - COMPLETED
 DTSTART;VALUE=DATE:20250313
 DTEND;VALUE=DATE:20250317
-DESCRIPTION:TPC Sawgrass, Ponte Vedra Beach, FL
+DESCRIPTION:TPC Sawgrass, Ponte Vedra Beach, FL - Winner: Rory McIlroy - COMPLETED
 DTSTAMP:20250623T000000Z
 END:VEVENT
 
 BEGIN:VEVENT
-UID:masters-2025@sportscalendar.com
-SUMMARY:The Masters Tournament
+UID:masters-completed-2025@sportscalendar.com
+SUMMARY:The Masters Tournament - COMPLETED
 DTSTART;VALUE=DATE:20250410
 DTEND;VALUE=DATE:20250414
-DESCRIPTION:Augusta National Golf Club, Augusta, GA
+DESCRIPTION:Augusta National Golf Club, Augusta, GA - Winner: Rory McIlroy (Career Grand Slam Completed) - COMPLETED
 DTSTAMP:20250623T000000Z
 END:VEVENT
 
 BEGIN:VEVENT
-UID:pga-championship-2025@sportscalendar.com
-SUMMARY:PGA Championship
+UID:pga-championship-completed-2025@sportscalendar.com
+SUMMARY:PGA Championship - COMPLETED
 DTSTART;VALUE=DATE:20250515
 DTEND;VALUE=DATE:20250519
-DESCRIPTION:Quail Hollow Club, Charlotte, NC
+DESCRIPTION:Quail Hollow Club, Charlotte, NC - Winner: Scottie Scheffler (5-shot victory, 3rd major title) - COMPLETED
 DTSTAMP:20250623T000000Z
 END:VEVENT
 
 BEGIN:VEVENT
-UID:us-open-golf-2025@sportscalendar.com
-SUMMARY:U.S. Open (Golf)
+UID:stanley-cup-final-2025@sportscalendar.com
+SUMMARY:Stanley Cup Final
+DTSTART;VALUE=DATE:20250601
+DTEND;VALUE=DATE:20250616
+DESCRIPTION:NHL Stanley Cup Final (projected range)
+DTSTAMP:20250623T000000Z
+END:VEVENT
+
+BEGIN:VEVENT
+UID:us-open-golf-completed-2025@sportscalendar.com
+SUMMARY:U.S. Open (Golf) - COMPLETED
 DTSTART;VALUE=DATE:20250612
 DTEND;VALUE=DATE:20250616
-DESCRIPTION:Oakmont Country Club, Oakmont, PA
+DESCRIPTION:Oakmont Country Club, Oakmont, PA - Winner: J.J. Spaun (-1, 2-shot victory with 64-foot walk-off birdie putt on 18th hole, first major title) - COMPLETED
 DTSTAMP:20250623T000000Z
 END:VEVENT
 
@@ -52,29 +70,11 @@ DTSTAMP:20250623T000000Z
 END:VEVENT
 
 BEGIN:VEVENT
-UID:super-bowl-lix-2025@sportscalendar.com
-SUMMARY:Super Bowl LIX
-DTSTART;VALUE=DATE:20250209
-DTEND;VALUE=DATE:20250210
-DESCRIPTION:Caesars Superdome, New Orleans, LA
-DTSTAMP:20250623T000000Z
-END:VEVENT
-
-BEGIN:VEVENT
 UID:world-series-2025@sportscalendar.com
 SUMMARY:World Series
 DTSTART;VALUE=DATE:20251022
 DTEND;VALUE=DATE:20251030
 DESCRIPTION:MLB World Series (projected range)
-DTSTAMP:20250623T000000Z
-END:VEVENT
-
-BEGIN:VEVENT
-UID:stanley-cup-final-2025@sportscalendar.com
-SUMMARY:Stanley Cup Final
-DTSTART;VALUE=DATE:20250601
-DTEND;VALUE=DATE:20250616
-DESCRIPTION:NHL Stanley Cup Final (projected range)
 DTSTAMP:20250623T000000Z
 END:VEVENT
 
