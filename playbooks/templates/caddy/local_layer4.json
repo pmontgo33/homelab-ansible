@@ -1,0 +1,32 @@
+{
+  "apps": {
+    "layer4": {
+      "servers": {
+        "ssh": {
+          "listen": [":22"],
+          "routes": [
+            {
+              "match": [
+                {
+                  "tls": {
+                    "sni": ["git.montycasa.net"]
+                  }
+                }
+              ],
+              "handle": [
+                {
+                  "handler": "proxy", 
+                  "upstreams": [
+                    {
+                      "dial": ["192.168.86.120:22"]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+}
