@@ -1,6 +1,6 @@
 - name: PROVISION DIGITAL OCEAN CADDY
   hosts: do-caddy
-  become: yes
+  become: true
   
   pre_tasks:
     - name: TAILSCALE

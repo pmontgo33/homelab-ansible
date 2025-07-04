@@ -1,21 +1,11 @@
-# $ ansible-playbook playbooks/provision_nextcloud.yml
-
 - name: PROVISION NEXTCLOUD
   hosts: nextcloud
-  become: yes
-  vars:
-    - ansible_user: "{{ primary_user }}"
-  
-  # pre_tasks:
-  #   - name: UPDATE SYSTEM
-  #     include_tasks: tasks/update_system.yml
+  become: true
+  # vars:
+  #   ansible_user: "{{ primary_user }}"
   
   tasks:
-    # - name: SSH KEYS
-    #   include_tasks: tasks/ssh_keys.yml
-    - name: SET TIMEZONE
-      include_tasks: tasks/set_timezone.yml
-    - name: INSTALL PACKAGES
-      include_tasks: tasks/install_packages.yml
     - name: TAILSCALE
       include_tasks: tasks/install_and_setup_tailscale.yml
+    - name: MOUNT DRIVE NFS
+      include_tasks: tasks/mount_drive_nfs.yml
