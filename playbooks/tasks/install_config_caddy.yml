@@ -10,5 +10,5 @@
     name: caddy_ansible.caddy_ansible
   vars:
     caddy_config: "{{ lookup('template', '{{ caddy_file }}') }}"
-    caddy_packages: ["github.com/caddy-dns/cloudflare"]
+    caddy_packages: ["github.com/caddy-dns/cloudflare", "github.com/greenpau/caddy-security"]
     caddy_systemd_capabilities_enabled: true
