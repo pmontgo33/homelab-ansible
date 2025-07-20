@@ -15,7 +15,7 @@
 
 - name: Deploy secure caddy configuration
   ansible.builtin.template:
-    src: templates/caddy/external_Caddyfile_secure.j2      # Path relative to your playbook's templates/ directory
+    src: templates/caddy/external_Caddyfile_secure.j2
     dest: /etc/caddy/secure/secure-services.caddy.disabled
 
 - name: Copy enable-secure.sh file
