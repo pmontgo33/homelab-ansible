@@ -1,14 +1,3 @@
-{# {
-    layer4 {
-        git.montycasa.net:2222 {
-            @ssh ssh
-            route @ssh {
-                proxy forgejo:22
-            }
-        }
-    }
-} #}
-
 (cloudflare) {
 	tls {
 		dns cloudflare {{ cloudflare_token }}

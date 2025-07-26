@@ -10,14 +10,14 @@ av-edit-vars:
 reqs:
   ansible-galaxy install -r requirements.yml
 
-git-acpush message:
+git-acpush message branch="master":
   git add .
   git commit -m "{{message}}"
-  git push origin master
+  git push origin "{{branch}}"
 
-git-cpush message:
+git-cpush message branch="master":
   git commit -m "{{message}}"
-  git push origin master
+  git push origin "{{branch}}"
 
 git-rpull remote:
   ssh root@{{remote}} "cd /etc/nixos && git pull https://github.com/pmontgo33/nixos-config.git"
