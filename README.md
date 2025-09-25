@@ -7,9 +7,36 @@ Welcome to **Monty's Homelab Ansible** repository! This project is a personal co
 This repository is built to simplify and streamline the deployment, configuration, and maintenance of various services and systems in my homelab. While it reflects my own environment, the structure and approach may be useful to others looking to manage their infrastructure as code (IaC) with Ansible.
 
 ### Key Features:
+
 - **Infrastructure Automation**: Automates the setup and configuration of homelab services.
 - **Modular Design**: Includes reusable roles and playbooks for common tasks.
 - **Flexible and Extensible**: Incorporates Shell scripting, Jinja templates, and HCL for additional functionality and customization.
+
+- **Host File Managed Services**:
+
+    This repository simplifies homelab management by using Ansible's inventory hosts file as a centralized configuration. By defining service configurations directly in your host file, you can define attributes of each host that can be queried by specific ansible playbooks for use in various applications. The Ansible inventory host file defines network settings, service parameters, and deployment variables in one location for consistent management across the homelab.
+
+    **Caddy Web Server**:
+
+    Automated deployment for both local and public-facing reverse proxy configurations
+    Dynamic Caddyfile generation from host variables handles SSL certificates, domain routing, and upstream services
+    Supports internal homelab services and external domain management seamlessly
+
+    **Samba File Shares**:
+
+    Host-defined share configurations including mount points, permissions, and user access controls
+    Automated SMB/CIFS setup with customizable security settings
+    Share provisioning driven directly from inventory variables
+
+    **Docker Compose Management**:
+
+    Simplified deployment and updates for containerized services.
+    **TODO**: Manage all compose files directly within this repository, and push out to the host.
+
+    **Homepage Dashboard**:
+
+    Automated dashboard configuration based on your deployed services
+    Customizable layouts and service groupings managed through host variables
 
 ## Repository Structure
 
@@ -59,4 +86,4 @@ This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) f
 
 ## Acknowledgments
 
-This repository is a work in progress, current state of my personal homelab configuration. A big thank you to the open-source community for providing the tools and inspiration to build and maintain homelabs. 🙌
+This repository is a work in progress, current state of my personal homelab configuration. A big thank you to the open-source community for providing the tools and inspiration to build and maintain homelabs. Also, [Ansible](https://docs.ansible.com) has excellent documentation! 🙌
