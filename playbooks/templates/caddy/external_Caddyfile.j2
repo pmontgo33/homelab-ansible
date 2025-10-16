@@ -27,6 +27,12 @@
 {% endfor %}
 
 # albyhub
+gotify.{{ cloudflare_domain }} {
+	reverse_proxy http://messages:8080
+	import cloudflare
+}
+
+# albyhub
 ln.{{ bc_cloudflare_domain }} {
 	reverse_proxy http://bitcoin:8080
 	import cloudflare
