@@ -26,9 +26,9 @@
 {% endif %}
 {% endfor %}
 
-# albyhub
-gotify.{{ cloudflare_domain }} {
-	reverse_proxy http://messages:8080
+# gotify
+notify.{{ cloudflare_domain }} {
+	reverse_proxy http://nix-fury:8080
 	import cloudflare
 }
 
