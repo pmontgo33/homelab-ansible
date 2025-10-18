@@ -32,6 +32,12 @@ notify.{{ cloudflare_domain }} {
 	import cloudflare
 }
 
+# simplex smp server
+smp.{{ cloudflare_domain }} {
+	reverse_proxy http://nix-fury:5223
+	import cloudflare
+}
+
 # albyhub
 ln.{{ bc_cloudflare_domain }} {
 	reverse_proxy http://bitcoin:8080
