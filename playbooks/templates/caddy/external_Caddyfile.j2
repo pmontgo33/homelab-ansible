@@ -26,6 +26,18 @@
 {% endif %}
 {% endfor %}
 
+# jellyfin
+jellyfin.{{ cloudflare_domain }} {
+	reverse_proxy http://jellyfin:8096
+	import cloudflare
+}
+
+# jellyfin
+watchit.{{ cloudflare_domain }} {
+	reverse_proxy http://jellyfin:8096
+	import cloudflare
+}
+
 # gotify
 notify.{{ cloudflare_domain }} {
 	reverse_proxy http://nix-fury:8080
