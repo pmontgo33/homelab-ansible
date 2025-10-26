@@ -44,6 +44,12 @@ notify.{{ cloudflare_domain }} {
 	import cloudflare
 }
 
+# Molly Socket
+mollysocket.{{ cloudflare_domain }} {
+	reverse_proxy http://nix-fury:8020
+	import cloudflare
+}
+
 # simplex smp server
 smp.{{ cloudflare_domain }} {
 	reverse_proxy http://nix-fury:5223
