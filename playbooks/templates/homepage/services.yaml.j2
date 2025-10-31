@@ -108,15 +108,6 @@
         siteMonitor: https://pikvm.skink-galaxy.ts.net
      #   description: 
         icon: https://avatars.githubusercontent.com/u/41749659?s=200&v=4
-    - Print Server:
-        href: http://print-server.skink-galaxy.ts.net:631/
-        siteMonitor: http://print-server.skink-galaxy.ts.net:631/
-        icon: sh-openprinting-cups.svg
-    - Nix Fury VS Code:
-        href: http://{{hostvars['nix-fury'].ip}}:8443
-        siteMonitor: http://{{hostvars['nix-fury'].ip}}:8443
-        description: VS Code Server to edit homepage config
-        icon: sh-visual-studio-code.svg
     - Yondu VS Code:
         href: http://{{hostvars['yondu'].ip}}:8680
         siteMonitor: http://{{hostvars['yondu'].ip}}:8680
@@ -313,13 +304,13 @@
           showEpisodeNumber: true # optional, defaults to false
           expandOneStreamToTwoRows: false # optional, defaults to true
     - Immich:
-        href: https://immich.{{ cloudflare_domain }}
-        siteMonitor: https://immich.{{ cloudflare_domain }}
+        href: https://photos.{{ cloudflare_domain }}
+        siteMonitor: https://photos.{{ cloudflare_domain }}
         description: Photo Library
         icon: sh-immich.svg
         widget:
           type: immich
-          url: https://immich.{{ cloudflare_domain }}
+          url: https://photos.{{ cloudflare_domain }}
           key: {{immich_key}}
           version: 2 # optional, default is 1
     - Audiobookshelf:
@@ -442,6 +433,10 @@
         href: https://mealie.{{ cloudflare_domain }}
         siteMonitor: https://mealie.{{ cloudflare_domain }}
         icon: sh-mealie.svg
+    - Endurain:
+        href: https://fit.{{ cloudflare_domain }}
+        siteMonitor: https://fit.{{ cloudflare_domain }}
+        icon: sh-endurain.svg
     - PocketID:
         href: https://auth.{{ cloudflare_domain }}
         siteMonitor: https://auth.{{ cloudflare_domain }}
