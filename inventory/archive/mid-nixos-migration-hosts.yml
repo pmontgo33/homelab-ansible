@@ -27,6 +27,17 @@ servers:
       primary_user: root
       local_proxy: {"https": true}
 
+    # nix-fury:
+    #   ansible_host: nix-fury
+    #   ip: 192.168.86.106
+    #   primary_user: patrick
+    #   samba_shares: [{"name":"patrick", "path":"/home/patrick", "comment":"patrick home folder"}, {"name":"opt", "path":"/opt", "comment":"opt directory", "root":true}]
+    #   # docker_compose_dirs: ["/opt/docker"]
+    #   pve_host: loki
+    #   pve_id: 106
+    #   local_proxy:
+    #     - {"secure": true, "subdomain":"uptime", "port":"3001"}
+
     pbs:
       ansible_host: pbs
       ip: 192.168.86.102
@@ -36,16 +47,15 @@ servers:
       pve_id: 102
       local_proxy: {"https": true}
 
-    # omada:
-    #   ansible_host: omada
-    #   ip: 192.168.86.111
-    #   port: 8043
-    #   primary_user: root
-    #   pve_host: loki
-    #   pve_id: 111
-    #   local_proxy: {"https": true}
+    omada:
+      ansible_host: omada
+      ip: 192.168.86.111
+      port: 8043
+      primary_user: root
+      pve_host: loki
+      pve_id: 111
+      local_proxy: {"https": true}
 
-<<<<<<< HEAD
     # opnsense:
     #   ansible_host: opnsense
     #   ip: 192.168.86.1
@@ -99,17 +109,6 @@ servers:
     #     - {"subdomain":"bazarr", "port":"6767"}
     #     - {"subdomain":"prowlarr", "port":"9696"}
 
-    # frigate:
-    #   ansible_host: frigate
-    #   ip: 192.168.86.116
-    #   port: 5000
-    #   primary_user: root
-    #   samba_shares: [{"name":"root", "path":"/root", "comment":"root folder"}, {"name":"opt", "path":"/opt", "comment":"opt directory", "root":true}]
-    #   docker_compose_dirs: ["/opt/server"]
-    #   pve_host: stark
-    #   pve_id: 116
-    #   local_proxy: {}
-=======
     frigate:
       ansible_host: frigate
       ip: 192.168.86.116
@@ -120,7 +119,6 @@ servers:
       pve_host: stark
       pve_id: 116
       local_proxy: {}
->>>>>>> 1118c490add260002fb39d1e0abcac91d43152f9
 
     immich:
       ansible_host: immich
@@ -133,6 +131,12 @@ servers:
       pve_id: 115
       reverse_proxy: {"subdomain":"immich", "port":"2283"}
 
+    # print-server:
+    #   ansible_host: print-server
+    #   ip: 192.168.86.214
+    #   primary_user: patrick
+    #   samba_shares: [{"name":"patrick", "path":"/home/patrick", "comment":"patrick home folder"}, {"name":"opt", "path":"/opt", "comment":"opt directory", "root":true}]
+
     audiobookshelf:
       ansible_host: audiobookshelf
       ip: 192.168.86.105
@@ -141,6 +145,16 @@ servers:
       pve_host: starlord
       pve_id: 105
       reverse_proxy: {"subdomain":"audiobooks", "port":"13378"}
+
+    # uptimekuma:
+    #   ansible_host: uptimekuma
+    #   ip: 192.168.86.117
+    #   port: 3001
+    #   primary_user: root
+    #   pve_host: stark
+    #   pve_id: 117
+    #   local_proxy: {}
+    #   reverse_proxy: {"secure": true, "subdomain":"uptimekuma", "port":"3001"}
 
     dockge:
       ansible_host: dockge
@@ -151,6 +165,48 @@ servers:
       pve_id: 112
       local_proxy: {}
 
+    # homepage:
+    #   ansible_host: homepage
+    #   ip: 192.168.86.121
+    #   port: 3000
+    #   primary_user: root
+    #   pve_host: stark
+    #   pve_id: 121
+    #   local_proxy: {}
+
+    # forgejo:
+    #   ansible_host: forgejo
+    #   ip: 192.168.86.120
+    #   port: 3000
+    #   primary_user: root
+    #   pve_host: stark
+    #   pve_id: 120
+    #   local_proxy: {"subdomain": "git"}
+
+    # gotify:
+    #   ansible_host: gotify
+    #   ip: 192.168.86.122
+    #   primary_user: root
+    #   pve_host: stark
+    #   pve_id: 122
+    #   reverse_proxy: {"subdomain": "gotify", "port": "80"}
+
+    # messages:
+    #   ip: 192.168.86.136
+    #   pve_host: stark
+    #   pve_id: 122
+    #   reverse_proxy: 
+    #     - {"subdomain": "gotify", "port": "8080"}
+
+    # linkwarden:
+    #   ansible_host: linkwarden
+    #   ip: 192.168.86.123
+    #   port: 3000
+    #   primary_user: root
+    #   pve_host: stark
+    #   pve_id: 123
+    #   reverse_proxy: {"subdomain":"linkwarden", "port":"3000"}
+
     karakeep:
       ansible_host: karakeep
       ip: 192.168.86.130
@@ -160,14 +216,14 @@ servers:
       pve_id: 130
       reverse_proxy: {"subdomain":"keep", "port":"3000"}
 
-    # myspeed:
-    #   ansible_host: 192.168.86.125
-    #   ip: 192.168.86.125
-    #   port: 5216
-    #   primary_user: root
-    #   pve_host: loki
-    #   pve_id: 125
-    #   local_proxy: {}
+    myspeed:
+      ansible_host: 192.168.86.125
+      ip: 192.168.86.125
+      port: 5216
+      primary_user: root
+      pve_host: loki
+      pve_id: 125
+      local_proxy: {}
     
     paperless-ngx:
       ansible_host: paperless-ngx
@@ -196,7 +252,6 @@ servers:
       pve_id: 101
       reverse_proxy: {"subdomain":"auth", "port":"1411"}
 
-<<<<<<< HEAD
     # pocket-id:
     #   ansible_host: pocket-id
     #   ip: 192.168.86.107
@@ -206,15 +261,6 @@ servers:
     #   pve_id: 107
     #   reverse_proxy: {"subdomain":"auth", "port":"1411"}
 
-    # onlyoffice:
-    #   ansible_host: onlyoffice
-    #   ip: 192.168.86.119
-    #   port: 80
-    #   primary_user: root
-    #   pve_host: starlord
-    #   pve_id: 119
-    #   reverse_proxy: {"subdomain":"office", "port":"80"}
-=======
     onlyoffice:
       ansible_host: onlyoffice
       ip: 192.168.86.119
@@ -223,7 +269,6 @@ servers:
       pve_host: starlord
       pve_id: 119
       reverse_proxy: {"subdomain":"office", "port":"80"}
->>>>>>> 1118c490add260002fb39d1e0abcac91d43152f9
 
     ollama:
       ansible_host: ollama
@@ -240,7 +285,6 @@ servers:
       docker_compose_dirs: ["/opt/docker"]
       pve_host: loki
       pve_id: 103
-<<<<<<< HEAD
       # reverse_proxy: {"subdomain":"bitcoin", "port":"8080"}
 
     # endurain:
@@ -248,10 +292,10 @@ servers:
     #   port: 8080
     #   reverse_proxy: {"subdomain":"endurain", "port":"8080"}
 
-    # grist:
-    #   ip: 192.168.86.132
-    #   port: 8484
-    #   local_proxy: {}
+    grist:
+      ip: 192.168.86.132
+      port: 8484
+      local_proxy: {}
 
 
       # caddy-local:
@@ -266,11 +310,9 @@ servers:
     #   #ip: 
     #   primary_user: root
 
-    # rn-pangolin:
-    #   ansible_host: rn-pangolin
-    #   primary_user: patrick
-=======
->>>>>>> 1118c490add260002fb39d1e0abcac91d43152f9
+    rn-pangolin:
+      ansible_host: rn-pangolin
+      primary_user: patrick
     
     truenas:
       ansible_host: truenas
